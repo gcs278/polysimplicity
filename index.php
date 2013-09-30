@@ -19,8 +19,10 @@ and open the template in the editor.
         <div id="includedContent"></div>
         <div id="container">
             <h2>Welcome to Political Simplicity!</h2>
-            <p>testThis site is currently under construction. Please don't mind the mess.</p>
-            <div id='selection'>
+            <p>This site is currently under construction. Please don't mind the mess.</p>
+            <h3 style="color:black;">Contributors:</h3>
+	    <p>Please select the + symbol in the upper right hand corner</p>
+		<div id='selection'>
                 <ul><a href='./Obama.html'><img src='Candidates/Obama.jpg'/></a></ul>
                 <ul><a href='./Ronmey.html'><img src='Candidates/Mitt_Romney.jpg'/></a></ul>
                 <ul><a href='./Obama.html'><img src='Candidates/Bill_Clinton.jpg'/></a></ul>

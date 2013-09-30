@@ -9,7 +9,7 @@ $this->breadcrumbs=array(
 );
 ?>
 
-<h1>Contact Us</h1>
+<h1>Contact the Political Simplicity Development Team</h1>
 
 <?php if(Yii::app()->user->hasFlash('contact')): ?>
 
@@ -20,7 +20,8 @@ $this->breadcrumbs=array(
 <?php else: ?>
 
 <p>
-If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
+If you have business inquiries or other questions, please fill out the following form to contact us. We will respond as soon as possible. Thanks!</p>
+<p>Email: support@politicalsimplicity.com
 </p>
 
 <div class="form">
