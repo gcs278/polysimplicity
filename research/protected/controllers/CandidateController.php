@@ -6,16 +6,19 @@ class CandidateController extends Controller
 	public function actionDemographics()
 	{
 		$model = new CandidateDemographics;
-	if(isset($_POST['CandidateDemographics']))
-    {
-        $model->attributes=$_POST['CandidateDemographics'];
-        if($model->validate())
-        {
-            // form inputs are valid, do something here
-            return;
-        }
-    }
-    $this->render('demographics',array('model'=>$model));	
+
+                if(isset($_POST['CandidateDemographics']))
+                {
+                	$model->attributes=$_POST['CandidateDemographics'];
+                	if($model->save())
+                    	{
+                       		$this->redirect(Yii::app()->user->returnUrl);
+                    	}
+                }
+
+                $this->render('demographics',array(
+                'model'=>$model,
+		));
 	}
 
 	// Uncomment the following methods and override them if needed
@@ -44,22 +47,4 @@ class CandidateController extends Controller
 		);
 	}
 	*/
-	public function actionCreate()
-{
-    	$model=new CandidateDemographics;
-
-    		if(isset($_POST['CandidateDemographics']))
-    		{
-        	$model->attributes=$_POST['CandidateDemographics'];
-        	if($model->save())
-                    {
-                        $this->redirect(Yii::app()->user->returnUrl);
-                    }   
-   		}
-		
-    		$this->render('create',array(
-        	'model'=>$model,
-   	 ));
-                      
-}
 }

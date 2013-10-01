@@ -19,7 +19,7 @@ and open the template in the editor.
         <div id="includedContent"></div>
         <div id="container">
             <h2>Welcome to Political Simplicity!</h2>
-            <p>This site is currently under construction. Please don't mind the mess.</p>
+            <p>This site is currently under construction (this is just a mock prototype). Please don't mind the mess.</p>
             <h3 style="color:black;">Contributors:</h3>
 	    <p>Please select the + symbol in the upper right hand corner</p>
 		<div id='selection'>
@@ -28,7 +28,7 @@ and open the template in the editor.
                 <ul><a href='./Obama.html'><img src='Candidates/Bill_Clinton.jpg'/></a></ul>
             </div>       
         </div>
-        <footer><p>Copyright&copy Grant Spence, Jonathan Fremerman 2013</p></footer>
+        <footer><p>Political Simplicity Development Team</p></footer>
     </body>
 </html>
 <!DOCTYPE html>

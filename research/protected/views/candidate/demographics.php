@@ -25,12 +25,12 @@
 		<?php echo $form->error($model,'name'); ?>
 	</div>
 
-	<div class="row">
-		<?php echo $form->labelEx($model,'gender'); ?>
-		<?php echo $form->textField($model,'gender'); ?>
-		<?php echo $form->error($model,'gender'); ?>
+	<div class="compactRadioGroup">
+		<?php echo $form->radioButtonList($model,'gender',array(
+			'Male'=>'Male',
+			'Female'=>'Female'),
+		array('separator'=>'    '));?>
 	</div>
-
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
