@@ -2,12 +2,13 @@
 
 class CandidateController extends Controller
 {
-	
+	public $layout = '//layouts/column2';
 	public function actionDemographics()
 	{
 		$model = new CandidateDemographics;
-
-                if(isset($_POST['CandidateDemographics']))
+                $dataProvider=new CActiveDataProvider('CandidateDemographics');
+                
+		if(isset($_POST['CandidateDemographics']))
                 {
                 	$model->attributes=$_POST['CandidateDemographics'];
                 	if($model->save())
@@ -18,6 +19,7 @@ class CandidateController extends Controller
 
                 $this->render('demographics',array(
                 'model'=>$model,
+		'dataProvider'=>$dataProvider,
 		));
 	}
 
@@ -47,4 +49,70 @@ class CandidateController extends Controller
 		);
 	}
 	*/
+        public function loadModel($id)
+        {
+                $model=CandidateDemographics::model()->findByPk($id);
+                if($model===null)
+                        throw new CHttpException(404,'The requested page does not exist.');
+                return $model;
+        }
+
+        public function actionView($id)
+        {
+                $this->render('view',array(
+                        'model'=>$this->loadModel($id),
+                ));
+        }
+
+        /**
+         * Lists all models.
+         */
+        public function actionIndex()
+        {
+		$model = new CandidateDemographics('search');
+		$model->unsetAttributes();
+
+		if(isset($_GET['CandidateDemographics']))
+			$model->attributes=$_GET['CandidateDemographics'];		
+
+                $dataProvider=new CActiveDataProvider('CandidateDemographics');
+                $this->render('index',array(
+			'model'=>$model,
+                        'dataProvider'=>$dataProvider,
+                ));
+        }
+	
+        /**
+         * Updates a particular model.
+         * If update is successful, the browser will be redirected to the 'view' page.
+         * @param integer $id the ID of the model to be updated
+         */
+        public function actionUpdate($id)
+        {
+                $model=$this->loadModel($id);
+
+                // Uncomment the following line if AJAX validation is needed
+                // $this->performAjaxValidation($model);
+
+                // set the parameters for the bizRule
+                $params = array('CandidateDemographics'=>$model);
+                // now check the bizrule for this user
+                if (!Yii::app()->user->checkAccess('updateSelf', $params) &&
+                        !Yii::app()->user->checkAccess('admin'))
+                {
+                        throw new CHttpException(403, 'You are not authorized to perform this action');
+                }
+                if(isset($_POST['CandidateDemographics']))
+                {
+                        $model->attributes=$_POST['CandidateDemographics'];
+                        if($model->save())
+                                $this->redirect(array('view','id'=>$model->id));
+                }
+
+                $this->render('update',array(
+                        'model'=>$model,
+                ));
+        }
+
+
 }

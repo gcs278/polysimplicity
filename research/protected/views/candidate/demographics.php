@@ -2,7 +2,13 @@
 /* @var $this CandidateDemographicsController */
 /* @var $model CandidateDemographics */
 /* @var $form CActiveForm */
+
+$this->breadcrumbs=array(
+        'Candidate Management'=>array('index'),
+	'Create Candidate'
+);
 ?>
+
 
 <div class="form">
 
