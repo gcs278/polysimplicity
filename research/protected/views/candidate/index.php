@@ -8,7 +8,6 @@ $this->breadcrumbs=array(
 
 $this->menu=array(
         array('label'=>'Create Candidate', 'url'=>array('demographics')),
-        array('label'=>'Manage Candidate', 'url'=>array('admin')),
 );
 
 

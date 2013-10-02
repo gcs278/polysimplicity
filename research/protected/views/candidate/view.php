@@ -3,14 +3,14 @@
 /* @var $model Users */
 
 $this->breadcrumbs=array(
-	'Users'=>array('demographics'),
-	$model->id,
+	'Candidate Management'=>array('index'),
+	$model->name,
 );
 
 $this->menu=array(
 	array('label'=>'List Candidates', 'url'=>array('index')),
 	array('label'=>'Delete Candidate', 'url'=>'#', 'linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
-	array('label'=>'Manage Candidate', 'url'=>array('admin')),
+	array('label'=>'Update Candidate', 'url'=>array('update','id'=>$model->id)),
 );
 ?>
 
