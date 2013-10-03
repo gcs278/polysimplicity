@@ -7,6 +7,9 @@
  * @property integer $id
  * @property string $name
  * @property string $gender
+ * @property integer $age
+ * @property string $birth_town
+ * @property string $birth_state
  */
 class CandidateDemographics extends CActiveRecord
 {
@@ -26,10 +29,12 @@ class CandidateDemographics extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name, gender', 'required'),
+			array('name','unique'),
+			array('name, gender, age, birth_town, birth_state', 'required'),
+			array('age','numerical','integerOnly'=>true),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name, gender', 'safe', 'on'=>'search'),
+			array('id, name, gender, age', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -53,6 +58,9 @@ class CandidateDemographics extends CActiveRecord
 			'id' => 'ID',
 			'name' => 'Candidate Name',
 			'gender' => 'Gender',
+			'age' => 'Age',
+			'birth_town' => 'City',
+			'birth_state' => 'State',
 		);
 	}
 
@@ -77,7 +85,9 @@ class CandidateDemographics extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('name',$this->name,true);
 		$criteria->compare('gender',$this->gender,true);
-
+		$criteria->compare('age',$this->age,true);
+		$criteria->compare('birth_town',$this->birth_town,true);
+		$criteria->compare('birth_state',$this->birth_state,true);
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
@@ -93,4 +103,5 @@ class CandidateDemographics extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+	
 }

@@ -106,37 +106,37 @@ class Users extends CActiveRecord
 	{
 		return parent::model($className);
 	}
-/**
- * 
- * @return crypted value
- */
-public function hash($value)
-{
-    return crypt($value);
-}
+	/**
+ 	* 
+ 	* @return crypted value
+	*/
+	public function hash($value)
+	{
+	    	return crypt($value);
+	}
  
-/**
- * Encrypt password on create and on update: overload beforeSave function
- */
-protected function beforeSave()
-{
-    if (parent::beforeSave())
-    {
-        $this->password = $this->hash($this->password);
-        return true;
-    }
-    return false;
-}
+	/**
+	* Encrypt password on create and on update: overload beforeSave function
+	*/
+	protected function beforeSave()
+	{
+	    if (parent::beforeSave())
+    		{
+       			$this->password = $this->hash($this->password);
+        		return true;
+    		}
+    		return false;
+	}
  
-/**
- * Check if a password value correspond to the stored hashed value
- */       
-public function check($value)
-{
-    $new_hash = crypt($value, $this->password);
-    if ($new_hash == $this->password) {
-        return true;
-    }
-    return false;
-}
+	/**
+	 * Check if a password value correspond to the stored hashed value
+	 */       
+	public function check($value)
+	{
+	    $new_hash = crypt($value, $this->password);
+	    if ($new_hash == $this->password) {
+	        return true;
+	    }
+	    return false;
+	}
 }

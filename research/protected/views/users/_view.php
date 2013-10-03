@@ -28,6 +28,6 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('cell')); ?>:</b>
 	<?php echo CHtml::encode($data->cell); ?>
 	<br />
-
+	<br />
 
 </div>

@@ -13,7 +13,7 @@ and open the template in the editor.
         </script> 
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="style.css" rel="stylesheet" type="text/css"/>
+        <link href="css/style.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <div id="includedContent"></div>
@@ -23,9 +23,9 @@ and open the template in the editor.
             <h3 style="color:black;">Contributors:</h3>
 	    <p>Please select the + symbol in the upper right hand corner</p>
 		<div id='selection'>
-                <ul><a href='./Obama.html'><img src='Candidates/Obama.jpg'/></a></ul>
-                <ul><a href='./Ronmey.html'><img src='Candidates/Mitt_Romney.jpg'/></a></ul>
-                <ul><a href='./Obama.html'><img src='Candidates/Bill_Clinton.jpg'/></a></ul>
+                <ul><a href='Obama.html'><img src='Candidates/Obama.jpg'/></a></ul>
+                <ul><a href='Ronmey.html'><img src='Candidates/Mitt_Romney.jpg'/></a></ul>
+                <ul><a href='./'><img src='Candidates/Bill_Clinton.jpg'/></a></ul>
             </div>       
         </div>
         <footer><p>Political Simplicity Development Team</p></footer>

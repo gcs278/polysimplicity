@@ -5,6 +5,9 @@
 
 // This is the main Web application configuration. Any writable
 // CWebApplication properties can be configured here.
+
+Yii::setPathOfAlias('bootstrap', dirname(__FILE__).'/../extensions/bootstrap');
+
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
 	'name'=>'Political Simplicity Development Gateway',
@@ -16,6 +19,7 @@ return array(
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
+		'application.extensions.states.*',
 	),
 
 	'modules'=>array(
@@ -37,7 +41,9 @@ return array(
         	   'class'=>'CDbAuthManager',
          	   'defaultRoles'=>array('authenticated', 'guest'),
         	),
-
+		'bootstrap'=>array(
+            		'class'=>'bootstrap.components.Bootstrap',
+        	),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -94,6 +100,13 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'support@politicalsimplicity.com',
 	),
+	'theme'=>'bootstrap', // requires you to copy the theme under your themes directory
+    	'modules'=>array(
+        'gii'=>array(
+        'generatorPaths'=>array(
+                'bootstrap.gii',
+            ),
+        ),
+    ),	
 	
-
 );

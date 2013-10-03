@@ -1,13 +1,13 @@
 <?php
-/* @var $this UsersController */
-/* @var $model Users */
+/* @var $this CandidateController */
+/* @var $model CandidateDemographics */
 /* @var $form CActiveForm */
 ?>
 
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
-	'id'=>'cndidates-form',
+	'id'=>'candidates-form',
 	// Please note: When you enable ajax validation, make sure the corresponding
 	// controller action is handling ajax validation correctly.
 	// There is a call to performAjaxValidation() commented in generated controller code.

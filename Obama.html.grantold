@@ -1,0 +1,126 @@
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>    
+    <meta charset="utf-8">
+    <meta name="Description" content="Your Title">
+    <meta name="author" content="CoffeeCup Software, Inc.">
+    <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
+
+    <title>Political Simplicity</title>
+    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		window.onscroll = function() {
+			if ($('body').scrollTop() < 20 && $('html').scrollTop() < 2) {
+				//$('#header-wrapper').removeClass('shrink');
+			}
+			else {
+				//$('#header-wrapper').addClass('shrink');
+			}
+		};
+	});
+        $(function(){
+          $("#menu").load("menu.html"); 
+        });
+	</script>
+        <script type="text/javascript">
+        $(function() {
+                $("#tfq2b").click(function() {
+                        if ($("#tfq2b").val() == "Search our website"){
+                                $("#tfq2b").val(""); 
+                        }
+                });
+        });
+        </script>
+    </head>
+    
+    <body>
+        <div id="menu"></div>
+        </div>
+        <div id="container">
+            <h1>Barack Obama</h1>
+        
+        <div class="candidate-wrapper">
+            <div class="candidate-image">
+                <img src="Candidates/Obama.jpg"/>
+            </div>
+            <div class="candidate-info democrat">
+                <div class ="demographics">
+                    <h3>Demographics:</h3>
+                    <p>
+			Insert Demographics here
+                    </p>
+                </div>
+                <div class="background">
+                    <h3>Background:</h3>
+                    <p>
+			Insert Background here
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="views-wrapper democrat">
+            <div class='view'>
+                Taxation
+                <div class='view-yes'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                Abortion
+                <div class='view-no'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                Gay Marriage
+                <div class='view-no'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                Stuff
+                <div class='view-yes'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                View
+                <div class='view-yes'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                View
+                <div class='view-yes'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                War
+                <div class='view-no'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                Policy
+                <div class='view-yes'>
+                    
+                </div>
+            </div>
+        </div>
+        <div class='extra'>
+            <h2>Comments? Leave a reply!</h2>
+        </div>
+        </div>
+        <footer><p>Copyright&copy Grant Spence, Jonathan Fremerman 2013</p></footer>
+    </body>
+</html>
+<!DOCTYPE html>
+

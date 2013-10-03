@@ -11,7 +11,7 @@ and open the template in the editor.
     <meta name="Copyright" content="Copyright (c) 2010 CoffeeCup, all rights reserved.">
 
     <title>Political Simplicity</title>
-    <link href="style.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/style.css" rel="stylesheet" type="text/css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script>
@@ -25,9 +25,6 @@ and open the template in the editor.
 			}
 		};
 	});
-        $(function(){
-          $("#menu").load("menu.html"); 
-        });
 	</script>
         <script type="text/javascript">
         $(function() {
@@ -41,26 +38,39 @@ and open the template in the editor.
     </head>
     
     <body>
-        <div id="menu"></div>
+        <div id="fixed-wrapper">
+            <div id="header-wrapper">
+                <div id="logo">
+                    Political Simplicity
+                </div>
+		<form id="tfnewsearch" method="get" action="http://www.google.com/">
+		        <input type="text" id="tfq2b" class="tftextinput2" name="q" size="21" maxlength="120" value="Search our website"><input type="submit" value=">" class="tfbutton2">
+		</form>
+		<div class="tfclear"></div>
+                <nav>
+                    <ul><a href="./index.php"><img src="home-5-xxl.png"/></a></ul>
+                    <ul><a href="."><img src="newspaper-12-xxl.png"/></a></ul>
+                    <ul><a href="."><img src="gear-xxl.png"/></a></ul>
+                    <ul><a href="./research"><img src="plus-xxl.png"/></a></ul>
+                </nav>
+            </div>
         </div>
         <div id="container">
             <h1>Barack Obama</h1>
         
         <div class="candidate-wrapper">
             <div class="candidate-image">
-                <img src="Candidates/Obama.jpg"/>
+                <img src="../Candidates/Obama.jpg"/>
             </div>
             <div class="candidate-info democrat">
                 <div class ="demographics">
                     <h3>Demographics:</h3>
                     <p>
-			Insert Demographics here
                     </p>
                 </div>
                 <div class="background">
                     <h3>Background:</h3>
                     <p>
-			Insert Background here
                     </p>
                 </div>
             </div>
@@ -79,47 +89,82 @@ and open the template in the editor.
                 </div>
             </div>
             <div class='view'>
-                Gay Marriage
+                Military
                 <div class='view-no'>
                     
                 </div>
             </div>
             <div class='view'>
-                Stuff
+                Guns
                 <div class='view-yes'>
                     
                 </div>
             </div>
             <div class='view'>
-                View
+                Marijuana
                 <div class='view-yes'>
                     
                 </div>
             </div>
             <div class='view'>
-                View
+                Same Sex Marriage
                 <div class='view-yes'>
                     
                 </div>
             </div>
             <div class='view'>
-                War
+                Immigration
+                <div class='view-yes'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                Education
+                <div class='view-yes'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                Environmental
+                <div class='view-yes'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                Health Care
+                <div class='view-yes'>
+                    
+                </div>
+            </div>
+            <div class='view'>
+                Social Security
                 <div class='view-no'>
                     
                 </div>
             </div>
             <div class='view'>
-                Policy
+                Death Penalty
                 <div class='view-yes'>
                     
                 </div>
             </div>
         </div>
         <div class='extra'>
-            <h2>Comments? Leave a reply!</h2>
+            Taxation:<br/>
+            Abortion:<br/>
+            Military:<br/>
+            Gun Control:<br/>
+            Marijuana:<br/>
+            Gay marriage:<br/>
+            Immigration:<br/>
+            Education:<br/>
+            Environmental:<br/>
+            Health Care:<br/>
+            Social Security:<br/>
+            Death Penalty:<br/>
         </div>
         </div>
-        <footer><p>Copyright&copy Grant Spence, Jonathan Fremerman 2013</p></footer>
+        <footer><p>Political Simplicity, 2013</p></footer>
     </body>
 </html>
 <!DOCTYPE html>

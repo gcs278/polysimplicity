@@ -22,7 +22,6 @@ $this->breadcrumbs=array(
 )); ?>
 	<h1>Candidate Demographics</h>
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
-
 	<?php echo $form->errorSummary($model); ?>
 
 	<div class="row">
@@ -37,7 +36,23 @@ $this->breadcrumbs=array(
 			'Female'=>'Female'),
 		array('separator'=>'    '));?>
 	</div>
-
+	<div class="row">
+		<?php echo $form->labelEx($model,'age'); ?>
+		<?php echo $form->textField($model,'age'); ?>
+		<?php echo $form->error($model,'age'); ?>
+	</div>
+	<h1>Place of Birth</h1>
+	<div class="row">
+		<div class="span-8">
+			<?php echo $form->labelEx($model,'birth_town'); ?>
+			<?php echo $form->textField($model,'birth_town'); ?>
+			<?php echo $form->error($model,'birth_town'); ?>
+		</div>
+		<div class="span-10 last">	
+			<?php echo $form->labelEx($model,'birth_state'); ?>
+			<?php echo $form->textField($model,'birth_state'); ?>
+			<?php echo $form->error($model,'birth_state'); ?>
+		</div>
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>
