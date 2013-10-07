@@ -56,13 +56,14 @@ div.form fieldset
 div.form label
 {
 	font-weight: bold;
-	font-size: 0.9em;
+	font-size: 0.5em;
 	display: block;
 }
 
 div.form .row
 {
-	margin: 5px 0;
+	clear: left;
+	margin: 10px 0;
 }
 
 div.form .hint
@@ -122,13 +123,13 @@ div.form .errorSummary
 	padding: 7px 7px 12px 7px;
 	margin: 0 0 20px 0;
 	background: #FEE;
-	font-size: 0.9em;
+	font-size: 0.5em;
 }
 
 div.form .errorMessage
 {
 	color: red;
-	font-size: 0.9em;
+	font-size: 0.5em;
 }
 
 div.form .errorSummary p
@@ -161,5 +162,15 @@ div.wide.form .buttons, div.wide.form .hint, div.wide.form .errorMessage
 {
 	clear: left;
 	padding-left: 110px;
+}
+
+DIV#content DIV.compactRadioGroup {
+        float: left;
+	margin-bottom: 15px;	
+}
+
+DIV#content .compactRadioGroup LABEL,
+DIV#content .compactRadioGroup INPUT {
+    display: inline;
 }
 

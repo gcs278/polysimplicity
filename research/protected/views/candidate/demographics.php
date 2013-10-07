@@ -8,8 +8,11 @@ $this->breadcrumbs=array(
 	'Create Candidate'
 );
 ?>
-
-
+<?php  
+  $baseUrl = Yii::app()->baseUrl; 
+  $cs = Yii::app()->getClientScript();
+  $cs->registerCssFile($baseUrl.'/css/form.css');
+?>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -34,27 +37,30 @@ $this->breadcrumbs=array(
 		<?php echo $form->radioButtonList($model,'gender',array(
 			'Male'=>'Male',
 			'Female'=>'Female'),
-		array('separator'=>'    '));?>
+		array('separator'=>' '));?>
+		<?php echo $form->error($model,'gender');?>
 	</div>
 	<div class="row">
-		<?php echo $form->labelEx($model,'age'); ?>
-		<?php echo $form->textField($model,'age'); ?>
-		<?php echo $form->error($model,'age'); ?>
+			<?php echo $form->labelEx($model,'age'); ?>
+			<?php echo $form->textField($model,'age'); ?>
+			<?php echo $form->error($model,'age'); ?>
 	</div>
-	<h1>Place of Birth</h1>
 	<div class="row">
+		
+		<h1>Place of Birth</h1>
 		<div class="span-8">
 			<?php echo $form->labelEx($model,'birth_town'); ?>
 			<?php echo $form->textField($model,'birth_town'); ?>
 			<?php echo $form->error($model,'birth_town'); ?>
 		</div>
-		<div class="span-10 last">	
+		<div class="span-10">	
 			<?php echo $form->labelEx($model,'birth_state'); ?>
 			<?php echo $form->textField($model,'birth_state'); ?>
 			<?php echo $form->error($model,'birth_state'); ?>
 		</div>
-	<div class="row buttons">
-		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	</div>
+	<div class="row">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create and Continue' : 'Save'); ?>
 	</div>
 
 <?php $this->endWidget(); ?>

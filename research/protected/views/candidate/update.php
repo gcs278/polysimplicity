@@ -8,6 +8,7 @@ $this->breadcrumbs=array(
 	'Update',
 );
 
+
 $this->menu=array(
 	array('label'=>'View all Candidates', 'url'=>array('index')),
 	array('label'=>'Create Candidates', 'url'=>array('create')),
@@ -15,6 +16,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Candidate <?php echo $model->id; ?></h1>
+<h1>Update Candidate <?php echo $model->name; ?></h1>
 
 <?php $this->renderPartial('_form', array('model'=>$model)); ?>

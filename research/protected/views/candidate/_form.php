@@ -4,6 +4,14 @@
 /* @var $form CActiveForm */
 ?>
 
+
+<?php
+  $baseUrl = Yii::app()->baseUrl;
+  $cs = Yii::app()->getClientScript();
+  $cs->registerCssFile($baseUrl.'/css/form.css');
+?>
+
+
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -32,7 +40,29 @@
                         'Female'=>'Female'),
                 array('separator'=>'    '));?>
 	</div>
+	
+	
+        <div class="row">
+                        <?php echo $form->labelEx($model,'age'); ?>
+                        <?php echo $form->textField($model,'age'); ?>
+                        <?php echo $form->error($model,'age'); ?>
+        </div>
+        <div class="row">
 
+                <h1>Place of Birth</h1>
+                <div class="span-8">
+                        <?php echo $form->labelEx($model,'birth_town'); ?>
+                        <?php echo $form->textField($model,'birth_town'); ?>
+                        <?php echo $form->error($model,'birth_town'); ?>
+                </div>
+                <div class="span-10">
+                        <?php echo $form->labelEx($model,'birth_state'); ?>
+                        <?php echo $form->textField($model,'birth_state'); ?>
+                        <?php echo $form->error($model,'birth_state'); ?>
+                </div>
+        </div>
+
+	
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
 	</div>

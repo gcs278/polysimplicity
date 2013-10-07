@@ -5,30 +5,38 @@ and open the template in the editor.
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script> 
-        $(function(){
-          $("#includedContent").load("menu.html"); 
-        });
-        </script> 
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
-    </head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	
+        <script>
+        $(function(){
+          $("#includedContent").load("menu.html");
+        });
+        </script>
+
+	</head>
     <body>
-        <div id="includedContent"></div>
+	<div id="includedContent"></div>
         <div id="container">
             <h2>Welcome to Political Simplicity!</h2>
-            <p>This site is currently under construction (this is just a mock prototype). Please don't mind the mess.</p>
-            <h3 style="color:black;">Contributors:</h3>
-	    <p>Please select the + symbol in the upper right hand corner</p>
-		<div id='selection'>
-                <ul><a href='Obama.html'><img src='Candidates/Obama.jpg'/></a></ul>
-                <ul><a href='Ronmey.html'><img src='Candidates/Mitt_Romney.jpg'/></a></ul>
-                <ul><a href='./'><img src='Candidates/Bill_Clinton.jpg'/></a></ul>
+            <p>Click on a Virginian Gubernatorial candidate to learn more about them</p>
+            <div id='selection'>
+                <ul><a href='./Cuccinellie.html'><img src='Candidates/Cuccinelli.jpg'/></a></ul>
+                <ul><a href='./McAullife.html'><img src='Candidates/Terry_McAuliffe.jpg'/></a></ul>
+                <ul><a href='./Sarvis.html'><img src='Candidates/RobertSarvis.jpg'/></a></ul>
             </div>       
         </div>
-        <footer><p>Political Simplicity Development Team</p></footer>
+        <div class ="statichomepageinfo">
+                    <p>
+                        The site is currently under construction. We have the candidates for the 2013 Virginia Gubernatorial Race up. We are currently working on creating profiles for members of the U.S Senate and House. Our organization committed to providing accurate and relevant political information simply. Please email feedback@politicalsimplicity.com with any questions, comments, or concerns. 
+                    </p>
+        </div>
+        <footer><p>Political Simplicity, 2013
+                <a href="/research"><img src="plus-xxl.png" width="25" height="25"/></a>
+	</p>
+	</footer>
     </body>
 </html>
 <!DOCTYPE html>
