@@ -50,7 +50,25 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
                 'name',
                 'gender',
                 array(
-                        'class'=>'CButtonColumn',
+'class'=>'CButtonColumn',
+    'template'=>'{update} {view} {delete}',
+    'buttons'=>array (
+        'update'=> array(
+            'label'=>'',
+            'imageUrl'=>'',
+            'options'=>array( 'class'=>'icon-edit' ),
+        ),
+        'view'=>array(
+            'label'=>'',
+            'imageUrl'=>'',
+            'options'=>array( 'class'=>'icon-search' ),
+        ),
+        'delete'=>array(
+            'label'=>'',
+            'imageUrl'=>'',
+            'options'=>array( 'class'=>'icon-remove' ),
+        ),
+    ),
                 ),
         ),
 )); ?>

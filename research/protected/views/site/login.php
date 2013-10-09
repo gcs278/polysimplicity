@@ -1,3 +1,5 @@
+
+<?php include_once("analyticstracking.php") ?>
 <?php
 /* @var $this SiteController */
 /* @var $model LoginForm */

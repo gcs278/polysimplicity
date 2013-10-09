@@ -28,4 +28,27 @@ class UserIdentity extends CUserIdentity
 	{
 		return $this->_id;
 	}
+// This is a function that checks the field 'role'
+  // in the User model to be equal to 1, that means it's admin
+  // access it by Yii::app()->user->isAdmin()
+  function isAdmin(){
+    $user = $this->loadUser(Yii::app()->user->id);
+    return intval($user->role) == 1;
+  }
+/**
+     * Returns the static model of the specified AR class.
+     * @return CActiveRecord the static model class
+     */
+    public static function model($className=__CLASS__)
+    {
+        return parent::model($className);
+    }
+ 
+    /**
+     * @return string the associated database table name
+     */
+    public function tableName()
+    {
+        return 'User';
+    }
 }

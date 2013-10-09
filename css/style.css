@@ -99,8 +99,13 @@ p {
 #header-wrapper nav {
     display: block;
     position: relative;
-    margin-left: 72%;
+    margin-left: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    margin-right: 225px;
+    float:right;
     font-size: 14px;
+    width: 225px;
 }
 
 #header-wrapper nav img {

@@ -6,7 +6,7 @@ $this->pageTitle=Yii::app()->name;
 <style type="text/css">
 	#center { margin-left: auto; margin-right: auto; display: block; padding-bottom: 20px;}
 </style>
-
+<?php include_once("analyticstracking.php") ?>
 <h1>Welcome to the <i><?php echo CHtml::encode(Yii::app()->name); ?>!</i></h1>
 
 <p>This is the development site for politicalsimplicity.com</p>

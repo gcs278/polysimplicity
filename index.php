@@ -8,6 +8,7 @@ and open the template in the editor.
         <title></title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="css/style.css" rel="stylesheet" type="text/css"/>
+<link rel="alternate stylesheet" type="text/css" title="compact" href="bootstrap/css/bootstrap.css" media="screen">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	
         <script>
@@ -18,6 +19,7 @@ and open the template in the editor.
 
 	</head>
     <body>
+	<?php include_once("analyticstracking.php") ?>
 	<div id="includedContent"></div>
         <div id="container">
             <h2>Welcome to Political Simplicity!</h2>
