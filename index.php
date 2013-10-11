@@ -22,7 +22,7 @@ and open the template in the editor.
 	<?php include_once("analyticstracking.php") ?>
 	<div id="includedContent"></div>
         <div id="container">
-            <h2>Welcome to Political Simplicity!Test</h2>
+            <h2>Welcome to Political Simplicity!</h2>
             <p>Click on a Virginian Gubernatorial candidate to learn more about them</p>
             <div id='selection'>
                 <ul><a href='./Cuccinellie.html'><img src='Candidates/Cuccinelli.jpg'/></a></ul>
