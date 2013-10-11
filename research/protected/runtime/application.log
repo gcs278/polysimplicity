@@ -2610,3 +2610,15 @@ Stack trace:
 REQUEST_URI=/research/index.php?r=candidate/index
 HTTP_REFERER=http://www.politicalsimplicity.com/research/index.php?r=candidate/demographics
 ---
+2013/10/11 20:18:33 [error] [exception.CException] exception 'CException' with message 'Alias "gii.GiiModule" is invalid. Make sure it points to an existing PHP file and the file is readable.' in C:\wamp\www\polysimplicity\yii_framework\framework\YiiBase.php:322
+Stack trace:
+#0 C:\wamp\www\polysimplicity\yii_framework\framework\YiiBase.php(196): YiiBase::import('gii.GiiModule', true)
+#1 C:\wamp\www\polysimplicity\yii_framework\framework\base\CModule.php(282): YiiBase::createComponent('gii.GiiModule', 'gii', NULL, Array)
+#2 C:\wamp\www\polysimplicity\yii_framework\framework\web\CWebApplication.php(337): CModule->getModule('gii')
+#3 C:\wamp\www\polysimplicity\yii_framework\framework\web\CWebApplication.php(276): CWebApplication->createController('gii')
+#4 C:\wamp\www\polysimplicity\yii_framework\framework\web\CWebApplication.php(141): CWebApplication->runController('gii')
+#5 C:\wamp\www\polysimplicity\yii_framework\framework\base\CApplication.php(180): CWebApplication->processRequest()
+#6 C:\wamp\www\polysimplicity\research\index.php(13): CApplication->run()
+#7 {main}
+REQUEST_URI=/polysimplicity/research/index.php?r=gii
+---
