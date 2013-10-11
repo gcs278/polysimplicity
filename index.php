@@ -36,7 +36,7 @@ and open the template in the editor.
                     </p>
         </div>
         <footer><p>Political Simplicity, 2013
-                <a href="/research"><img src="plus-xxl.png" width="25" height="25"/></a>
+                <a href="research"><img src="plus-xxl.png" width="25" height="25"/></a>
 	</p>
 	</footer>
     </body>
