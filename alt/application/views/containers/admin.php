@@ -16,7 +16,6 @@
     </script>
     <body>
         <div class="container">
-           
             <div class="span-24 last"><?php echo $content ?></div>  
              <div class="span-24 last"><center>Sector de Administracion</center></div>  
         </div>
