@@ -6,7 +6,7 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 
 	public function action_index() {
 		// Grant's exmaple code
-		$model = Model::factory('Candidates');
+		$model = ORM::factory('Candidates');
 		$results = $model->get_all_candidates();
 		$this->template->title = 'Home';
 		$view=view::factory('controllers/web/home/index');

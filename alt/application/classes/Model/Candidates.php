@@ -1,7 +1,8 @@
 <?php defined('SYSPATH') OR die('No Direct Script Access');
 
-Class Model_Candidates extends Model
+Class Model_Candidates extends ORM
 {
+	protected $_table_name = 'candidates';
         /*
                CREATE TABLE `news_example` (
                `id` INT PRIMARY KEY AUTO_INCREMENT,

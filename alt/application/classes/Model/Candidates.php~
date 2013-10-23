@@ -11,8 +11,7 @@ Class Model_Candidates extends Model
 
         public function get_all_candidates() {
 	        $sql = 'SELECT `first_name` FROM `candidates` ORDER BY `id`';
-	        return $this->_db->query(Database::SELECT, $sql, FALSE)
-	               ->as_array();
+	        return DB::select('first_name')->from('candidates')->execute();
         }
 
         public function validate_news($arr) {
