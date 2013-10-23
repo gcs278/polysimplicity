@@ -168,3 +168,83 @@
 #11 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
 #12 C:\wamp\www\polysimplicity\alt\index.php(118): Kohana_Request->execute()
 #13 {main} in C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\MySQL.php:359
+2013-10-23 11:44:24 --- CRITICAL: Database_Exception [ 1452 ]: Cannot add or update a child row: a foreign key constraint fails (`politicalsimplicity_candidates`.`candidates`, CONSTRAINT `fk_candidates_personal1` FOREIGN KEY (`personal_id`) REFERENCES `personal_information` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) [ INSERT INTO `candidates` (`first_name`) VALUES ('BOB') ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\Query.php:251
+2013-10-23 11:44:24 --- DEBUG: #0 C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(2, 'INSERT INTO `ca...', false, Array)
+#1 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1324): Kohana_Database_Query->execute(Object(Database_MySQL))
+#2 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#3 C:\wamp\www\polysimplicity\alt\application\classes\Controller\Web\Home.php(11): Kohana_ORM->save()
+#4 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_index()
+#5 [internal function]: Kohana_Controller->execute()
+#6 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#7 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#9 C:\wamp\www\polysimplicity\alt\index.php(118): Kohana_Request->execute()
+#10 {main} in C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\Query.php:251
+2013-10-23 11:54:47 --- CRITICAL: ORM_Validation_Exception [ 0 ]: Failed to validate array ~ MODPATH\orm\classes\Kohana\ORM.php [ 1275 ] in C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php:1302
+2013-10-23 11:54:47 --- DEBUG: #0 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1302): Kohana_ORM->check(NULL)
+#1 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#2 C:\wamp\www\polysimplicity\alt\application\classes\Controller\Web\Home.php(11): Kohana_ORM->save()
+#3 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_index()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#6 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\polysimplicity\alt\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php:1302
+2013-10-23 11:55:17 --- CRITICAL: ORM_Validation_Exception [ 0 ]: Failed to validate array ~ MODPATH\orm\classes\Kohana\ORM.php [ 1275 ] in C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php:1302
+2013-10-23 11:55:17 --- DEBUG: #0 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1302): Kohana_ORM->check(NULL)
+#1 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#2 C:\wamp\www\polysimplicity\alt\application\classes\Controller\Web\Home.php(11): Kohana_ORM->save()
+#3 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_index()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#6 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\polysimplicity\alt\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php:1302
+2013-10-23 11:56:09 --- CRITICAL: ORM_Validation_Exception [ 0 ]: Failed to validate array ~ MODPATH\orm\classes\Kohana\ORM.php [ 1275 ] in C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php:1302
+2013-10-23 11:56:09 --- DEBUG: #0 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1302): Kohana_ORM->check(NULL)
+#1 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#2 C:\wamp\www\polysimplicity\alt\application\classes\Controller\Web\Home.php(13): Kohana_ORM->save()
+#3 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_index()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#6 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\polysimplicity\alt\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php:1302
+2013-10-23 11:56:10 --- CRITICAL: ORM_Validation_Exception [ 0 ]: Failed to validate array ~ MODPATH\orm\classes\Kohana\ORM.php [ 1275 ] in C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php:1302
+2013-10-23 11:56:10 --- DEBUG: #0 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1302): Kohana_ORM->check(NULL)
+#1 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#2 C:\wamp\www\polysimplicity\alt\application\classes\Controller\Web\Home.php(13): Kohana_ORM->save()
+#3 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_index()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#6 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\polysimplicity\alt\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php:1302
+2013-10-23 11:56:25 --- CRITICAL: Database_Exception [ 1452 ]: Cannot add or update a child row: a foreign key constraint fails (`politicalsimplicity_candidates`.`candidates`, CONSTRAINT `fk_candidates_personal1` FOREIGN KEY (`personal_id`) REFERENCES `personal_information` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) [ INSERT INTO `candidates` (`first_name`, `middle_name`, `last_name`) VALUES ('BOB', 'Middle', 'Spence') ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\Query.php:251
+2013-10-23 11:56:25 --- DEBUG: #0 C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(2, 'INSERT INTO `ca...', false, Array)
+#1 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1324): Kohana_Database_Query->execute(Object(Database_MySQL))
+#2 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#3 C:\wamp\www\polysimplicity\alt\application\classes\Controller\Web\Home.php(13): Kohana_ORM->save()
+#4 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_index()
+#5 [internal function]: Kohana_Controller->execute()
+#6 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#7 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#9 C:\wamp\www\polysimplicity\alt\index.php(118): Kohana_Request->execute()
+#10 {main} in C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\Query.php:251
+2013-10-23 12:00:09 --- CRITICAL: Database_Exception [ 1452 ]: Cannot add or update a child row: a foreign key constraint fails (`politicalsimplicity_candidates`.`candidates`, CONSTRAINT `fk_candidates_personal1` FOREIGN KEY (`personal_id`) REFERENCES `personal_information` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION) [ INSERT INTO `candidates` (`first_name`, `middle_name`, `last_name`) VALUES ('BOB', 'Middle', 'Spence') ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\Query.php:251
+2013-10-23 12:00:09 --- DEBUG: #0 C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(2, 'INSERT INTO `ca...', false, Array)
+#1 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1324): Kohana_Database_Query->execute(Object(Database_MySQL))
+#2 C:\wamp\www\polysimplicity\alt\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#3 C:\wamp\www\polysimplicity\alt\application\classes\Controller\Web\Home.php(13): Kohana_ORM->save()
+#4 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_index()
+#5 [internal function]: Kohana_Controller->execute()
+#6 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#7 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 C:\wamp\www\polysimplicity\alt\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#9 C:\wamp\www\polysimplicity\alt\index.php(118): Kohana_Request->execute()
+#10 {main} in C:\wamp\www\polysimplicity\alt\modules\database\classes\Kohana\Database\Query.php:251

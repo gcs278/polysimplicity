@@ -1,24 +1,29 @@
 <?php defined('SYSPATH') OR die('No Direct Script Access');
 
-Class Model_Candidates extends ORM
+Class Model_Personal extends ORM
 {
-        protected $_table_name = 'candidates';
-        protected $_has_one = array('personal' => array('model' => 'personal_information', 'foreign_key' => 'personal_id'));
+        protected $_table_name = 'personal_information';
+        protected $_has_one = array('personal' => array('model' => 'personal', 'foreign_key' => 'personal_id'));
 
         public function rules()
         {
 	        return array(
-	                       'first_name' => array(
+	                       'gender' => array(
 	                                             array('not_empty'),
 	                                             array('min_length', array(':value', 1)),
-	                                             array('max_length', array(':value', 128)),
+	                                             array('max_length', array(':value', 45)),
 	                                     ),
-	                       'middle_name' => array(
+	                       'birth_date' => array(
 	                                              array('not_empty'),
 	                                              array('min_length', array(':value',1)),
-	                                              array('max_length',array(':value',128)),
+	                                              //array('max_length',array(':value',128)),
 	                                      ),
-	                       'last_name' => array(
+	                       'birth_state' => array(
+	                                              array('not_empty'),
+	                                              array('min_length', array(':value',1)),
+	                                              //array('max_length',array(':value',128)),
+	                                      ),
+	                       'party' => array(
 	                                            array('not_empty'),
 	                                            array('min_length', array(':value', 1)),
 	                                            array('max_length', array(':value', 128)),
