@@ -3,8 +3,13 @@
 Class Model_Candidates extends ORM
 {
         protected $_table_name = 'candidates';
-        protected $_has_one = array('personal' => array('model' => 'personal_information', 'foreign_key' => 'personal_id'));
-
+        // The tables related to Candidates
+        protected $_has_one = array(
+        		'personal' => array('model' => 'personal_information', 'foreign_key' => 'personal_id'),
+        		'positions' => array('model' => 'positions', 'foreign_key' => 'positions_id'),
+        		'views' => array('model' => 'views', 'foreign_key' => 'views_id')
+        	);
+        
         public function rules()
         {
 	        return array(

@@ -1,33 +1,33 @@
 <?php defined('SYSPATH') OR die('No Direct Script Access');
 
-Class Model_Personal extends ORM
+Class Model_Positions extends ORM
 {
-        protected $_table_name = 'personal_information';
+        protected $_table_name = 'positions';
         protected $_belongs_to = array('candidates' => array() );
 
         public function rules()
         {
 	        return array(
-	                       'gender' => array(
+	                       'title' => array(
 	                                             array('not_empty'),
 	                                             array('min_length', array(':value', 1)),
 	                                             array('max_length', array(':value', 45)),
 	                                     ),
-	                       'birth_date' => array(
+	                       'term_state' => array(
 	                                              array('not_empty'),
 	                                              array('min_length', array(':value',1)),
 	                                              //array('max_length',array(':value',128)),
 	                                      ),
-	                       'birth_state' => array(
-	                                              array('not_empty'),
+	                       'term_end' => array(
 	                                              array('min_length', array(':value',1)),
 	                                              //array('max_length',array(':value',128)),
 	                                      ),
-	                       'party' => array(
+	                       'status' => array(
 	                                            array('not_empty'),
 	                                            array('min_length', array(':value', 1)),
 	                                            array('max_length', array(':value', 128)),
 	                                    ),
 	               );
         }
+
 }
