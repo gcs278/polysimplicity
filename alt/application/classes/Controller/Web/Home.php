@@ -11,9 +11,13 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		$model->middle_name = "Middle";
 		$model->last_name = "Spence";
 		//$model->save();
+		$jon="905663126";
+
 		$this->template->title = 'Home';
 		$view=view::factory('controllers/web/home/index');
+		$view->person=$jon;
 		$this->view = $view;
+
 
 	}
 
