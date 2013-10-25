@@ -9,7 +9,7 @@ return array
   'connection' => array(
  
    'hostname'   => 'localhost',
-   'database'   => 'ecuabuddies',
+   'database'   => 'politicalsimplicity_candidates',
 /* 
 //Server Credentials
 	'database'   => '',
