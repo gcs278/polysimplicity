@@ -19,9 +19,9 @@ return array
 			 * Ports and sockets may be appended to the hostname.
 			 */
 			'hostname'   => 'localhost',
-			'database'   => 'politicalsimplicity_candidates',
-			'username'   => 'root',
-			'password'   => '',
+			'database'   => 'kohana',
+			'username'   => FALSE,
+			'password'   => FALSE,
 			'persistent' => FALSE,
 		),
 		'table_prefix' => '',
