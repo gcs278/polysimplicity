@@ -1,27 +1,19 @@
-Political Simplicity
-politicalsimplicity.com
+# Kohana PHP Framework
 
-==============
+[Kohana](http://kohanaframework.org/) is an elegant, open source, and object oriented HMVC framework built using PHP5, by a team of volunteers. It aims to be swift, secure, and small.
 
-THINGS TO DO
+Released under a [BSD license](http://kohanaframework.org/license), Kohana can be used legally for any open source, commercial, or personal project.
 
-Homepage:
-Put pargraphs out on either that or on a new about us page
+## Documentation
+Kohana's documentation can be found at <http://kohanaframework.org/documentation> which also contains an API browser.
 
-Info Page:
-make good politicalsimplicity logo
+The `userguide` module included in all Kohana releases also allows you to view the documentation locally. Once the `userguide` module is enabled in the bootstrap, it is accessible from your site via `/index.php/guide` (or just `/guide` if you are rewriting your URLs).
 
-Software:
-controllers for database
+## Reporting bugs
+If you've stumbled across a bug, please help us out by [reporting the bug](http://dev.kohanaframework.org/projects/kohana3/) you have found. Simply log in or register and submit a new issue, leaving as much information about the bug as possible, e.g.
 
-Research:
-seperate business bank account
-servers?
+* Steps to reproduce
+* Expected result
+* Actual result
 
- 
-About:
-Bill qualification philosophy:  if the bill has at least half of the population voting for it, it must be at least somewhat sane.  If the bill is sane for what it is trying to accomplish then how you vote shows what you really vote for in that category.
- 
-Home page disclaimer:  warning, the information expressed on the website may not agree with what the candidate says they stand for.  We are not telling you what they say they stand for, but purely stating facts about how a candidate has voted.
- 
-Feedback:  let us know what you think.  If there are any candidates you want us to do first let us know.  Any information you want us to add?
+This will help us to fix the bug as quickly as possible, and if you'd like to fix it yourself feel free to [fork us on GitHub](https://github.com/kohana) and submit a pull request!
