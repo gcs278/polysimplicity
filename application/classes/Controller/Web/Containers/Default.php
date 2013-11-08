@@ -46,6 +46,7 @@ class Controller_Web_Containers_Default extends Controller_Template {
 
             //Build the styles array
             $css_file = 'media/css/controllers/web/' . $controller . '/' . $action . '.css';
+            
             $styles = array(
                 //'media/css/camera/camera.css'=>'screen',
                 //'media/css/ticketer/ticketer-style.css'=>'screen',

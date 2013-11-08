@@ -1,46 +1,68 @@
-<!--<html>
+<html>
     <head>
         <title><?php echo $title ?> - Politicalsimplicity.com</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+        <!--Bootstrap CSS Files-->
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
+        <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+        <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
         
+        <!--Kohana CSS Includes-->
+        <?php
+            foreach ($styles as $file => $type)
+                echo HTML::style($file, array('media' => $type)), PHP_EOL
+        ?>
+        <!--Kohana Script Includes-->
+        <?php
+            foreach ($scripts as $file)
+                echo HTML::script($file), PHP_EOL
+        ?>
+
     </head>
-    <?php
-    //foreach ($styles as $file => $type)
-     //   echo HTML::style($file, array('media' => $type)), PHP_EOL
-        ?>
-    <?php
-    //foreach ($scripts as $file)
-     //   echo HTML::script($file), PHP_EOL
-        ?>
-        
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
     <script type="text/javascript">
         var document_root = '<?php echo Url::site(); ?>';
     </script>
-    
-<div id="fixed-wrapper">
-        <div id="header-wrapper">
-            <a href="./index.php">
-                <div id="logo">
-                    Political Simplicity
-                </div>
-            </a>
-            <form id="tfnewsearch" method="get" action="http://www.google.com/">
-                    <input type="text" id="tfq2b" class="tftextinput2" name="q" size="21" maxlength="120" value="Search our website"><input type="submit" value=">" class="tfbutton2">
-            </form>
-            <div class="tfclear"></div>
-            <nav>
-                <ul><a href="./index.php"><img src="media/images/home-5-xxl.png"/></a></ul>
-                <ul><a href="."><img src="media/images/newspaper-12-xxl.png"/></a></ul>
-                <ul><a href="./"><img src="media/images/gear-xxl.png"/></a></ul>
-            </nav>
-        </div>
-</div>-->
-<?php echo $content ?>
-        <!--<div class="container">
-            <div class="span-24 last"></div>  
-             <div class="span-24 last footer"><center>Politicalsimplicity.com</center></div>  
-        </div>
-       
-    </body>
-</html>-->
 
+<body>
+    <!--Header NAV START -->
+    <nav class="navbar navbar-inverse" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".topNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" id="logo" href="./">Political Simplicity</a>
+                </div>
+                
+                <div class="collapse navbar-collapse topNavbar">
+                    <ul class="nav navbar-nav">
+                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href="./"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li class="<?php //if($active === 'about') echo 'active'; ?>"><a href="#"><span class="glyphicon glyphicon-question-sign"></span> About Us</a></li>
+                        <li>
+                            <form id="tfnewsearch" method="get" action="http://www.google.com/" _lpchecked="1">
+                                <input type="text" name="query" size="21" maxlength="120" placeholder="Search our website">
+                                <button type="submit"><span class="glyphicon glyphicon-search"></span></input>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+    </nav>
+    <!--Header END -->
+
+<!--Display Page-->
+<?php echo $content ?>
+
+<!--Footer START-->
+<footer><p>Political Simplicity, 2013
+            <a href="form"><img src="media/images/plus-xxl.png" width="25" height="25"/></a>
+        </p>
+</footer>
+<!--Footer END-->
+
+<script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>
