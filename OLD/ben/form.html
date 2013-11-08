@@ -213,6 +213,8 @@
 				$('#original').append("<button type='button' class='btn btn-default add_position'>Add Another</button>");
 				$('.add_position').click(add_position);
 				console.log("Added button");
+			} else {
+				$('.well:last').append("<button type='button' class='btn btn-default add_position'>Add Another</button>");
 			}
 			return false;
 		};
