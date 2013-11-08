@@ -155,3 +155,10 @@ Route::set('default', '(<controller>(/<action>(/<id>(/<id2>))))')
 		'controller' => 'home',
 		'action'     => 'index',
 	));
+	
+Route::set('test', 'test')
+	->defaults(array(
+		'directory' => 'web',
+		'controller' => 'home',
+		'action'     => 'index',
+	));

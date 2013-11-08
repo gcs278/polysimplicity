@@ -53,7 +53,7 @@ class Controller_Web_Containers_Default extends Controller_Template {
                 //'media/css/blueprint/src/print.css' => 'print',
                 //'media/css/blueprint/src/ie.css' => 'screen, projection',
                 //'media/css/jqueryui/jquery-ui-1.9.1.custom.min.css'=>'screen',
-                'media/css/style.css' => 'screen',
+                // 'media/css/style.css' => 'screen',
                 // GRANT ADDED, I believe there is a better way to do this
                 //'media/css/controllers/web/Home/form.css'=>'screen',
                 //'media/css/controllers/web/Home/structure.css'=>'screen',
@@ -72,8 +72,6 @@ class Controller_Web_Containers_Default extends Controller_Template {
                 'media/js/jqueryui/jquery-ui-1.9.1.custom.min.js',
                 'media/js/ticketer/jquery.ticker.js',
                 'media/js/camera/camera.js',
-                // Grant - better way to do this
-                'media/js/controllers/web/Home/wufoo.js'
             );
 
             //VALIDATING FILE

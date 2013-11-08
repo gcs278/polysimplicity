@@ -17,8 +17,7 @@
         var document_root = '<?php echo Url::site(); ?>';
     </script>
     
-        
-<div id="fixed-wrapper">
+<!--<div id="fixed-wrapper">
         <div id="header-wrapper">
             <a href="./index.php">
                 <div id="logo">
@@ -35,10 +34,10 @@
                 <ul><a href="./"><img src="media/images/gear-xxl.png"/></a></ul>
             </nav>
         </div>
-</div>
-<body>
+</div>-->
+<?php echo $content ?>
         <div class="container">
-            <div class="span-24 last"><?php echo $content ?></div>  
+            <div class="span-24 last"></div>  
              <div class="span-24 last footer"><center>Politicalsimplicity.com</center></div>  
         </div>
        

@@ -1,15 +1,15 @@
-<html>
+<!--<html>
     <head>
         <title><?php echo $title ?> - Politicalsimplicity.com</title>
         
     </head>
     <?php
-    foreach ($styles as $file => $type)
-        echo HTML::style($file, array('media' => $type)), PHP_EOL
+    //foreach ($styles as $file => $type)
+     //   echo HTML::style($file, array('media' => $type)), PHP_EOL
         ?>
     <?php
-    foreach ($scripts as $file)
-        echo HTML::script($file), PHP_EOL
+    //foreach ($scripts as $file)
+     //   echo HTML::script($file), PHP_EOL
         ?>
         
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
@@ -17,7 +17,6 @@
         var document_root = '<?php echo Url::site(); ?>';
     </script>
     
-        
 <div id="fixed-wrapper">
         <div id="header-wrapper">
             <a href="./index.php">
@@ -35,14 +34,13 @@
                 <ul><a href="./"><img src="media/images/gear-xxl.png"/></a></ul>
             </nav>
         </div>
-</div>
+</div>-->
 <?php echo $content ?>
-<body>
-        <div class="container">
+        <!--<div class="container">
             <div class="span-24 last"></div>  
              <div class="span-24 last footer"><center>Politicalsimplicity.com</center></div>  
         </div>
        
     </body>
-</html>
+</html>-->
 

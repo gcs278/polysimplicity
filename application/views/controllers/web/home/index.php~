@@ -1,21 +1,13 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title></title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link href="css/style.css" rel="stylesheet" type="text/css"/>
-<link rel="alternate stylesheet" type="text/css" title="compact" href="bootstrap/css/bootstrap.css" media="screen">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-	</head>
-    <body>
-	<?php //include_once("analyticstracking.php")
-	?>
-	<div id="includedContent"></div>
-        <div id="container">
+<?php
+	$title = "Home";
+	$active = "home";
+	require("header.php");
+?>
+	<link href="css/style.css" rel="stylesheet" type="text/css"/>
+        <div class="container top-margin">
             <h2>Welcome to Political Simplicity!</h2>
             <p>Click on a Virginian Gubernatorial candidate to learn more about them</p>
-            <div id='selection'>
+            <div id='selection' class="row">
                 <ul><a href='./Cuccinellie.html'><img src='Candidates/Cuccinelli.jpg'/></a></ul>
                 <ul><a href='./McAullife.html'><img src='Candidates/Terry_McAuliffe.jpg'/></a></ul>
                 <ul><a href='./Sarvis.html'><img src='Candidates/RobertSarvis.jpg'/></a></ul>
@@ -30,6 +22,7 @@
                 <a href="research"><img src="plus-xxl.png" width="25" height="25"/></a>
 	</p>
 	</footer>
+	<script src="//code.jquery.com/jquery-1.10.1.min.js"></script>
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
     </body>
 </html>
-<!DOCTYPE html>
