@@ -139,19 +139,21 @@ Kohana::modules(array(
  * defaults for the URI.
  */
  
-Route::set('admin', '<directory>(/<controller>(/<action>(/<params>)))',
-    array(
-        'directory' => 'admin'
-    ))
-	->defaults(array(
-		'controller' => 'home',
-		'action'     => 'index',
-	));
 
 
-Route::set('default', '(<controller>(/<action>(/<id>(/<id2>))))')
+Route::set('home', '(<controller>(/<action>(/<id>(/<id2>))))')
 	->defaults(array(
 		'directory' => 'web',
 		'controller' => 'home',
 		'action'     => 'index',
 	));
+
+Route::set('admin', '<directory>(/<controller>(/<action>(/<params>)))',
+array(
+    'directory' => 'admin'
+))
+->defaults(array(
+	'controller' => 'home',
+	'action'     => 'index',
+));
+

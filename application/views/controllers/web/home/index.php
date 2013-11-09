@@ -10,7 +10,7 @@
 </div>
 
 <div class ="statichomepageinfo">
-            <p>
-                The site is currently under construction. We have the candidates for the 2013 Virginia Gubernatorial Race up. We are currently working on creating profiles for members of the U.S Senate and House. Our organization committed to providing accurate and relevant political information simply. Please email feedback@politicalsimplicity.com with any questions, comments, or concerns. 
-            </p>
+    <p>
+        The site is currently under construction. We have the candidates for the 2013 Virginia Gubernatorial Race up. We are currently working on creating profiles for members of the U.S Senate and House. Our organization committed to providing accurate and relevant political information simply. Please email feedback@politicalsimplicity.com with any questions, comments, or concerns. 
+    </p>
 </div>

@@ -57,7 +57,7 @@
 
 <!--Footer START-->
 <footer><p>Political Simplicity, 2013
-            <a href="form"><img src="media/images/plus-xxl.png" width="25" height="25"/></a>
+            <a href="home/form"><img src="media/images/plus-xxl.png" width="25" height="25"/></a>
         </p>
 </footer>
 <!--Footer END-->
