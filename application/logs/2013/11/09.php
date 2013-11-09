@@ -100,3 +100,57 @@
 #5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
 #6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
 #7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php:199
+2013-11-09 00:51:50 --- CRITICAL: View_Exception [ 0 ]: The requested view user/info could not be found ~ SYSPATH\classes\Kohana\View.php [ 257 ] in C:\wamp\www\polysimplicity\system\classes\Kohana\View.php:137
+2013-11-09 00:51:50 --- DEBUG: #0 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(137): Kohana_View->set_filename('user/info')
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(30): Kohana_View->__construct('user/info', NULL)
+#2 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php(43): Kohana_View::factory('user/info')
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_form()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\polysimplicity\system\classes\Kohana\View.php:137
+2013-11-09 00:52:30 --- CRITICAL: ErrorException [ 1 ]: Call to undefined method Request::redirect() ~ APPPATH\classes\Controller\Web\Home.php [ 48 ] in file:line
+2013-11-09 00:52:30 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-09 00:59:57 --- CRITICAL: View_Exception [ 0 ]: The requested view controllers/web/management/login could not be found ~ SYSPATH\classes\Kohana\View.php [ 257 ] in C:\wamp\www\polysimplicity\system\classes\Kohana\View.php:137
+2013-11-09 00:59:57 --- DEBUG: #0 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(137): Kohana_View->set_filename('controllers/web...')
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(30): Kohana_View->__construct('controllers/web...', NULL)
+#2 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(11): Kohana_View::factory('controllers/web...')
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_index()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\polysimplicity\system\classes\Kohana\View.php:137
+2013-11-09 01:00:26 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: message ~ APPPATH\views\controllers\web\management\login.php [ 4 ] in C:\wamp\www\polysimplicity\application\views\controllers\web\management\login.php:4
+2013-11-09 01:00:26 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\views\controllers\web\management\login.php(4): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\pol...', 4, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(61): include('C:\wamp\www\pol...')
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\pol...', Array)
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(228): Kohana_View->render()
+#4 C:\wamp\www\polysimplicity\application\views\containers\default.php(56): Kohana_View->__toString()
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(61): include('C:\wamp\www\pol...')
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\pol...', Array)
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#8 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Containers\Default.php(97): Kohana_Controller_Template->after()
+#9 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(87): Controller_Web_Containers_Default->after()
+#10 [internal function]: Kohana_Controller->execute()
+#11 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#12 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#13 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#14 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#15 {main} in C:\wamp\www\polysimplicity\application\views\controllers\web\management\login.php:4
+2013-11-09 01:14:09 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected ';', expecting identifier (T_STRING) or variable (T_VARIABLE) or '{' or '$' ~ APPPATH\views\controllers\web\management\index.php [ 5 ] in file:line
+2013-11-09 01:14:09 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-09 01:15:23 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: candidate ~ APPPATH\classes\Controller\Web\Management.php [ 121 ] in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:121
+2013-11-09 01:15:23 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(121): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\pol...', 121, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:121
