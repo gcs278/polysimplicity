@@ -1,5 +1,5 @@
 	<div class="container">
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" role="form" method="post">
 			<h2>Candidate Info</h2>
 			<div class="form-group">
 				<label for="first_name" class="col-sm-2 control-label">First Name</label>
@@ -204,3 +204,7 @@
 		
 		$('.add_position').click(add_position);
 	</script>
+	<?php
+	// Script for error pop-up
+		if(isset($script)) 
+			echo $script ?>

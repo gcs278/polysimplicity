@@ -3,9 +3,9 @@
     <h2>Welcome to Political Simplicity!</h2>
     <p>Click on a Virginian Gubernatorial candidate to learn more about them</p>
     <div id='selection' class="row">
-        <ul><a href='./' ?><img src='media/images/candidates/Cuccinelli.jpg'/></a></ul>
-        <ul><a href='./McAullife.html'><img src='media/images/candidates/Terry_McAuliffe.jpg'/></a></ul>
-        <ul><a href='./Sarvis.html'><img src='media/images/candidates/RobertSarvis.jpg'/></a></ul>
+        <ul><a href='./' ?><?php echo HTML::image('media/images/candidates/Cuccinelli.jpg')?></a></ul>
+        <ul><a href='./McAullife.html'><?php echo HTML::image('media/images/candidates/Terry_McAuliffe.jpg')?></a></ul>
+        <ul><a href='./Sarvis.html'><?php echo HTML::image('media/images/candidates/RobertSarvis.jpg')?></a></ul>
     </div>       
 </div>
 

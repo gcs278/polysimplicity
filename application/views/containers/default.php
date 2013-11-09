@@ -57,7 +57,9 @@
 
 <!--Footer START-->
 <footer><p>Political Simplicity, 2013
-            <a href="home/form"><img src="media/images/plus-xxl.png" width="25" height="25"/></a>
+            <a href="<?php echo URL::site('home/form/')?>">
+                <?php echo HTML::image('media/images/plus-xxl.png',array("width"=>25,"height"=>25))?>
+            </a>
         </p>
 </footer>
 <!--Footer END-->
