@@ -34,7 +34,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" id="logo" href="./">Political Simplicity</a>
+                    <?php echo Html::anchor('home/index', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
                 </div>
                 
                 <div class="collapse navbar-collapse topNavbar">

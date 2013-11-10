@@ -3,6 +3,10 @@ html, body, div, header, footer, aside, nav, article, section	{
     padding: 0;
 }
 
+.full {
+    min-height: 100%;
+}
+
 #logo {
     font-family: "Brush Script MT", cursive;
     color: white;

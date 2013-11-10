@@ -23,7 +23,7 @@ return array
    'persistent' => FALSE,
 
   ),
-  'table_prefix' => '',
+  'table_prefix' => '', 
   'charset'      => 'utf8',
   'caching'      => FALSE,
   'profiling'    => TRUE,

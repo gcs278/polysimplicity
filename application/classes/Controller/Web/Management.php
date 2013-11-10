@@ -9,6 +9,8 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 	public function action_index() {
 		// Load the user information
 		$user = Auth::instance()->get_user();
+		$username = ORM::factory('users')->where('id','=',$user)->find(0)->username;
+		$username = ucfirst($username);
 
 		// Check if user is logged in
 		if (!$user)
@@ -22,11 +24,30 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 			));   
 			return;
 		}
+		$table = "";
+		$candidates = ORM::factory('Candidates')->with('personal')->find_all();
+		foreach($candidates as $candidate) {
+			$table .= "<tr><td>";
+			$table .= $candidate->id;
+			$table .= "</td><td>";
+			$table .= Html::anchor('home/candidate', $candidate->first_name . " " . $candidate->last_name);
+			$table .= "</td><td>";
+			$table .= $candidate->personal->party;
+			$table .= "</td><td>";
+			$table .= $candidate->personal->gender;
+			$table .= "</td><td>";
+			$table .= $candidate->personal->birth_date;
+			$table .= "</td><td>";
+			$table .= $candidate->personal->birth_state;
+			$table .= "</td></tr>";
+		}
+		
 
 		// Display Menu Page
 		$view=view::factory('controllers/web/management/index');	
 		$this->view = $view;
-		$this->view->user = $user; // User ID
+		$this->view->user = $username; // User ID
+		$this->view->table = $table;
 	}
 
 	// Form for inserting a candidate
@@ -67,21 +88,21 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 
 				$detailed_view = $_POST['detail'];
 
+				// Create
+				$candidate = ORM::factory('Candidates');
+				$candidate->first_name = $first_name;
+				$candidate->middle_name = $middle_name;
+				$candidate->last_name = $last_name;
+				$candidate->save();
+
 				// Creat Personal Info row
 				$personal = ORM::factory('personal');
 				$personal->gender = $gender;
 				$personal->birth_date = $birth_date;
 				$personal->birth_state = $birth_state;
 				$personal->party = $party;
+				$personal->candidates_id = $candidate->id;
 				$personal->save();
-
-				// Create
-				$candidate = ORM::factory('Candidates');
-				$candidate->personal_id = $personal->id;
-				$candidate->first_name = $first_name;
-				$candidate->middle_name = $middle_name;
-				$candidate->last_name = $last_name;
-				$candidate->save();
 
 				$positions = ORM::factory('positions');
 				$positions->title = $position_title;
@@ -91,21 +112,25 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 				$positions->candidates_id = $candidate->id;
 				$positions->save();
 
-			$candidate->save();
+				$candidate->save();
 			} catch(Exception $e) {
 				
-				$view=view::factory('controllers/web/management/form');
-				$this->view = $view;
+				$this->redirect(Route::get('home')->uri(
+    			array(
+        			'controller' => 'management',
+        			'action'     => 'index',                            
+   				)
+				));  
 				$errorMessage = "<script> alert('Server Side Validation Error:";
 				$errorMessage .= $e->getMessage();
 				$errorMessage .= "'); </script>";
 				$this->view->script = $errorMessage;
 				return;
 			}
-			$view=view::factory('controllers/web/management/submit');	
+			$view=view::factory('controllers/web/management/index');	
 			$this->view = $view;
 			return;
-			}
+		}
 
 			$this->template->title = 'Home';
 			$view=view::factory('controllers/web/management/form');
@@ -130,7 +155,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 				$this->redirect(Route::get('home')->uri(
         		array(
             		'controller' => 'management',
-            		'action'     => 'form',                            
+            		'action'     => 'index',                            
        			)
     			));             
 			} 
@@ -178,6 +203,19 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 				$errors = $e->errors('models');
 			}
 		}
+	}
+
+	public function action_logout() {
+		// Logout current user
+		Auth::instance()->logout();
+
+		// Redirect them somewhere else
+		$this->redirect(Route::get('home')->uri(
+			array(
+    			'controller' => 'management',
+    			'action'     => 'login',                            
+				)
+		));   
 	}
 
 }
