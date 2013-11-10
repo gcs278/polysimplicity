@@ -2,44 +2,9 @@ html, body, div, header, footer, aside, nav, article, section	{
     margin: 0;
     padding: 0;
 }
-h1, h2{
-    color: black;
-}
-.democrat {
-    background-color: #3366FF;
-}
-.republican {
-    background-color: #CC3333;
-}
-.libertarian {
-    background-color: #A8A8A8;
-}
-h1  {
-    font-size: 40px;
-    font-family: "Rockwell Extra Bold", "Rockwell Bold", monospace;
-}
-h2 {
-    font-family: "Rockwell Bold";
-    font-size: 40px;
-}
-h3 {
-    color:#000000;
-}
-body {
-    font: 18px Helvetica, Arial, sans-serif;
-    line-height: 18px;
-    text-align: center;
-    margin: 0 auto;
-    background-color: #FFFFFF;
-}
 
-.statichomepageinfo {
-    font-family: "Rockwell Bold";
-    margin-left: 20%;
-    margin-right: 20%;
-    margin-top: 60px;
-    margin-bottom: 50px;
-    color: #000000;
+.full {
+    min-height: 100%;
 }
 
 #logo {
@@ -65,119 +30,6 @@ a {
 	margin-top: 10px;
 }
 
-.candidate-wrapper {
-    text-align: left;
-    height: 335px;
-}
-
-.candidate-image {
-    position: relative;
-    float: left;
-    width: 250px;
-}
-
-.candidate-info {
-    position: relative; 
-    border: 1px solid #000000;
-    border-radius: 20px;
-    margin-left: 290px;
-    height: 100%;
-}
-
-.candidate-image img {
-    height: 100%;
-    width: 100%;
-    border: 1px solid #000000;
-    border-radius: 20px;
-}
-
-.candidate-info .demographics {
-    font-family: "Rockwell Bold";
-    font-weight:bold;
-    margin-left: 30px;
-    color: #000000;
-    float: left;
-    width: 35%;
-}
-.candidate-info .background {
-    margin-top: 60px;
-    margin-left: 30px;
-    color: #000000;
-}
-.views-wrapper {
-    margin-top: 40px;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    height: 450px;
-}
-.view {
-    width: 20%;
-    height: 100px;
-    background-color: #FFFFFF;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    float: left;
-    margin-left: 35px;
-    margin-top: 20px;
-    padding-top: 20px;
-    font-size: 20px;
-    font-weight:bold;
-    font-family:"Rockwell Bold";
-}
-.view-yes {
-    width: 90%;
-    height: 60px;
-    background-color: #CC3333;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.view-no {
-    width: 90%;
-    height: 60px;
-    background-color: #3366FF;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.view-nu {
-    width: 90%;
-    height: 60px;
-    background-color: #A8A8A8;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    margin-top: 10px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.extra {
-    text-align: left;
-    background-color: #A8A8A8;
-    border: 1px solid #000000;
-    border-radius: 20px;
-    height: 2000px;
-    margin-top: 30px;
-}
-.extra .categories {
-    font-family: "Rockwell Bold";
-    margin-top: 30px;
-    font-weight:bold;
-    margin-left: 50px;
-    color: #000000;
-    float: left;
-    width: 25%;
-}
-.extra .paragraphs {
-    margin-top: 90px;
-    margin-left: 10px;
-    color: #000000;
-    float: left;
-    width: 65%;
-}
 footer {
     background: #000000;
     border-bottom: 1px solid #aaa;
@@ -189,6 +41,7 @@ footer p{
     display: block;                               
     margin: auto;
     padding: 10px;
+    text-align: center;
 }
 footer p a{
 	padding: 10px;
