@@ -17,7 +17,8 @@
   <body>
 	<div class="container">
 		<form class="form-horizontal" role="form">
-			<h2>Candidate Info</h2>
+			<h1>Candidate Info</h1>
+			<h3>Basic Info:</h3>
 			<div class="form-group">
 				<label for="first_name" class="col-sm-2 control-label">First Name</label>
 				<div class="col-sm-10">
@@ -36,22 +37,33 @@
 					<input type="text" name="lastName" class="form-control" id="last_name" placeholder="Last Name">
 				</div>
 			</div>
-			<div class="radio col-sm-10 col-sm-offset-2">
-				<label>
-					<input type="radio" name="gender" id="male" value="male">
-					Male
-				</label>
+			<div class="form-group">
+				<label for="candidate_pic" class="col-sm-2 control-label">Picture of Cadidate</label>
+				<div class="col-sm-10">
+					<input type="file" id="cadidate_pic" multiple accept="image/*">
+					<p class="help-block">Save an image that will fit the size nicely, 
+						make sure there is authorization to use it.</p>
+				</div>
 			</div>
-			<div class="radio col-sm-10 col-sm-offset-2">
-				<label>
-					<input type="radio" name="gender" id="female" value="female">
-					Female
-				</label>
+			<div class="form-group">
+				<label for="gender_radio" class="col-sm-2 control-label">Gender</label>
+				<div id="gender_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="gender" id="male" value="male">
+						Male
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="gender" id="female" value="female">
+						Female
+					</label>
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="birth_date" class="col-sm-2 control-label">Date of Birth</label>
 				<div class="col-sm-10">
-					<input type="date" name="date_of_birth" class="form-control" id="birth_date" placeholder="Date of Birth">
+					<input name="date_of_birth" class="form-control" id="birth_date" placeholder="Date of Birth">
 				</div>
 			</div>
 			<div class="form-group">
@@ -125,7 +137,7 @@
 					</select>
 				</div>
 			</div>
-			<h2>Positions</h2>
+			<h3>Positions:</h3>
 			<div class="well" id="original">
 				<div class="form-group">
 					<label for="title" class="col-sm-2 control-label">Title</label>
@@ -159,7 +171,28 @@
 				<button type="button" class="btn btn-default add_position">Add Another</button>
 			</div>
 			<div id="more_positions"></div>
-			<h2>Views</h2>
+			<h3>Views:</h3>
+			<div class="form-group">
+				<label for="taxation_radio" class="col-sm-2 control-label">Taxation</label>
+				<div id="taxation_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="taxation" value="increase">
+						Increase
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="taxation" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="taxation" value="decrease">
+						Decrease
+					</label>
+				</div>
+			</div>
 			<div class="form-group">
 				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
 				<div class="col-sm-10">
@@ -220,5 +253,7 @@
 		};
 		
 		$('.add_position').click(add_position);
+		
+		$('#birth_date').datepicker({ changeYear: true, changeMonth: true, defaultDate: "-15y" });
 	</script>
   </body>

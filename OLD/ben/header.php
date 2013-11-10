@@ -10,7 +10,7 @@
 	<body>
 		<?php //include_once("analyticstracking.php") 
 		?>
-		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<nav class="navbar navbar-inverse" role="navigation">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".topNavbar">
 					<span class="icon-bar"></span>
