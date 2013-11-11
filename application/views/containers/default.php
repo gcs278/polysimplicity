@@ -2,6 +2,7 @@
     <head>
         <title><?php echo $title ?> - Politicalsimplicity.com</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <!--Bootstrap CSS Files-->
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
@@ -56,7 +57,7 @@
 <?php echo $content ?>
 
 <!--Footer START-->
-<footer><p>Political Simplicity, 2013
+<footer class="navbar-fixed-bottom"><p>Political Simplicity, 2013
             <a href="<?php echo URL::site('management/index/')?>">
                 <?php echo HTML::image('media/images/plus-xxl.png',array("width"=>25,"height"=>25))?>
             </a>
