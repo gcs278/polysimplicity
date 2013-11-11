@@ -50,6 +50,35 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 		$this->view->table = $table;
 	}
 
+    protected function _save_image($image)
+    {
+        if (
+            ! Upload::valid($image) OR
+            ! Upload::not_empty($image) OR
+            ! Upload::type($image, array('jpg', 'jpeg', 'png', 'gif')))
+        {
+            return FALSE;
+        }
+ 
+        $directory = DOCROOT.'uploads/';
+ 
+        if ($file = Upload::save($image, NULL, $directory))
+        {
+            $filename = strtolower(Text::random('alnum', 20)).'.jpg';
+ 
+            Image::factory($file)
+                ->resize(200, 200, Image::AUTO)
+                ->save($directory.$filename);
+ 
+            // Delete the temporary file
+            unlink($file);
+ 
+            return $filename;
+        }
+ 
+        return FALSE;
+    }
+
 	// Form for inserting a candidate
 	public function action_form() {
 		// Load the user information
@@ -88,11 +117,15 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 
 				$detailed_view = $_POST['detail'];
 
+				//if (isset($_FILES['pic']))
+					$image = $this->_save_image($_POST['pic']);
+
 				// Create
 				$candidate = ORM::factory('Candidates');
 				$candidate->first_name = $first_name;
 				$candidate->middle_name = $middle_name;
 				$candidate->last_name = $last_name;
+				$candidate->image = $image;
 				$candidate->save();
 
 				// Creat Personal Info row
@@ -114,21 +147,26 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 
 				$candidate->save();
 			} catch(Exception $e) {
-				
-				$this->redirect(Route::get('home')->uri(
-    			array(
-        			'controller' => 'management',
-        			'action'     => 'index',                            
-   				)
-				));  
+				$view=view::factory('controllers/web/management/form');
+				$this->view = $view;
 				$errorMessage = "<script> alert('Server Side Validation Error:";
 				$errorMessage .= $e->getMessage();
 				$errorMessage .= "'); </script>";
 				$this->view->script = $errorMessage;
+				// $this->redirect(Route::get('home')->uri(
+    // 			array(
+    //     			'controller' => 'management',
+    //     			'action'     => 'index',                            
+   	// 			)
+				// ));  
 				return;
 			}
-			$view=view::factory('controllers/web/management/index');	
-			$this->view = $view;
+			$this->redirect(Route::get('home')->uri(
+				array(
+					'controller' => 'management',
+					'action'     => 'submit',                            
+					)
+				)); 
 			return;
 		}
 
@@ -136,6 +174,8 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 			$view=view::factory('controllers/web/management/form');
 			$this->view = $view;
 	}
+
+
 
 	public function action_login() {
 		$view= View::factory('controllers/web/management/login')

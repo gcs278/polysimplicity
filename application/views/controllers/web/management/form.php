@@ -13,7 +13,7 @@
 
 		</div>
 		<div class="span8">
-		<form class="form-horizontal" role="form">
+		<form class="form-horizontal" role="form" method="post">
 			<h1>Candidate Info</h1>
 			<h3>Basic Info:</h3>
 			<div class="form-group">
@@ -37,7 +37,7 @@
 			<div class="form-group">
 				<label for="candidate_pic" class="col-sm-2 control-label">Picture of Cadidate</label>
 				<div class="col-sm-10">
-					<input type="file" id="cadidate_pic" multiple accept="image/*">
+					<input type="file" name="pic" id="cadidate_pic" multiple accept="image/*">
 					<p class="help-block">Save an image that will fit the size nicely, 
 						make sure there is authorization to use it.</p>
 				</div>
