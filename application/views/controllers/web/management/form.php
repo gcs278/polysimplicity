@@ -13,27 +13,38 @@
 
 		</div>
 		<div class="span8">
-			<form class="form-horizontal" role="form" method="post">
-				<h2>Candidate Info</h2>
-				<div class="form-group">
-					<label for="first_name" class="col-sm-2 control-label">First Name</label>
-					<div class="col-sm-10">
-						<input type="text" name="firstName" class="form-control" id="first_name" placeholder="First Name">
-					</div>
+		<form class="form-horizontal" role="form">
+			<h1>Candidate Info</h1>
+			<h3>Basic Info:</h3>
+			<div class="form-group">
+				<label for="first_name" class="col-sm-2 control-label">First Name</label>
+				<div class="col-sm-10">
+					<input type="text" name="firstName" class="form-control" id="first_name" placeholder="First Name">
 				</div>
-				<div class="form-group">
-					<label for="middle_name" class="col-sm-2 control-label">Middle Name</label>
-					<div class="col-sm-10">
-						<input type="text" name="middleName" class="form-control" id="middle_name" placeholder="Middle Name">
-					</div>
+			</div>
+			<div class="form-group">
+				<label for="middle_name" class="col-sm-2 control-label">Middle Name</label>
+				<div class="col-sm-10">
+					<input type="text" name="middleName" class="form-control" id="middle_name" placeholder="Middle Name">
 				</div>
-				<div class="form-group">
-					<label for="last_name" class="col-sm-2 control-label">Last Name</label>
-					<div class="col-sm-10">
-						<input type="text" name="lastName" class="form-control" id="last_name" placeholder="Last Name">
-					</div>
+			</div>
+			<div class="form-group">
+				<label for="last_name" class="col-sm-2 control-label">Last Name</label>
+				<div class="col-sm-10">
+					<input type="text" name="lastName" class="form-control" id="last_name" placeholder="Last Name">
 				</div>
-				<div class="radio col-sm-10 col-sm-offset-2">
+			</div>
+			<div class="form-group">
+				<label for="candidate_pic" class="col-sm-2 control-label">Picture of Cadidate</label>
+				<div class="col-sm-10">
+					<input type="file" id="cadidate_pic" multiple accept="image/*">
+					<p class="help-block">Save an image that will fit the size nicely, 
+						make sure there is authorization to use it.</p>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="gender_radio" class="col-sm-2 control-label">Gender</label>
+				<div id="gender_radio" class="radio col-sm-10">
 					<label>
 						<input type="radio" name="gender" id="male" value="male">
 						Male
@@ -45,127 +56,148 @@
 						Female
 					</label>
 				</div>
+			</div>
+			<div class="form-group">
+				<label for="birth_date" class="col-sm-2 control-label">Date of Birth</label>
+				<div class="col-sm-10">
+					<input name="date_of_birth" class="form-control" id="birth_date" placeholder="Date of Birth">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="birth_state" class="col-sm-2 control-label">State of Birth</label>
+				<div class="col-sm-10">
+					<select class="form-control" name="birth_state" id="birth_state">
+						<option value="">Select a State...</option>
+						<option value="AL">Alabama</option>
+						<option value="AK">Alaska</option>
+						<option value="AZ">Arizona</option>
+						<option value="AR">Arkansas</option>
+						<option value="CA">California</option>
+						<option value="CO">Colorado</option>
+						<option value="CT">Connecticut</option>
+						<option value="DE">Delaware</option>
+						<option value="DC">District Of Columbia</option>
+						<option value="FL">Florida</option>
+						<option value="GA">Georgia</option>
+						<option value="HI">Hawaii</option>
+						<option value="ID">Idaho</option>
+						<option value="IL">Illinois</option>
+						<option value="IN">Indiana</option>
+						<option value="IA">Iowa</option>
+						<option value="KS">Kansas</option>
+						<option value="KY">Kentucky</option>
+						<option value="LA">Louisiana</option>
+						<option value="ME">Maine</option>
+						<option value="MD">Maryland</option>
+						<option value="MA">Massachusetts</option>
+						<option value="MI">Michigan</option>
+						<option value="MN">Minnesota</option>
+						<option value="MS">Mississippi</option>
+						<option value="MO">Missouri</option>
+						<option value="MT">Montana</option>
+						<option value="NE">Nebraska</option>
+						<option value="NV">Nevada</option>
+						<option value="NH">New Hampshire</option>
+						<option value="NJ">New Jersey</option>
+						<option value="NM">New Mexico</option>
+						<option value="NY">New York</option>
+						<option value="NC">North Carolina</option>
+						<option value="ND">North Dakota</option>
+						<option value="OH">Ohio</option>
+						<option value="OK">Oklahoma</option>
+						<option value="OR">Oregon</option>
+						<option value="PA">Pennsylvania</option>
+						<option value="RI">Rhode Island</option>
+						<option value="SC">South Carolina</option>
+						<option value="SD">South Dakota</option>
+						<option value="TN">Tennessee</option>
+						<option value="TX">Texas</option>
+						<option value="UT">Utah</option>
+						<option value="VT">Vermont</option>
+						<option value="VA">Virginia</option>
+						<option value="WA">Washington</option>
+						<option value="WV">West Virginia</option>
+						<option value="WI">Wisconsin</option>
+						<option value="WY">Wyoming</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="party" class="col-sm-2 control-label">Political Party</label>
+				<div class="col-sm-10">
+					<select class="form-control" name="party" id="party">
+					  <option value="">Select a Party...</option>
+					  <option value="Rep">Republican</option>
+					  <option value="Dem">Democrat</option>
+					  <option value="Ind">Independent</option>
+					  <option value="Lib">Libertarian</option>
+					</select>
+				</div>
+			</div>
+			<h3>Positions:</h3>
+			<div class="well" id="original">
 				<div class="form-group">
-					<label for="birth_date" class="col-sm-2 control-label">Date of Birth</label>
+					<label for="title" class="col-sm-2 control-label">Title</label>
 					<div class="col-sm-10">
-						<input type="date" name="date_of_birth" class="form-control" id="birth_date" placeholder="Date of Birth">
+						<input type="text" name="title1" class="form-control" id="title" placeholder="Title">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="birth_state" class="col-sm-2 control-label">State of Birth</label>
+					<label for="status" class="col-sm-2 control-label">Status</label>
 					<div class="col-sm-10">
-						<select class="form-control" name="birth_state" id="birth_state">
-							<option value="">Select a State...</option>
-							<option value="AL">Alabama</option>
-							<option value="AK">Alaska</option>
-							<option value="AZ">Arizona</option>
-							<option value="AR">Arkansas</option>
-							<option value="CA">California</option>
-							<option value="CO">Colorado</option>
-							<option value="CT">Connecticut</option>
-							<option value="DE">Delaware</option>
-							<option value="DC">District Of Columbia</option>
-							<option value="FL">Florida</option>
-							<option value="GA">Georgia</option>
-							<option value="HI">Hawaii</option>
-							<option value="ID">Idaho</option>
-							<option value="IL">Illinois</option>
-							<option value="IN">Indiana</option>
-							<option value="IA">Iowa</option>
-							<option value="KS">Kansas</option>
-							<option value="KY">Kentucky</option>
-							<option value="LA">Louisiana</option>
-							<option value="ME">Maine</option>
-							<option value="MD">Maryland</option>
-							<option value="MA">Massachusetts</option>
-							<option value="MI">Michigan</option>
-							<option value="MN">Minnesota</option>
-							<option value="MS">Mississippi</option>
-							<option value="MO">Missouri</option>
-							<option value="MT">Montana</option>
-							<option value="NE">Nebraska</option>
-							<option value="NV">Nevada</option>
-							<option value="NH">New Hampshire</option>
-							<option value="NJ">New Jersey</option>
-							<option value="NM">New Mexico</option>
-							<option value="NY">New York</option>
-							<option value="NC">North Carolina</option>
-							<option value="ND">North Dakota</option>
-							<option value="OH">Ohio</option>
-							<option value="OK">Oklahoma</option>
-							<option value="OR">Oregon</option>
-							<option value="PA">Pennsylvania</option>
-							<option value="RI">Rhode Island</option>
-							<option value="SC">South Carolina</option>
-							<option value="SD">South Dakota</option>
-							<option value="TN">Tennessee</option>
-							<option value="TX">Texas</option>
-							<option value="UT">Utah</option>
-							<option value="VT">Vermont</option>
-							<option value="VA">Virginia</option>
-							<option value="WA">Washington</option>
-							<option value="WV">West Virginia</option>
-							<option value="WI">Wisconsin</option>
-							<option value="WY">Wyoming</option>
+						<select class="form-control" name="status1" id="status">
+							<option value"">Select a Status...</option>
+							<option value"Current">Current</option>
+							<option value"Previous">Previous</option>
+							<option value"Running_For">Running</option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="party" class="col-sm-2 control-label">Political Party</label>
+					<label for="term_start" class="col-sm-2 control-label">Term Start</label>
 					<div class="col-sm-10">
-						<select class="form-control" name="party" id="party">
-						  <option value="">Select a Party...</option>
-						  <option value="Rep">Republican</option>
-						  <option value="Dem">Democrat</option>
-						  <option value="Ind">Independent</option>
-						  <option value="Lib">Libertarian</option>
-						</select>
+						<input type="date" name="term_start1" class="form-control" id="term_start" placeholder="Date of Term Start">
 					</div>
 				</div>
-				<h2>Positions</h2>
-				<div class="well" id="original">
-					<div class="form-group">
-						<label for="title" class="col-sm-2 control-label">Title</label>
-						<div class="col-sm-10">
-							<input type="text" name="title1" class="form-control" id="title" placeholder="Title">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="status" class="col-sm-2 control-label">Status</label>
-						<div class="col-sm-10">
-							<select class="form-control" name="status1" id="status">
-								<option value"">Select a Status...</option>
-								<option value"Current">Current</option>
-								<option value"Previous">Previous</option>
-								<option value"Running_For">Running</option>
-							</select>
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="term_start" class="col-sm-2 control-label">Term Start</label>
-						<div class="col-sm-10">
-							<input type="date" name="term_start1" class="form-control" id="term_start" placeholder="Date of Term Start">
-						</div>
-					</div>
-					<div class="form-group">
-						<label for="term_end" class="col-sm-2 control-label">Term End</label>
-						<div class="col-sm-10">
-							<input type="date" name="term_end1" class="form-control" id="term_end" placeholder="Date of Term End">
-						</div>
-					</div>
-					<button type="button" class="btn btn-default add_position">Add Another</button>
-				</div>
-				<div id="more_positions"></div>
-				<h2>Views</h2>
 				<div class="form-group">
-					<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+					<label for="term_end" class="col-sm-2 control-label">Term End</label>
 					<div class="col-sm-10">
-						<textarea type="text" rows="5" name="detail" class="form-control" id="detailed_views"></textarea>
+						<input type="date" name="term_end1" class="form-control" id="term_end" placeholder="Date of Term End">
 					</div>
 				</div>
-				<button type="submit" id="submit" class="btn btn-default">Submit</button>
-			</form>
-		</div>
+				<button type="button" class="btn btn-default add_position">Add Another</button>
+			</div>
+			<div id="more_positions"></div>
+			<h3>Views:</h3>
+			<div class="form-group">
+				<label for="taxation_radio" class="col-sm-2 control-label">Taxation</label>
+				<div id="taxation_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="taxation" value="increase">
+						Increase
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="taxation" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="taxation" value="decrease">
+						Decrease
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<button type="submit" id="submit" class="btn btn-default">Submit</button>
+		</form>
 	</div>
 	
 	<script src="//code.jquery.com/jquery-1.9.1.js"></script>
@@ -218,6 +250,8 @@
 		};
 		
 		$('.add_position').click(add_position);
+		
+		$('#birth_date').datepicker({ changeYear: true, changeMonth: true, defaultDate: "-15y" });
 	</script>
 	<?php
 	// Script for error pop-up
