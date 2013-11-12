@@ -3,7 +3,7 @@
 Class Model_Positions extends ORM
 {
         protected $_table_name = 'positions';
-        protected $_belongs_to = array('candidates' => array() );
+        protected $_belongs_to = array('Candidates' => array() );
 
    //     public function rules()
     //    {

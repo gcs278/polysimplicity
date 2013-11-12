@@ -19,25 +19,25 @@
 			<div class="form-group">
 				<label for="first_name" class="col-sm-2 control-label">First Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="firstName" class="form-control" id="first_name" placeholder="First Name">
+					<input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="middle_name" class="col-sm-2 control-label">Middle Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="middleName" class="form-control" id="middle_name" placeholder="Middle Name">
+					<input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Middle Name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="last_name" class="col-sm-2 control-label">Last Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="lastName" class="form-control" id="last_name" placeholder="Last Name">
+					<input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="candidate_pic" class="col-sm-2 control-label">Picture of Cadidate</label>
 				<div class="col-sm-10">
-					<input type="file" name="pic" id="candidate_pic" multiple accept="image/*">
+					<input type="file" name="candidate_pic" id="candidate_pic" multiple accept="image/*">
 					<p class="help-block">Save an image that will fit the size nicely, 
 						make sure there is authorization to use it.</p>
 				</div>
@@ -60,7 +60,8 @@
 			<div class="form-group">
 				<label for="birth_date" class="col-sm-2 control-label">Date of Birth</label>
 				<div class="col-sm-10">
-					<input name="date_of_birth" class="form-control" id="birth_date" placeholder="Date of Birth">
+					<!--Changed Input to type "date" cause database format-->
+					<input type="date" name="birth_date" class="form-control" id="birth_date" placeholder="Date of Birth">
 				</div>
 			</div>
 			<div class="form-group">

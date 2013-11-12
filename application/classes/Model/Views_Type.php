@@ -3,7 +3,7 @@
 Class Model_Views_Type extends ORM
 {
         protected $_table_name = 'views_type';
-        protected $_belongs_to = array('views' => array() );
+        protected $_belongs_to = array('Views' => array() );
         
         public function rules()
         {
