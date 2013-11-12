@@ -175,3 +175,122 @@
 #13 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
 #14 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
 #15 {main} in C:\wamp\www\polysimplicity\application\views\controllers\web\management\picture.php:1
+2013-11-11 21:34:14 --- CRITICAL: ErrorException [ 1 ]: Class 'Model_Candiddates' not found ~ MODPATH\orm\classes\Kohana\ORM.php [ 46 ] in file:line
+2013-11-11 21:34:14 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 21:40:50 --- CRITICAL: Database_Exception [ 1452 ]: Cannot add or update a child row: a foreign key constraint fails (`politicalsimplicity_candidates`.`personal_information`, CONSTRAINT `fk_personal_information_candidates1` FOREIGN KEY (`candidates_id`) REFERENCES `candidates` (`id`) ON DELETE NO ACTION ON UP) [ INSERT INTO `personal_information` (`gender`, `birth_date`, `birth_state`, `party`) VALUES ('male', '11/11/1998', 'CT', 'Ind') ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in C:\wamp\www\polysimplicity\modules\database\classes\Kohana\Database\Query.php:251
+2013-11-11 21:40:50 --- DEBUG: #0 C:\wamp\www\polysimplicity\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(2, 'INSERT INTO `pe...', false, Array)
+#1 C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php(1324): Kohana_Database_Query->execute(Object(Database_MySQL))
+#2 C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#3 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(161): Kohana_ORM->save()
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#5 [internal function]: Kohana_Controller->execute()
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#9 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#10 {main} in C:\wamp\www\polysimplicity\modules\database\classes\Kohana\Database\Query.php:251
+2013-11-11 22:16:23 --- CRITICAL: ErrorException [ 1 ]: Call to undefined method Model_Candidates::validate() ~ APPPATH\classes\Controller\Web\Management.php [ 163 ] in file:line
+2013-11-11 22:16:23 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 22:16:38 --- CRITICAL: ErrorException [ 1 ]: Call to undefined method Model_Candidates::_validate() ~ APPPATH\classes\Controller\Web\Management.php [ 163 ] in file:line
+2013-11-11 22:16:38 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 22:27:35 --- CRITICAL: ORM_Validation_Exception [ 0 ]: Failed to validate array ~ MODPATH\orm\classes\Kohana\ORM.php [ 1275 ] in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:104
+2013-11-11 22:27:35 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(104): Kohana_ORM->check()
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:104
+2013-11-11 22:34:00 --- CRITICAL: ORM_Validation_Exception [ 0 ]: Failed to validate array ~ MODPATH\orm\classes\Kohana\ORM.php [ 1275 ] in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:105
+2013-11-11 22:34:00 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(105): Kohana_ORM->check()
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:105
+2013-11-11 22:35:38 --- CRITICAL: ORM_Validation_Exception [ 0 ]: Failed to validate array ~ MODPATH\orm\classes\Kohana\ORM.php [ 1275 ] in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:106
+2013-11-11 22:35:38 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(106): Kohana_ORM->check()
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:106
+2013-11-11 22:58:16 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected 'public' (T_PUBLIC) ~ APPPATH\classes\Controller\Web\Management.php [ 182 ] in file:line
+2013-11-11 22:58:16 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 22:58:47 --- CRITICAL: ErrorException [ 2 ]: file_get_contents(): Filename cannot be empty ~ APPPATH\classes\Controller\Web\Management.php [ 112 ] in file:line
+2013-11-11 22:58:47 --- DEBUG: #0 [internal function]: Kohana_Core::error_handler(2, 'file_get_conten...', 'C:\wamp\www\pol...', 112, Array)
+#1 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(112): file_get_contents('')
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#3 [internal function]: Kohana_Controller->execute()
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#7 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#8 {main} in file:line
+2013-11-11 23:00:08 --- CRITICAL: ErrorException [ 1 ]: Call to undefined method Model_Candidates::errors() ~ APPPATH\classes\Controller\Web\Management.php [ 134 ] in file:line
+2013-11-11 23:00:08 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 23:01:15 --- CRITICAL: ErrorException [ 1 ]: Call to undefined method Model_Candidates::_validate() ~ APPPATH\classes\Controller\Web\Management.php [ 134 ] in file:line
+2013-11-11 23:01:15 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 23:01:33 --- CRITICAL: ErrorException [ 1 ]: Call to undefined method Model_Candidates::validate() ~ APPPATH\classes\Controller\Web\Management.php [ 134 ] in file:line
+2013-11-11 23:01:33 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 23:02:56 --- CRITICAL: ErrorException [ 1 ]: Call to protected method Kohana_ORM::_validation() from context 'Controller_Web_Management' ~ APPPATH\classes\Controller\Web\Management.php [ 134 ] in file:line
+2013-11-11 23:02:56 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 23:03:55 --- CRITICAL: ErrorException [ 1 ]: Call to undefined method Model_Candidates::validate() ~ APPPATH\classes\Controller\Web\Management.php [ 134 ] in file:line
+2013-11-11 23:03:55 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 23:05:26 --- CRITICAL: ErrorException [ 4096 ]: Argument 1 passed to Kohana_Kohana_Exception::text() must be an instance of Exception, none given, called in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php on line 134 and defined ~ SYSPATH\classes\Kohana\Kohana\Exception.php [ 163 ] in C:\wamp\www\polysimplicity\system\classes\Kohana\Kohana\Exception.php:163
+2013-11-11 23:05:26 --- DEBUG: #0 C:\wamp\www\polysimplicity\system\classes\Kohana\Kohana\Exception.php(163): Kohana_Core::error_handler(4096, 'Argument 1 pass...', 'C:\wamp\www\pol...', 163, Array)
+#1 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(134): Kohana_Kohana_Exception::text()
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#3 [internal function]: Kohana_Controller->execute()
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#7 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#8 {main} in C:\wamp\www\polysimplicity\system\classes\Kohana\Kohana\Exception.php:163
+2013-11-11 23:07:48 --- CRITICAL: Database_Exception [ 1452 ]: Cannot add or update a child row: a foreign key constraint fails (`politicalsimplicity_candidates`.`personal_information`, CONSTRAINT `fk_personal_information_candidates1` FOREIGN KEY (`candidates_id`) REFERENCES `candidates` (`id`) ON DELETE NO ACTION ON UP) [ INSERT INTO `personal_information` (`gender`, `birth_date`, `birth_state`, `party`) VALUES ('male', '11/03/1998', 'CO', 'Dem') ] ~ MODPATH\database\classes\Kohana\Database\MySQL.php [ 194 ] in C:\wamp\www\polysimplicity\modules\database\classes\Kohana\Database\Query.php:251
+2013-11-11 23:07:48 --- DEBUG: #0 C:\wamp\www\polysimplicity\modules\database\classes\Kohana\Database\Query.php(251): Kohana_Database_MySQL->query(2, 'INSERT INTO `pe...', false, Array)
+#1 C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php(1324): Kohana_Database_Query->execute(Object(Database_MySQL))
+#2 C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php(1421): Kohana_ORM->create(NULL)
+#3 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(134): Kohana_ORM->save()
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#5 [internal function]: Kohana_Controller->execute()
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#9 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#10 {main} in C:\wamp\www\polysimplicity\modules\database\classes\Kohana\Database\Query.php:251
+2013-11-11 23:31:16 --- CRITICAL: ErrorException [ 1 ]: Maximum execution time of 30 seconds exceeded ~ APPPATH\classes\Controller\Web\Management.php [ 152 ] in file:line
+2013-11-11 23:31:16 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-11-11 23:31:35 --- CRITICAL: ErrorException [ 8 ]: Undefined index: title3 ~ APPPATH\classes\Controller\Web\Management.php [ 150 ] in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:150
+2013-11-11 23:31:35 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(150): Kohana_Core::error_handler(8, 'Undefined index...', 'C:\wamp\www\pol...', 150, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:150
+2013-11-11 23:32:34 --- CRITICAL: ErrorException [ 8 ]: Undefined index: title2 ~ APPPATH\classes\Controller\Web\Management.php [ 150 ] in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:150
+2013-11-11 23:32:34 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(150): Kohana_Core::error_handler(8, 'Undefined index...', 'C:\wamp\www\pol...', 150, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_form()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:150

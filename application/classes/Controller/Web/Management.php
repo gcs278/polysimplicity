@@ -100,95 +100,83 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 		// Check if it a POST
 		if ($this->request->method() == HTTP_Request::POST) {
 			
+			$candidate = ORM::factory('Candidates');
+
+			// Get values matching form, names
+			$candidate->values($_POST);
+
+			// Get the picture if there is one
+			$picture = $_FILES["candidate_pic"]["tmp_name"];
+			if(isset($picture)){
+				// Serialize bytes into variable
+				$image = file_get_contents($picture);
+				$image_size = getimagesize($picture);
+
+				// Make sure it is an actual picture
+				if($image_size)
+					$candidate->image = $image;
+			}
+
+
+			$personal = ORM::factory('Personal');
+			// Get the form data
+			$personal->values($_POST);
+
+			// Validate input for personal and candidate
 			try {
-				// Gather all variable from POST
-				$first_name = $_POST['firstName'];
-				$middle_name = $_POST['middleName'];
-				$last_name = $_POST['lastName'];
+				$candidate->check();
+				$personal->check();
 
-				$gender = $this->request->post('gender');
-				$birth_date = $_POST['date_of_birth'];
-				$birth_state = $_POST['birth_state'];
-				$party = $_POST['party'];
-
-				$position_title = $_POST['title1'];
-				$position_status = $_POST['status1'];
-				$position_term_start = $_POST['term_start1'];
-				$position_term_end = $_POST['term_end1'];
-
-				$detailed_view = $_POST['detail'];
-
-				$candidate = ORM::factory('Candidates')->;
-				$picture = $_FILES["pic"]["tmp_name"];
-				if(!isset($picture)){
-					echo "Please upload an image";
-				}else{
-					$image = file_get_contents($picture);
-
-					$image_name = addslashes($_FILES['pic']['name']);
-				
-					$image_size = getimagesize($picture);
-
-					if($image_size==FALSE)
-						echo "That's not an image.";
-					else
-					{
-						$candidate->image = $image;
-					}
-				}
-
-				// Create
-
-				$candidate->first_name = $first_name;
-				$candidate->middle_name = $middle_name;
-				$candidate->last_name = $last_name;
+				// Save databases
 				$candidate->save();
 
-				// Creat Personal Info row
-				$personal = ORM::factory('Personal');
-				$personal->gender = $gender;
-				$personal->birth_date = $birth_date;
-				$personal->birth_state = $birth_state;
-				$personal->party = $party;
+				// Get the candidate id for relation and save
 				$personal->candidates_id = $candidate->id;
 				$personal->save();
-
-				$positions = ORM::factory('positions');
-				$positions->title = $position_title;
-				$positions->term_start = $position_term_start;
-				$positions->term_end = $position_term_end;
-				$positions->status = $position_status;
-				$positions->candidates_id = $candidate->id;
-				$positions->save();
-
-				$candidate->save();
-			} catch(Exception $e) {
+			} catch(ORM_Validation_Exception $e) {
 				$view=view::factory('controllers/web/management/form');
 				$this->view = $view;
 				$errorMessage = "<script> alert('Server Side Validation Error:";
 				$errorMessage .= $e->getMessage();
 				$errorMessage .= "'); </script>";
 				$this->view->script = $errorMessage;
-				// $this->redirect(Route::get('home')->uri(
-    // 			array(
-    //     			'controller' => 'management',
-    //     			'action'     => 'index',                            
-   	// 			)
-				// ));  
 				return;
 			}
-			$this->redirect(Route::get('home')->uri(
-				array(
-					'controller' => 'management',
-					'action'     => 'submit',                            
-					)
-				)); 
-			return;
+
+			// Determine how many positions there are
+			$i = 1;
+			$title = "title1";
+			while(isset($_POST[$title])) {
+				$title = "title" . strval($i);
+				$i++;
+			}
+
+			// Get the value from each one and store it in database
+			for ($x=1; $x<$i; $x++) {
+				// Post names
+				$status = "status" . strval($x);
+				$term_start = "term_start" . strval($x);
+				$term_end = "term_end" . strval($x);
+				$title = "title" . strval($x);
+
+				// Verify everything is set for each position
+				if (isset($_POST[$status]) && isset($_POST[$term_start]) && isset($_POST[$term_end])) {
+					$positions = ORM::factory('Positions');
+					$positions->title = $_POST[$title];
+					$positions->status = $_POST[$status];
+					$positions->term_start = $_POST[$term_start];
+					$positions->term_end = $_POST[$term_end];
+					$positions->candidates_id = $candidate->id;
+					$positions->save(); // New table
+				}
+			}
 		}
 
-			$this->template->title = 'Home';
-			$view=view::factory('controllers/web/management/form');
-			$this->view = $view;
+		$this->template->title = 'Home';
+		$view=view::factory('controllers/web/management/form');
+		$this->view = $view;
+		$errorMessage = "<script> alert('Success! Candidate is now in the database'); </script>";
+		$this->view->script = $errorMessage;
 	}
 
 
@@ -274,21 +262,16 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 		));    
 	}
 
-	function data_uri($file, $mime) 
-	{  
-		return ('data:' . $mime . ';base64,' . base64_encode($file));
-	}
-
 	public function action_viewpic() {
-	$view= View::factory('controllers/web/management/picture');
+		$id = $this->request->param('id');
 
-		$candidate = ORM::factory('Candidates')->where('last_name','=','D')->find(0);
+		$view= View::factory('controllers/web/management/picture');
+
+		$candidate = ORM::factory('Candidates')->where('id','=',$id)->find(0);
 		$image = $candidate->image;
 
 		$this->view = $view;
 		$this->view->image =base64_encode($image);
-		
-
 	}
 
 }
