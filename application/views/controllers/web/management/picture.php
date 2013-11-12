@@ -1,0 +1,1 @@
+<img src="data:image/jpg;base64, <?php echo $image ?>"\>
