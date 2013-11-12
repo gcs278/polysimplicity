@@ -118,7 +118,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 
 				$detailed_view = $_POST['detail'];
 
-				$candidate = ORM::factory('Candidates')->;
+				$candidate = ORM::factory('Candidates');
 				$picture = $_FILES["pic"]["tmp_name"];
 				if(!isset($picture)){
 					echo "Please upload an image";
@@ -153,7 +153,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 				$personal->candidates_id = $candidate->id;
 				$personal->save();
 
-				$positions = ORM::factory('positions');
+				$positions = ORM::factory('Positions');
 				$positions->title = $position_title;
 				$positions->term_start = $position_term_start;
 				$positions->term_end = $position_term_end;
