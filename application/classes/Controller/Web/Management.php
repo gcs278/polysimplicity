@@ -50,34 +50,35 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 		$this->view->table = $table;
 	}
 
-    protected function _save_image($image)
-    {
-        if (
-            ! Upload::valid($image) OR
-            ! Upload::not_empty($image) OR
-            ! Upload::type($image, array('jpg', 'jpeg', 'png', 'gif')))
-        {
-            return FALSE;
-        }
- 
-        $directory = DOCROOT.'uploads/';
- 
-        if ($file = Upload::save($image, NULL, $directory))
-        {
-            $filename = strtolower(Text::random('alnum', 20)).'.jpg';
- 
-            Image::factory($file)
-                ->resize(200, 200, Image::AUTO)
-                ->save($directory.$filename);
- 
-            // Delete the temporary file
-            unlink($file);
- 
-            return $filename;
-        }
- 
-        return FALSE;
-    }
+	function convert_image($image) {
+		//don't continue if an image hasn't been uploaded 
+		if (!empty($image)){ 
+
+		//copy the image to directory 
+			copy($image, "./temporary/".$_SERVER['REMOTE_ADDR'].""); 
+
+			//open the copied image, ready to encode into text to go into the database 
+			$filename1 = "./temporary/".$REMOTE_ADDR; 
+			$fp1 = fopen($filename1, "r"); 
+
+			//record the image contents into a variable 
+			$contents1 = fread($fp1, filesize($filename1)); 
+
+			//close the file 
+			fclose($fp1); 
+
+			//encode the image into text 
+			$encoded = chunk_split(base64_encode($contents1));  
+
+			//insert information into the database 
+			mysql_query("INSERT INTO images (img,data)"."VALUES ('NULL', '$encoded')"); 
+
+			//delete the temporary file we made 
+			unlink($filename1); 
+		} else {
+			return null;
+		}
+	}
 
 	// Form for inserting a candidate
 	public function action_form() {
@@ -117,15 +118,30 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 
 				$detailed_view = $_POST['detail'];
 
-				//if (isset($_FILES['pic']))
-					$image = $this->_save_image($_POST['pic']);
+				$candidate = ORM::factory('Candidates')->;
+				$picture = $_FILES["pic"]["tmp_name"];
+				if(!isset($picture)){
+					echo "Please upload an image";
+				}else{
+					$image = file_get_contents($picture);
+
+					$image_name = addslashes($_FILES['pic']['name']);
+				
+					$image_size = getimagesize($picture);
+
+					if($image_size==FALSE)
+						echo "That's not an image.";
+					else
+					{
+						$candidate->image = $image;
+					}
+				}
 
 				// Create
-				$candidate = ORM::factory('Candidates');
+
 				$candidate->first_name = $first_name;
 				$candidate->middle_name = $middle_name;
 				$candidate->last_name = $last_name;
-				$candidate->image = $image;
 				$candidate->save();
 
 				// Creat Personal Info row
@@ -255,7 +271,24 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
     			'controller' => 'management',
     			'action'     => 'login',                            
 				)
-		));   
+		));    
+	}
+
+	function data_uri($file, $mime) 
+	{  
+		return ('data:' . $mime . ';base64,' . base64_encode($file));
+	}
+
+	public function action_viewpic() {
+	$view= View::factory('controllers/web/management/picture');
+
+		$candidate = ORM::factory('Candidates')->where('last_name','=','D')->find(0);
+		$image = $candidate->image;
+
+		$this->view = $view;
+		$this->view->image =base64_encode($image);
+		
+
 	}
 
 }
