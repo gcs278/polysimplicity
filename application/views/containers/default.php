@@ -57,7 +57,7 @@
 <?php echo $content ?>
 
 <!--Footer START-->
-<footer class="navbar-fixed-bottom"><p>Political Simplicity, 2013
+<footer class="navbar-fixed-bottom" style="position:relative"><p>Political Simplicity, 2013
             <a href="<?php echo URL::site('management/index/')?>">
                 <?php echo HTML::image('media/images/plus-xxl.png',array("width"=>25,"height"=>25))?>
             </a>
