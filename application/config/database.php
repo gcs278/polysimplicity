@@ -19,7 +19,7 @@ return array
 
 //Localhost Credentials 
    'username'   => 'root',
-   'password'   => '',
+   'password'   => 'Band1980',
    'persistent' => FALSE,
 
   ),

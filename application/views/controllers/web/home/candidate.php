@@ -1,23 +1,3 @@
-<!--
-To change this template, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html>
-    <head>    
-
-    <title>Political Simplicity</title>
-    <link href="media/css/style.css" rel="stylesheet" type="text/css"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-    
-        <script>
-        $(function(){
-          $("#includedContent").load("OLD/menu.html");
-        });
-        </script>
-</head>
-    <body>
 	<div id="includedContent"></div>
          <div id="container">
             <h1><?php echo $candidate_name; ?></h1>
@@ -203,8 +183,4 @@ and open the template in the editor.
                 </div>
         </div>
         </div>
-        <footer><p>Political Simplicity, 2013</p></footer>
-    </body>
-</html>
-<!DOCTYPE html>
 

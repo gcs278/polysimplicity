@@ -3,7 +3,7 @@
 Class Model_Personal extends ORM
 {
         protected $_table_name = 'personal_information';
-        protected $_belongs_to = array('candidates' => array() );
+        protected $_belongs_to = array('Candidates' => array() );
 
         public function rules()
         {

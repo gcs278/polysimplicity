@@ -9,7 +9,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 	public function action_index() {
 		// Load the user information
 		$user = Auth::instance()->get_user();
-		$username = ORM::factory('users')->where('id','=',$user)->find(0)->username;
+		$username = ORM::factory('Users')->where('id','=',$user)->find(0)->username;
 		$username = ucfirst($username);
 
 		// Check if user is logged in
@@ -25,20 +25,20 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 			return;
 		}
 		$table = "";
-		$candidates = ORM::factory('Candidates')->with('personal')->find_all();
+		$candidates = ORM::factory('Candidates')->with('Personal')->find_all();
 		foreach($candidates as $candidate) {
 			$table .= "<tr><td>";
 			$table .= $candidate->id;
 			$table .= "</td><td>";
-			$table .= Html::anchor('home/candidate', $candidate->first_name . " " . $candidate->last_name);
+			$table .= HTML::anchor('home/candidate', $candidate->first_name . " " . $candidate->last_name);
 			$table .= "</td><td>";
-			$table .= $candidate->personal->party;
+			$table .= $candidate->Personal->party;
 			$table .= "</td><td>";
-			$table .= $candidate->personal->gender;
+			$table .= $candidate->Personal->gender;
 			$table .= "</td><td>";
-			$table .= $candidate->personal->birth_date;
+			$table .= $candidate->Personal->birth_date;
 			$table .= "</td><td>";
-			$table .= $candidate->personal->birth_state;
+			$table .= $candidate->Personal->birth_state;
 			$table .= "</td></tr>";
 		}
 		
@@ -145,7 +145,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 				$candidate->save();
 
 				// Creat Personal Info row
-				$personal = ORM::factory('personal');
+				$personal = ORM::factory('Personal');
 				$personal->gender = $gender;
 				$personal->birth_date = $birth_date;
 				$personal->birth_state = $birth_state;
@@ -235,14 +235,14 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 			try {
 		
 				// Create the user using form values
-				$user = ORM::factory('user')->create_user($this->request->post(), array(
+				$user = ORM::factory('User')->create_user($this->request->post(), array(
 					'username',
 					'password',
 					'email'				
 				));
 				
 				// Grant user login role
-				$user->add('roles', ORM::factory('role', array('name' => 'login')));
+				$user->add('roles', ORM::factory('Role', array('name' => 'login')));
 				
 				// Reset values so form is not sticky
 				$_POST = array();

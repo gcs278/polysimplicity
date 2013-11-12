@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 10, 2013 at 06:09 AM
--- Server version: 5.5.24-log
--- PHP Version: 5.4.3
+-- Generation Time: Nov 11, 2013 at 08:09 PM
+-- Server version: 5.6.12-log
+-- PHP Version: 5.4.12
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `politicalsimplicity_candidates`
 --
+CREATE DATABASE IF NOT EXISTS `politicalsimplicity_candidates` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `politicalsimplicity_candidates`;
 
 -- --------------------------------------------------------
 
@@ -127,13 +129,6 @@ CREATE TABLE IF NOT EXISTS `roles_users` (
   KEY `fk_role_id` (`role_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `roles_users`
---
-
-INSERT INTO `roles_users` (`user_id`, `role_id`) VALUES
-(1, 1);
-
 -- --------------------------------------------------------
 
 --
@@ -151,13 +146,6 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `uniq_username` (`username`),
   UNIQUE KEY `uniq_email` (`email`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`id`, `email`, `username`, `password`, `logins`, `last_login`) VALUES
-(1, 'gcs278@vt.edu', 'grcosp', '15e3cebd665ca65c9350c675b0599344a02f94914f2aab0931b831b2cb77a704', 4, 1384063563);
 
 -- --------------------------------------------------------
 
