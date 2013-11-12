@@ -218,7 +218,7 @@
 		
 		var add_position = function() {
 			++count_positions;
-			var copied = $('#more_positions').append("<div class='well'><button type='button' class='close' aria-hidden'true'>&times;</button><div class='form-group'><label for='title" + count_positions + "' class='col-sm-2 control-label'>Title</label><div class='col-sm-10'><input type='text' name='title" + count_positions + "' class='form-control' placeholder='Title'></div></div><div class='form-group'><label for='status" + count_positions + "' class='col-sm-2 control-label'>Status</label><div class='col-sm-10'><select class='form-control' name='status" + count_positions + "'><option value''>Select a Status...</option><option value'Current'>Current</option><option value'Previous'>Previous</option><option value'Running_For'>Running</option></select></div></div><div class='form-group'><label for='term_start" + count_positions + "' class='col-sm-2 control-label'>Term Start</label><div class='col-sm-10'><input type='date' name='term_start" + count_positions + "' class='form-control' placeholder='Date of Term Start'></div></div><div class='form-group'><label for='term_end" + count_positions + "' class='col-sm-2 control-label'>Term End</label><div class='col-sm-10'><input type='date' name='term_end" + count_positions + "' class='form-control' placeholder='Date of Term End'></div></div><button type='button' class='btn btn-default add_position'>Add Another</button></div>");
+			var copied = $('#more_positions').append("<div class='well'><button type='button' class='close' aria-hidden'true'>&times;</button><div class='form-group'><label for='title" + count_positions + "' class='col-sm-2 control-label'>Title</label><div class='col-sm-10'><input type='text' name='title" + count_positions + "' class='form-control' placeholder='Title'></div></div><div class='form-group'><label for='status" + count_positions + "' class='col-sm-2 control-label'>Status</label><div class='col-sm-10'><select class='form-control' name='status" + count_positions + "'><option value''>Select a Status...</option><option value'Current'>Current</option><option value'Previous'>Previous</option><option value'Running_For'>Running</option></select></div></div><div class='form-group'><label for='term_start" + count_positions + "' class='col-sm-2 control-label'>Term Start</label><div class='col-sm-10'><input type='date' name='term_start" + count_positions + "' id='term_start" + count_positions + "' class='form-control' placeholder='Date of Term Start'></div></div><div class='form-group'><label for='term_end" + count_positions + "' class='col-sm-2 control-label'>Term End</label><div class='col-sm-10'><input type='date' name='term_end" + count_positions + "' id='term_end" + count_positions + "' class='form-control' placeholder='Date of Term End'></div></div><button type='button' class='btn btn-default add_position'>Add Another</button></div>");
 			$('#original button').remove();
 			$('.add_position:last').parent().prev().children('.add_position').remove();
 			
@@ -234,6 +234,8 @@
 			
 			$('.add_position:last').click(add_position);
 			$('#more_positions .well .close:last').click(delete_position);
+			$('#term_start' + count_positions).datepicker({ changeYear: true, changeMonth: true });
+			$('#term_end' + count_positions).datepicker({ changeYear: true, changeMonth: true });
 			
 			return false;
 		};
@@ -253,6 +255,8 @@
 		$('.add_position').click(add_position);
 		
 		$('#birth_date').datepicker({ changeYear: true, changeMonth: true, defaultDate: "-15y" });
+		$('#term_start').datepicker({ changeYear: true, changeMonth: true });
+		$('#term_end').datepicker({ changeYear: true, changeMonth: true });
 	</script>
 	<?php
 	// Script for error pop-up
