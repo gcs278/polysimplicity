@@ -35,12 +35,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <?php echo Html::anchor('home/index', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
+                    <?php echo Html::anchor('', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
                 </div>
                 
                 <div class="collapse navbar-collapse topNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href="./"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href="<?php echo URL::site('')?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                         <li class="<?php //if($active === 'about') echo 'active'; ?>"><a href="#"><span class="glyphicon glyphicon-question-sign"></span> About Us</a></li>
                         <li>
                             <form id="tfnewsearch" method="get" action="http://www.google.com/" _lpchecked="1">
@@ -58,7 +58,7 @@
 
 <!--Footer START-->
 <footer class="navbar-fixed-bottom" style="position:relative"><p>Political Simplicity, 2013
-            <a href="<?php echo URL::site('management/index/')?>">
+            <a href="<?php echo URL::site('management/')?>">
                 <?php echo HTML::image('media/images/plus-xxl.png',array("width"=>25,"height"=>25))?>
             </a>
         </p>
