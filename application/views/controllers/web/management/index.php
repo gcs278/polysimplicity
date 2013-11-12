@@ -4,7 +4,7 @@
 			<h3>Candidate Management</h3>
 
 			<ul class="nav nav-pills nav-stacked">
-  				<li class="active"><?php echo Html::anchor('management/index', 'View Candidates') ?></li>
+  				<li class="active"><?php echo Html::anchor('management/', 'View Candidates') ?></li>
   				<li><?php echo Html::anchor('management/form', 'Create a new Candidate') ?></li>
   				<li><?php echo Html::anchor('management/form', 'Modify Candidate') ?></li>
   				<li><?php echo Html::anchor('management/form', 'Preview Candidate') ?></li>

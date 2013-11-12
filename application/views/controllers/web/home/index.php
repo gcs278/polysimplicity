@@ -13,8 +13,15 @@
 		enableZoom: false,
 		hoverColor: '#c9dfaf',
 		hoverOpacity: null,
-		onRegionClick: function() {
-			console.log(arguments);
+		onRegionClick: function(event, abbrev, state) {
+			console.log("Clicked " + state);
 		}
 	});
 </script>
+
+<?php 
+
+$candidates = ORM::factory('Candidates')->with('Personal')->where('birth_state', '=', 'KY')->find_all();
+foreach ($candidates as $candidate) {
+	echo $candidate->first_name;
+}
