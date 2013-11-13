@@ -34,11 +34,11 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                         $table .= "</td><td>";
                         $table .= $candidate->Personal->party;
                         $table .= "</td><td>";
-                        $table .= $candidate->Personal->gender;
-                        $table .= "</td><td>";
                         $table .= $candidate->Personal->birth_date;
                         $table .= "</td><td>";
                         $table .= $candidate->Personal->birth_state;
+                        $table .= "</td><td>";
+                        $table .= "Hold";
                         $table .= "</td></tr>";
                 }
                 
@@ -48,36 +48,6 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                 $this->view = $view;
                 $this->view->user = $username; // User ID
                 $this->view->table = $table;
-        }
-
-        function convert_image($image) {
-                //don't continue if an image hasn't been uploaded 
-                if (!empty($image)){ 
-
-                //copy the image to directory 
-                        copy($image, "./temporary/".$_SERVER['REMOTE_ADDR'].""); 
-
-                        //open the copied image, ready to encode into text to go into the database 
-                        $filename1 = "./temporary/".$REMOTE_ADDR; 
-                        $fp1 = fopen($filename1, "r"); 
-
-                        //record the image contents into a variable 
-                        $contents1 = fread($fp1, filesize($filename1)); 
-
-                        //close the file 
-                        fclose($fp1); 
-
-                        //encode the image into text 
-                        $encoded = chunk_split(base64_encode($contents1));  
-
-                        //insert information into the database 
-                        mysql_query("INSERT INTO images (img,data)"."VALUES ('NULL', '$encoded')"); 
-
-                        //delete the temporary file we made 
-                        unlink($filename1); 
-                } else {
-                        return null;
-                }
         }
 
         // Form for inserting a candidate
@@ -107,7 +77,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 
                         // Get the picture if there is one
                         $picture = $_FILES["candidate_pic"]["tmp_name"];
-                        if(isset($picture)){
+                        if($picture != '' ){
                                 // Serialize bytes into variable
                                 $image = file_get_contents($picture);
                                 $image_size = getimagesize($picture);
@@ -169,14 +139,20 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                                         $positions->candidates_id = $candidate->id;
                                         $positions->save(); // New table
                                 }
-                        }
-                }
+	                	}
 
-                $this->template->title = 'Home';
-                $view=view::factory('controllers/web/management/form');
-                $this->view = $view;
-                $errorMessage = "<script> alert('Success! Candidate is now in the database'); </script>";
-                $this->view->script = $errorMessage;
+	                	// If we made it here, SUCCESS!
+		                $this->template->title = 'Home';
+		                $view=view::factory('controllers/web/management/form');
+		                $this->view = $view;
+		                $errorMessage = "<script> alert('Success! Candidate is now in the database'); </script>";
+		                $this->view->script = $errorMessage;
+                } else {
+                	// Else just display the form page
+                	$this->template->title = 'Home';
+                	$view=view::factory('controllers/web/management/form');
+                	$this->view = $view;
+                }
         }
 
 

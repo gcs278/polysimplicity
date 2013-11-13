@@ -13,7 +13,7 @@
 
 		</div>
 		<div class="span8 offset1">
-			<div class="span8">
+			<div class="span9">
 			<h1 >Welcome <?php echo $user ?>!</h1>
 			<br>
 			<h3>Candidates currently in database:</h3>
@@ -23,9 +23,9 @@
  						<th>ID</th>
  						<th>Name</th>
  						<th>Party</th>
- 						<th>Gender</th>
  						<th>Birth Date</th>
  						<th>Birth State</th>
+ 						<th>Last Updated</th>
  					</tr>
  				</thead>
  				<tbody>
