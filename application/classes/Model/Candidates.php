@@ -9,7 +9,9 @@ Class Model_Candidates extends ORM
         		'Positions' => array('model' => 'Positions', 'foreign_key' => 'positions_id'),
         		'Views' => array('model' => 'Views', 'foreign_key' => 'views_id')
         	);
-        
+        protected $_has_many = array(
+        		'Edits' => array('model' => 'Edits','foreign_key' => 'candidates_id'),
+        	);
         public function rules()
         {
 	        return array(

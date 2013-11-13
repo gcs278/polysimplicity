@@ -38,11 +38,14 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                         $table .= "</td><td>";
                         $table .= $candidate->Personal->birth_state;
                         $table .= "</td><td>";
-                        $table .= "Hold";
+                        $edits = ORM::factory('Edits')->where('candidates_id','=',$candidate->id)->order_by('timestamp','desc')->find(0);
+                        $table .= $edits->timestamp;
+                        $table .= "</td><td>";
+                        $user = ORM::factory('Users')->where('id','=',$edits->users_id)->find(0);
+                        $table .= $user->username;
                         $table .= "</td></tr>";
                 }
                 
-
                 // Display Menu Page
                 $view=view::factory('controllers/web/management/index');        
                 $this->view = $view;

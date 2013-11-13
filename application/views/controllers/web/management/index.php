@@ -26,6 +26,7 @@
  						<th>Birth Date</th>
  						<th>Birth State</th>
  						<th>Last Updated</th>
+ 						<th>By</th>
  					</tr>
  				</thead>
  				<tbody>
