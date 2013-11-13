@@ -103,6 +103,13 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                                 // Get the candidate id for relation and save
                                 $personal->candidates_id = $candidate->id;
                                 $personal->save();
+
+                                // Update the edits table
+                                $edits = ORM::factory('Edits');
+                                $edits->candidates_id = $candidate->id; // Candidate's id
+                                $edits->users_id = AUTH::instance()->get_user(); // User's id
+
+                                $edits->save();
                         } catch(ORM_Validation_Exception $e) {
                                 $view=view::factory('controllers/web/management/form');
                                 $this->view = $view;
