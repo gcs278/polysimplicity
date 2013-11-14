@@ -81,7 +81,7 @@
 			"Scheme"
 		];
 		$( "#search" ).autocomplete({
-			source: availableTags
+			source: "<?php echo URL::site('')?>"
 		});
 	});
 	</script>
@@ -91,6 +91,7 @@
 		$query = $_GET['query'];
 		$queryarray = explode(" ", $query);
 		foreach ($queryarray as $item) {
+			$item = strip_tags($item);
 			$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$item%")->
 				or_where('middle_name', 'like', "$item%")->or_where('last_name', 'like', "$item%")->find_all();
 			foreach ($candidates as $candidate) {
