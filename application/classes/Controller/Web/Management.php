@@ -30,7 +30,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                         $table .= "<tr><td>";
                         $table .= $candidate->id;
                         $table .= "</td><td>";
-                        $table .= HTML::anchor('home/candidate', $candidate->first_name . " " . $candidate->last_name);
+                        $table .= HTML::anchor('management/modify/'.$candidate->id, $candidate->first_name . " " . $candidate->last_name);
                         $table .= "</td><td>";
                         $table .= $candidate->Personal->party;
                         $table .= "</td><td>";
