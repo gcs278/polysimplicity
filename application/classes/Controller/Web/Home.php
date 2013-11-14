@@ -9,7 +9,17 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		$model = ORM::factory('Candidates');
 		//$model->find(0);
 		Debug::vars($this->request->method());
-		if ($this->request->method() == HTTP_Request::POST) {
+		if ($this->request->is_ajax()) {
+            $this->auto_render = FALSE;
+            
+            $array = array();
+            $state = $_GET['state'];
+			$candidates = ORM::factory('Candidates')->with('Personal')->where('birth_state', '=', $state)->find_all();
+			foreach ($candidates as $candidate) {
+				$array[] = $candidate->first_name . " " . $candidate->middle_name . " " . $candidate->last_name;
+			}
+            echo json_encode($array);
+        } else if ($this->request->method() == HTTP_Request::POST) {
 			
 			$view=view::factory('controllers/web/home/submit');	
 			$this->view = $view;

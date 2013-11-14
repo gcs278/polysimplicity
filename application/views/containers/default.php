@@ -19,7 +19,7 @@
             foreach ($scripts as $file)
                 echo HTML::script($file), PHP_EOL
         ?>
-        <!-- <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script> -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
     </head>
 
@@ -44,8 +44,8 @@
                         <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href="<?php echo URL::site('')?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                         <li class="<?php //if($active === 'about') echo 'active'; ?>"><a href="#"><span class="glyphicon glyphicon-question-sign"></span> About Us</a></li>
                         <li>
-                            <form id="tfnewsearch" method="get" action="http://www.google.com/" _lpchecked="1">
-                                <input type="text" name="query" size="21" maxlength="120" placeholder="Search our website">
+                            <form id="tfnewsearch" method="get" action="" _lpchecked="1">
+                                <input type="text" id="search" name="query" size="21" maxlength="120" placeholder="Search our website">
                                 <button type="submit"><span class="glyphicon glyphicon-search"></span></input>
                             </form>
                         </li>
@@ -53,6 +53,49 @@
                 </div>
     </nav>
     <!--Header END -->
+    
+    <script>
+	$(function() {
+		var availableTags = [
+			"ActionScript",
+			"AppleScript",
+			"Asp",
+			"BASIC",
+			"C",
+			"C++",
+			"Clojure",
+			"COBOL",
+			"ColdFusion",
+			"Erlang",
+			"Fortran",
+			"Groovy",
+			"Haskell",
+			"Java",
+			"JavaScript",
+			"Lisp",
+			"Perl",
+			"PHP",
+			"Python",
+			"Ruby",
+			"Scala",
+			"Scheme"
+		];
+		$( "#search" ).autocomplete({
+			source: availableTags
+		});
+	});
+	</script>
+    
+<?php
+	if (isset($_GET['query'])) {
+		$query = $_GET['query'];
+		$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$query%")->
+			or_where('middle_name', 'like', "$query%")->or_where('last_name', 'like', "$query%")->find_all();
+		foreach ($candidates as $candidate) {
+			echo $candidate->first_name . " " . $candidate->middle_name . " " . $candidate->last_name . "<br>";
+		}
+	}
+?>
 
 <!--Display Page-->
 <?php echo $content ?>
