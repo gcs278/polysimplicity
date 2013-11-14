@@ -89,10 +89,13 @@
 <?php
 	if (isset($_GET['query'])) {
 		$query = $_GET['query'];
-		$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$query%")->
-			or_where('middle_name', 'like', "$query%")->or_where('last_name', 'like', "$query%")->find_all();
-		foreach ($candidates as $candidate) {
-			echo $candidate->first_name . " " . $candidate->middle_name . " " . $candidate->last_name . "<br>";
+		$queryarray = explode(" ", $query);
+		foreach ($queryarray as $item) {
+			$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$item%")->
+				or_where('middle_name', 'like', "$item%")->or_where('last_name', 'like', "$item%")->find_all();
+			foreach ($candidates as $candidate) {
+				echo $candidate->first_name . " " . $candidate->middle_name . " " . $candidate->last_name . "<br>";
+			}
 		}
 	}
 ?>
