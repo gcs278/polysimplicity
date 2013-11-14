@@ -19,19 +19,19 @@
 			<div class="form-group">
 				<label for="first_name" class="col-sm-2 control-label">First Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name">
+					<input type="text" name="first_name" value="<?php if(isset($first_name)){ echo $first_name;}?>" class="form-control" id="first_name" placeholder="First Name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="middle_name" class="col-sm-2 control-label">Middle Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Middle Name">
+					<input type="text" name="middle_name" value="<?php if(isset($middle_name)){ echo $middle_name;}?>" class="form-control" id="middle_name" placeholder="Middle Name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="last_name" class="col-sm-2 control-label">Last Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name">
+					<input type="text" name="last_name" value="<?php if(isset($last_name)){ echo $last_name;}?>" class="form-control" id="last_name" placeholder="Last Name">
 				</div>
 			</div>
 			<div class="form-group">
@@ -58,14 +58,14 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="birth_date" class="col-sm-2 control-label">Date of Birth</label>
+				<label for="birth_date" value="<?php if(isset($birth_date)){ echo $birth_date;}?>"class="col-sm-2 control-label">Date of Birth</label>
 				<div class="col-sm-10">
 					<!--Changed Input to type "date" cause database format-->
 					<input type="date" name="birth_date" class="form-control" id="birth_date" placeholder="Date of Birth">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="birth_state" class="col-sm-2 control-label">State of Birth</label>
+				<label for="birth_state" value="<?php if(isset($birth_state)){ echo $birth_state;}?>" class="col-sm-2 control-label">State of Birth</label>
 				<div class="col-sm-10">
 					<select class="form-control" name="birth_state" id="birth_state">
 						<option value="">Select a State...</option>
@@ -124,7 +124,7 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="party" class="col-sm-2 control-label">Political Party</label>
+				<label for="party" value="<?php if(isset($party)){ echo $party;}?>" class="col-sm-2 control-label">Political Party</label>
 				<div class="col-sm-10">
 					<select class="form-control" name="party" id="party">
 					  <option value="">Select a Party...</option>

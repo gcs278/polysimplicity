@@ -260,4 +260,41 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                 $this->view->image =base64_encode($image);
         }
 
+        public function action_modify() {
+            $user = Auth::instance()->get_user();
+            // Check if user is logged in
+            if (!$user) {
+                    $this->redirect(Route::get('home')->uri(
+                array(
+                    'controller' => 'management',
+                    'action'     => 'login',                            
+                       )
+                ));   
+                return;
+            }
+
+            $id = $this->request->param('id');
+
+             // Check if it a POST
+            if ($this->request->method() == HTTP_Request::POST) {
+                            
+
+            }else {
+                $this->template->title = 'Home';
+                $view=view::factory('controllers/web/management/form');
+                $this->view = $view;
+
+                $candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',$id)->find(0);
+                $this->view->first_name = $candidates->first_name;
+                $this->view->middle_name = $candidates->middle_name;
+                $this->view->last_name = $candidates->last_name;
+                $this->view->gender = $candidates->Personal->gender;
+                $this->view->birth_date = $candidates->Personal->birth_date;
+                $this->view->birth_state = $candidates->Personal->birth_state;
+                $this->view->party = $candidates->Personal->party;
+            }
+
+
+        }
+
 }
