@@ -1,13 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 3.5.1
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 11, 2013 at 08:09 PM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Generation Time: Nov 13, 2013 at 05:32 AM
+-- Server version: 5.5.24-log
+-- PHP Version: 5.4.3
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `politicalsimplicity_candidates`
 --
-CREATE DATABASE IF NOT EXISTS `politicalsimplicity_candidates` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `politicalsimplicity_candidates`;
 
 -- --------------------------------------------------------
 
@@ -35,15 +33,23 @@ CREATE TABLE IF NOT EXISTS `candidates` (
   `last_name` varchar(128) NOT NULL,
   `image` longblob,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
 
 --
--- Dumping data for table `candidates`
+-- Table structure for table `edits`
 --
 
-INSERT INTO `candidates` (`id`, `first_name`, `middle_name`, `last_name`, `image`) VALUES
-(1, 'Grant', 'Colbrun', 'Spence', NULL),
-(2, 'Test2', 'Middle', 'Last', NULL);
+CREATE TABLE IF NOT EXISTS `edits` (
+  `idedits` int(11) NOT NULL,
+  `candidates_id` int(11) NOT NULL,
+  `timestamp` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `users_id` int(11) unsigned NOT NULL,
+  PRIMARY KEY (`idedits`),
+  KEY `fk_edits_candidates1_idx` (`candidates_id`),
+  KEY `fk_edits_users1_idx` (`users_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -60,15 +66,7 @@ CREATE TABLE IF NOT EXISTS `personal_information` (
   `candidates_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_personal_information_candidates1_idx` (`candidates_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
-
---
--- Dumping data for table `personal_information`
---
-
-INSERT INTO `personal_information` (`id`, `gender`, `birth_date`, `birth_state`, `party`, `candidates_id`) VALUES
-(4, 'male', '2013-11-13', 'Virginia', 'Rep', 1),
-(5, 'male', '5151-02-01', 'AZ', 'Ind', 2);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -81,18 +79,11 @@ CREATE TABLE IF NOT EXISTS `positions` (
   `title` varchar(45) NOT NULL,
   `term_start` date NOT NULL,
   `term_end` date DEFAULT NULL,
-  `status` enum('Current','Previous','Running_For') NOT NULL DEFAULT 'Previous',
+  `status` enum('Current','Previous','Running') NOT NULL DEFAULT 'Previous',
   `candidates_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_positions_candidates1_idx` (`candidates_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `positions`
---
-
-INSERT INTO `positions` (`id`, `title`, `term_start`, `term_end`, `status`, `candidates_id`) VALUES
-(1, 'askdlj', '0001-12-05', '0545-05-04', 'Current', 2);
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -113,8 +104,8 @@ CREATE TABLE IF NOT EXISTS `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `description`) VALUES
-(1, 'login', 'Login privileges, granted after account confirmation'),
-(2, 'admin', 'Administrative user, has access to everything.');
+(1, 'login', 'Regular login account'),
+(2, 'admin', 'Admin account');
 
 -- --------------------------------------------------------
 
@@ -202,6 +193,13 @@ CREATE TABLE IF NOT EXISTS `views_type` (
 --
 
 --
+-- Constraints for table `edits`
+--
+ALTER TABLE `edits`
+  ADD CONSTRAINT `fk_edits_users1` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_edits_candidates1` FOREIGN KEY (`candidates_id`) REFERENCES `candidates` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
 -- Constraints for table `personal_information`
 --
 ALTER TABLE `personal_information`
@@ -219,6 +217,12 @@ ALTER TABLE `positions`
 ALTER TABLE `roles_users`
   ADD CONSTRAINT `roles_users_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `roles_users_ibfk_2` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `user_tokens`
+--
+ALTER TABLE `user_tokens`
+  ADD CONSTRAINT `user_tokens_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `views`

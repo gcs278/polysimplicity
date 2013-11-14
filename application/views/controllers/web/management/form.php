@@ -19,19 +19,19 @@
 			<div class="form-group">
 				<label for="first_name" class="col-sm-2 control-label">First Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="first_name" class="form-control" id="first_name" placeholder="First Name">
+					<input type="text" name="first_name" value="<?php if(isset($first_name)){ echo $first_name;}?>" class="form-control" id="first_name" placeholder="First Name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="middle_name" class="col-sm-2 control-label">Middle Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="middle_name" class="form-control" id="middle_name" placeholder="Middle Name">
+					<input type="text" name="middle_name" value="<?php if(isset($middle_name)){ echo $middle_name;}?>" class="form-control" id="middle_name" placeholder="Middle Name">
 				</div>
 			</div>
 			<div class="form-group">
 				<label for="last_name" class="col-sm-2 control-label">Last Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="last_name" class="form-control" id="last_name" placeholder="Last Name">
+					<input type="text" name="last_name" value="<?php if(isset($last_name)){ echo $last_name;}?>" class="form-control" id="last_name" placeholder="Last Name">
 				</div>
 			</div>
 			<div class="form-group">
@@ -46,13 +46,13 @@
 				<label for="gender_radio" class="col-sm-2 control-label">Gender</label>
 				<div id="gender_radio" class="radio col-sm-10">
 					<label>
-						<input type="radio" name="gender" id="male" value="male">
+						<input type="radio" name="gender" id="male" value="male" <?php if(isset($gender)){ if($gender == 'male') { echo "checked";} }?> >
 						Male
 					</label>
 				</div>
 				<div class="radio col-sm-10 col-sm-offset-2">
 					<label>
-						<input type="radio" name="gender" id="female" value="female">
+						<input type="radio" name="gender" id="female" value="female" <?php if(isset($gender)){ if($gender == 'female') { echo "checked";} }?>  >
 						Female
 					</label>
 				</div>
@@ -61,13 +61,14 @@
 				<label for="birth_date" class="col-sm-2 control-label">Date of Birth</label>
 				<div class="col-sm-10">
 					<!--Changed Input to type "date" cause database format-->
-					<input name="birth_date" class="form-control" id="birth_date" placeholder="Date of Birth">
+					<input name="birth_date" value="<?php if(isset($birth_date)){ echo $birth_date;}?>"class="form-control" id="birth_date" placeholder="Date of Birth">
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="birth_state" class="col-sm-2 control-label">State of Birth</label>
+				<label for="birth_state"  class="col-sm-2 control-label">State of Birth</label>
 				<div class="col-sm-10">
 					<select class="form-control" name="birth_state" id="birth_state">
+						<option value="<?php if(isset($birth_state)){ echo $birth_state; }?>"><?php if(isset($birth_state)){ echo $birth_state; }?></option>
 						<option value="">Select a State...</option>
 						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
@@ -127,6 +128,7 @@
 				<label for="party" class="col-sm-2 control-label">Political Party</label>
 				<div class="col-sm-10">
 					<select class="form-control" name="party" id="party">
+					  <option value="<?php if(isset($party)){ echo $party;}?>"><?php if(isset($party)){ echo $party;}?></option>
 					  <option value="">Select a Party...</option>
 					  <option value="Rep">Republican</option>
 					  <option value="Dem">Democrat</option>
@@ -170,6 +172,7 @@
 			</div>
 			<div id="more_positions"></div>
 			<h3>Views:</h3>
+			<!--TAXATION-->
 			<div class="form-group">
 				<label for="taxation_radio" class="col-sm-2 control-label">Taxation</label>
 				<div id="taxation_radio" class="radio col-sm-10">
@@ -194,7 +197,303 @@
 			<div class="form-group">
 				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
 				<div class="col-sm-10">
-					<textarea type="text" rows="5" name="detail" class="form-control" id="detailed_views"></textarea>
+					<textarea type="text" rows="5" name="taxation_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--ABORTION-->
+			<div class="form-group">
+				<label for="abortion_radio" class="col-sm-2 control-label">Abortion</label>
+				<div id="abortion_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="abortion" value="Pro-Life">
+						Pro-Life
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="abortion" value="Pro-Choice">
+						Pro-Choice
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="abortion_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--Military-->
+			<div class="form-group">
+				<label for="taxation_radio" class="col-sm-2 control-label">Military</label>
+				<div id="military_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="military" value="increase">
+						Expand
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="military" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="military" value="decrease">
+						Reduce
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="military_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--GUNS-->
+			<div class="form-group">
+				<label for="taxation_radio" class="col-sm-2 control-label">Guns</label>
+				<div id="guns_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="guns" value="increase">
+						Deregulate
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="guns" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="guns" value="decrease">
+						Regulate
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="guns_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--Marijuanua-->
+			<div class="form-group">
+				<label for="marijuana_radio" class="col-sm-2 control-label">Marijuana</label>
+				<div id="marijuana_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="marijuana" value="increase">
+						Legalize
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="marijuana" value="neutral">
+						Criminalize
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="marijuana_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--Same-Sex Marriage-->
+			<div class="form-group">
+				<label for="taxation_radio" class="col-sm-2 control-label">Same-Sex Marriage</label>
+				<div id="marriage_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="marriage" value="increase">
+						For
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="marriage" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="marriage" value="decrease">
+						Against
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="marriage_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--Immigrant Rights-->
+			<div class="form-group">
+				<label for="taxation_radio" class="col-sm-2 control-label">Immigrant Rights</label>
+				<div id="immigrant_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="immigrant" value="increase">
+						Expand
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="immigrant" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="immigrant" value="decrease">
+						Restrict
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="immigrant_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--Education-->
+			<div class="form-group">
+				<label for="education_radio" class="col-sm-2 control-label">Education</label>
+				<div id="education_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="education" value="increase">
+						Expand
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="education" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="education" value="decrease">
+						Reduce
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="education_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--Health Care-->
+			<div class="form-group">
+				<label for="taxation_radio" class="col-sm-2 control-label">Health Care</label>
+				<div id="health_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="health" value="increase">
+						Privatize
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="health" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="health" value="decrease">
+						Regulate
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="health_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--Enivormental-->
+			<div class="form-group">
+				<label for="taxation_radio" class="col-sm-2 control-label">Environmental</label>
+				<div id="environmental_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="environmental" value="increase">
+						Regulate
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="environmental" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="environmental" value="decrease">
+						Deregulate
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="environmental_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--Social Security-->
+			<div class="form-group">
+				<label for="taxation_radio" class="col-sm-2 control-label">Social Security</label>
+				<div id="ss_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="ss" value="increase">
+						Increase
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="ss" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="ss" value="decrease">
+						Decrease
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="ss_detail" class="form-control" id="detailed_views"></textarea>
+				</div>
+			</div>
+			<!--Death Penalty-->
+			<div class="form-group">
+				<label for="death_penalty_radio" class="col-sm-2 control-label">Death Penalty</label>
+				<div id="death_penalty_radio" class="radio col-sm-10">
+					<label>
+						<input type="radio" name="death_penalty" value="increase">
+						Increase
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="death_penalty" value="neutral">
+						Neutral
+					</label>
+				</div>
+				<div class="radio col-sm-10 col-sm-offset-2">
+					<label>
+						<input type="radio" name="death_penalty" value="decrease">
+						Decrease
+					</label>
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="detail" class="col-sm-2 control-label">Detailed Views</label>
+				<div class="col-sm-10">
+					<textarea type="text" rows="5" name="death_penalty_detail" class="form-control" id="detailed_views"></textarea>
 				</div>
 			</div>
 			<button type="submit" id="submit" class="btn btn-default">Submit</button>

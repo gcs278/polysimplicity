@@ -30,54 +30,27 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                         $table .= "<tr><td>";
                         $table .= $candidate->id;
                         $table .= "</td><td>";
-                        $table .= HTML::anchor('home/candidate', $candidate->first_name . " " . $candidate->last_name);
+                        $table .= HTML::anchor('management/modify/'.$candidate->id, $candidate->first_name . " " . $candidate->last_name);
                         $table .= "</td><td>";
                         $table .= $candidate->Personal->party;
-                        $table .= "</td><td>";
-                        $table .= $candidate->Personal->gender;
                         $table .= "</td><td>";
                         $table .= $candidate->Personal->birth_date;
                         $table .= "</td><td>";
                         $table .= $candidate->Personal->birth_state;
+                        $table .= "</td><td>";
+                        $edits = ORM::factory('Edits')->where('candidates_id','=',$candidate->id)->order_by('timestamp','desc')->find(0);
+                        $table .= $edits->timestamp;
+                        $table .= "</td><td>";
+                        $user = ORM::factory('Users')->where('id','=',$edits->users_id)->find(0);
+                        $table .= $user->username;
                         $table .= "</td></tr>";
                 }
                 
-
                 // Display Menu Page
                 $view=view::factory('controllers/web/management/index');        
                 $this->view = $view;
                 $this->view->user = $username; // User ID
                 $this->view->table = $table;
-        }
-
-        function convert_image($image) {
-                //don't continue if an image hasn't been uploaded 
-                if (!empty($image)){ 
-
-                //copy the image to directory 
-                        copy($image, "./temporary/".$_SERVER['REMOTE_ADDR'].""); 
-
-                        //open the copied image, ready to encode into text to go into the database 
-                        $filename1 = "./temporary/".$REMOTE_ADDR; 
-                        $fp1 = fopen($filename1, "r"); 
-
-                        //record the image contents into a variable 
-                        $contents1 = fread($fp1, filesize($filename1)); 
-
-                        //close the file 
-                        fclose($fp1); 
-
-                        //encode the image into text 
-                        $encoded = chunk_split(base64_encode($contents1));  
-
-                        //insert information into the database 
-                        mysql_query("INSERT INTO images (img,data)"."VALUES ('NULL', '$encoded')"); 
-
-                        //delete the temporary file we made 
-                        unlink($filename1); 
-                } else {
-                        return null;
-                }
         }
 
         // Form for inserting a candidate
@@ -107,7 +80,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 
                         // Get the picture if there is one
                         $picture = $_FILES["candidate_pic"]["tmp_name"];
-                        if(isset($picture)){
+                        if($picture != '' ){
                                 // Serialize bytes into variable
                                 $image = file_get_contents($picture);
                                 $image_size = getimagesize($picture);
@@ -133,6 +106,13 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                                 // Get the candidate id for relation and save
                                 $personal->candidates_id = $candidate->id;
                                 $personal->save();
+
+                                // Update the edits table
+                                $edits = ORM::factory('Edits');
+                                $edits->candidates_id = $candidate->id; // Candidate's id
+                                $edits->users_id = AUTH::instance()->get_user(); // User's id
+
+                                $edits->save();
                         } catch(ORM_Validation_Exception $e) {
                                 $view=view::factory('controllers/web/management/form');
                                 $this->view = $view;
@@ -169,14 +149,20 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                                         $positions->candidates_id = $candidate->id;
                                         $positions->save(); // New table
                                 }
-                        }
-                }
+	                	}
 
-                $this->template->title = 'Home';
-                $view=view::factory('controllers/web/management/form');
-                $this->view = $view;
-                $errorMessage = "<script> alert('Success! Candidate is now in the database'); </script>";
-                $this->view->script = $errorMessage;
+	                	// If we made it here, SUCCESS!
+		                $this->template->title = 'Home';
+		                $view=view::factory('controllers/web/management/form');
+		                $this->view = $view;
+		                $errorMessage = "<script> alert('Success! Candidate is now in the database'); </script>";
+		                $this->view->script = $errorMessage;
+                } else {
+                	// Else just display the form page
+                	$this->template->title = 'Home';
+                	$view=view::factory('controllers/web/management/form');
+                	$this->view = $view;
+                }
         }
 
 
@@ -272,6 +258,43 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 
                 $this->view = $view;
                 $this->view->image =base64_encode($image);
+        }
+
+        public function action_modify() {
+            $user = Auth::instance()->get_user();
+            // Check if user is logged in
+            if (!$user) {
+                    $this->redirect(Route::get('home')->uri(
+                array(
+                    'controller' => 'management',
+                    'action'     => 'login',                            
+                       )
+                ));   
+                return;
+            }
+
+            $id = $this->request->param('id');
+
+             // Check if it a POST
+            if ($this->request->method() == HTTP_Request::POST) {
+                            
+
+            }else {
+                $this->template->title = 'Home';
+                $view=view::factory('controllers/web/management/form');
+                $this->view = $view;
+
+                $candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',$id)->find(0);
+                $this->view->first_name = $candidates->first_name;
+                $this->view->middle_name = $candidates->middle_name;
+                $this->view->last_name = $candidates->last_name;
+                $this->view->gender = $candidates->Personal->gender;
+                $this->view->birth_date = $candidates->Personal->birth_date;
+                $this->view->birth_state = $candidates->Personal->birth_state;
+                $this->view->party = $candidates->Personal->party;
+            }
+
+
         }
 
 }
