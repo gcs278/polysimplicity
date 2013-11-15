@@ -56,30 +56,6 @@
     
     <script>
 	$(function() {
-		var availableTags = [
-			"ActionScript",
-			"AppleScript",
-			"Asp",
-			"BASIC",
-			"C",
-			"C++",
-			"Clojure",
-			"COBOL",
-			"ColdFusion",
-			"Erlang",
-			"Fortran",
-			"Groovy",
-			"Haskell",
-			"Java",
-			"JavaScript",
-			"Lisp",
-			"Perl",
-			"PHP",
-			"Python",
-			"Ruby",
-			"Scala",
-			"Scheme"
-		];
 		$( "#search" ).autocomplete({
 			source: "<?php echo URL::site('')?>"
 		});
@@ -90,14 +66,16 @@
 	if (isset($_GET['query'])) {
 		$query = $_GET['query'];
 		$queryarray = explode(" ", $query);
+		$candidate_names = array();
 		foreach ($queryarray as $item) {
 			$item = strip_tags($item);
 			$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$item%")->
 				or_where('middle_name', 'like', "$item%")->or_where('last_name', 'like', "$item%")->find_all();
 			foreach ($candidates as $candidate) {
-				echo $candidate->first_name . " " . $candidate->middle_name . " " . $candidate->last_name . "<br>";
+				$candidate_names[] = $candidate->first_name . " " . $candidate->middle_name . " " . $candidate->last_name . "<br>";
 			}
 		}
+		print_r(array_unique($candidate_names));
 	}
 ?>
 

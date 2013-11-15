@@ -12,7 +12,7 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		if ($this->request->is_ajax()) {
             $this->auto_render = FALSE;
             
-            if ($_GET['term']) {
+            if (isset($_GET['term'])) {
             	$query = $_GET['term'];
             	
             	$array = array();
