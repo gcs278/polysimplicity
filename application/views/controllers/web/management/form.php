@@ -533,13 +533,14 @@
 			
 			$('.add_position:last').click(add_position);
 			$('#more_positions .well .close:last').click(delete_position);
-			$('#term_start' + count_positions).datepicker({ changeYear: true, changeMonth: true });
-			$('#term_end' + count_positions).datepicker({ changeYear: true, changeMonth: true });
+			$('#term_start' + count_positions).datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy" });
+			$('#term_end' + count_positions).datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy" });
 			
 			return false;
 		};
 		
 		var delete_position = function() {
+			$(this).parent().hide("fast");
 			$(this).parent().remove();
 			if ($('#more_positions').is(':empty')) {
 				$('#original').append("<button type='button' class='btn btn-default add_position'>Add Another</button>");
@@ -553,9 +554,16 @@
 		
 		$('.add_position').click(add_position);
 		
-		$('#birth_date').datepicker({ changeYear: true, changeMonth: true, defaultDate: "-15y" });
-		$('#term_start').datepicker({ changeYear: true, changeMonth: true });
-		$('#term_end').datepicker({ changeYear: true, changeMonth: true });
+		$.browserchrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase()); 
+
+		if($.browserchrome){
+			alert("Hello I'm Chrome");
+		} else {
+			alert("I'm not Chrome :(");
+			$('#birth_date').datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy", defaultDate: "-15y" });
+			$('#term_start').datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy" });
+			$('#term_end').datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy" });
+		}
 	</script>
 	<?php
 	// Script for error pop-up
