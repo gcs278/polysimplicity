@@ -292,6 +292,14 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                 $this->view->birth_date = $candidates->Personal->birth_date;
                 $this->view->birth_state = $candidates->Personal->birth_state;
                 $this->view->party = $candidates->Personal->party;
+
+                $positions = ORM::factory('Positions')->where('candidates_id','=',$id)->find_all();
+                foreach($positions as $position) {
+                	$this->view->script = "<script>type=\"text/javascript\">add_position('" . 
+                		$position->title . "','" . $position->status . "','" . 
+                		$position->term_start . "','" . $position->term_end . "');</script>";
+                }
+                
             }
 
 
