@@ -6,7 +6,7 @@ Class Model_Candidates extends ORM
         // The tables related to Candidates
         protected $_has_one = array(
         		'Personal' => array('model' => 'Personal', 'foreign_key' => 'candidates_id'),
-        		'Positions' => array('model' => 'Positions', 'foreign_key' => 'positions_id'),
+        		'Positions' => array('model' => 'Positions', 'foreign_key' => 'candidates_id'),
         		'Views' => array('model' => 'Views', 'foreign_key' => 'views_id')
         	);
         protected $_has_many = array(
