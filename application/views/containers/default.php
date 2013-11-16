@@ -28,6 +28,9 @@
     </script>
 
 <body>
+    <div class="row text-center">
+            <?php echo HTML::image('media/images/logo_ps.png',array())?>
+    </div>
     <!--Header NAV START -->
     <nav class="navbar navbar-inverse" role="navigation">
                 <div class="navbar-header">

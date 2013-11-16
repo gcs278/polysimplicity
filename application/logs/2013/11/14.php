@@ -33,3 +33,16 @@
 #5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
 #6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
 #7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php:298
+2013-11-14 23:46:19 --- CRITICAL: Session_Exception [ 1 ]: Error reading session data. ~ SYSPATH\classes\Kohana\Session.php [ 324 ] in C:\wamp\www\polysimplicity\system\classes\Kohana\Session.php:125
+2013-11-14 23:46:19 --- DEBUG: #0 C:\wamp\www\polysimplicity\system\classes\Kohana\Session.php(125): Kohana_Session->read(NULL)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Session.php(54): Kohana_Session->__construct(NULL, NULL)
+#2 C:\wamp\www\polysimplicity\modules\auth\classes\Kohana\Auth.php(58): Kohana_Session::instance('native')
+#3 C:\wamp\www\polysimplicity\modules\auth\classes\Kohana\Auth.php(37): Kohana_Auth->__construct(Object(Config_Group))
+#4 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Management.php(11): Kohana_Auth::instance()
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Management->action_index()
+#6 [internal function]: Kohana_Controller->execute()
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#8 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#10 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#11 {main} in C:\wamp\www\polysimplicity\system\classes\Kohana\Session.php:125
