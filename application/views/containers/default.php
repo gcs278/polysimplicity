@@ -46,13 +46,13 @@
 		</div>
 		<div class="thin-line col-sm-10 col-sm-offset-1">
 		</div>
-		<div class="col-sm-3 col-sm-offset-2">
+		<div class="col-sm-3 col-sm-offset-2" style="margin-top: 6px;">
 			<a href="<?php echo URL::site('')?>">Home</a>
 		</div>
-		<div class="col-sm-3">
+		<div class="col-sm-3" style="margin-top: 6px;">
 			<a href="#">About Us</a>
 		</div>
-		<div class="col-sm-4" style="margin-bottom: 10px">
+		<div class="col-sm-4" style="margin-bottom: 10px;">
 			<form method="get" action="" _lpchecked="1">
 				<!--<input type="text" id="search" name="query" size="21" maxlength="120" placeholder="Search our website">
 				<button type="submit"><span class="glyphicon glyphicon-search"></span></input>-->
