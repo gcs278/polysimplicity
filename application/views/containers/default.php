@@ -9,6 +9,18 @@
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
         
+        <style>
+			.thin-line { border-top: 1px solid #000;
+							margin-bottom: 10px; }
+			a { color: #000000; }
+			a:hover { color: #aaaaaa;
+					text-decoration: none; }
+			ul { text-align: center; }
+			li { margin-left: 100px;
+					margin-right: 100px;
+					margin-bottom: 10px; }
+		</style>
+        
         <!--Kohana CSS Includes-->
         <?php
             foreach ($styles as $file => $type)
@@ -28,11 +40,35 @@
     </script>
 
 <body>
-    <div class="row text-center">
-            <?php echo HTML::image('media/images/logo_ps.png',array())?>
+	<div class="container">
+		<div class="row text-center">
+				<?php echo HTML::image('media/images/logo_ps.png',array())?>
+		</div>
+		<div class="thin-line col-sm-10 col-sm-offset-1">
+		</div>
+		<div class="col-sm-3 col-sm-offset-2">
+			<a href="<?php echo URL::site('')?>">Home</a>
+		</div>
+		<div class="col-sm-3">
+			<a href="#">About Us</a>
+		</div>
+		<div class="col-sm-4" style="margin-bottom: 10px">
+			<form method="get" action="" _lpchecked="1">
+				<!--<input type="text" id="search" name="query" size="21" maxlength="120" placeholder="Search our website">
+				<button type="submit"><span class="glyphicon glyphicon-search"></span></input>-->
+				<div class="input-group col-sm-10">
+				  <input type="text" id="search" name="query" class="form-control">
+				  <span class="input-group-btn">
+					<button class="btn btn-default" type="button">Go!</button>
+				  </span>
+				</div>
+			</form>
+		</div>
+		<div class="thin-line col-sm-10 col-sm-offset-1">
+		</div>
     </div>
     <!--Header NAV START -->
-    <nav class="navbar navbar-inverse" role="navigation">
+    <!-- <nav class="navbar navbar-inverse" role="navigation">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".topNavbar">
                         <span class="icon-bar"></span>
@@ -54,7 +90,7 @@
                         </li>
                     </ul>
                 </div>
-    </nav>
+    </nav> -->
     <!--Header END -->
     
     <script>
