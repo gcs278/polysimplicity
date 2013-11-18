@@ -32,3 +32,33 @@
 #12 /home/polysciadmin/politicalsimplicity.com/public/system/classes/Kohana/Request.php(986): Kohana_Request_Client->execute(Object(Request))
 #13 /home/polysciadmin/politicalsimplicity.com/public/index.php(118): Kohana_Request->execute()
 #14 {main} in /home/polysciadmin/politicalsimplicity.com/public/modules/database/classes/Kohana/Database/MySQL.php:171
+2013-11-18 01:04:49 --- EMERGENCY: Database_Exception [ 1146 ]: Table 'politicalsimplicity_candidates.Edits' doesn't exist [ SHOW FULL COLUMNS FROM `Edits` ] ~ MODPATH/database/classes/Kohana/Database/MySQL.php [ 194 ] in /home/polysciadmin/politicalsimplicity.com/public/modules/database/classes/Kohana/Database/MySQL.php:359
+2013-11-18 01:04:49 --- DEBUG: #0 /home/polysciadmin/politicalsimplicity.com/public/modules/database/classes/Kohana/Database/MySQL.php(359): Kohana_Database_MySQL->query(1, 'SHOW FULL COLUM...', false)
+#1 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(1668): Kohana_Database_MySQL->list_columns('Edits')
+#2 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(444): Kohana_ORM->list_columns()
+#3 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(389): Kohana_ORM->reload_columns()
+#4 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(254): Kohana_ORM->_initialize()
+#5 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(46): Kohana_ORM->__construct(NULL)
+#6 /home/polysciadmin/politicalsimplicity.com/public/application/classes/Controller/Web/Management.php(111): Kohana_ORM::factory('Edits')
+#7 /home/polysciadmin/politicalsimplicity.com/public/system/classes/Kohana/Controller.php(84): Controller_Web_Management->action_form()
+#8 [internal function]: Kohana_Controller->execute()
+#9 /home/polysciadmin/politicalsimplicity.com/public/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#10 /home/polysciadmin/politicalsimplicity.com/public/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#11 /home/polysciadmin/politicalsimplicity.com/public/system/classes/Kohana/Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#12 /home/polysciadmin/politicalsimplicity.com/public/index.php(118): Kohana_Request->execute()
+#13 {main} in /home/polysciadmin/politicalsimplicity.com/public/modules/database/classes/Kohana/Database/MySQL.php:359
+2013-11-18 01:06:23 --- EMERGENCY: Database_Exception [ 1146 ]: Table 'politicalsimplicity_candidates.Edits' doesn't exist [ SHOW FULL COLUMNS FROM `Edits` ] ~ MODPATH/database/classes/Kohana/Database/MySQL.php [ 194 ] in /home/polysciadmin/politicalsimplicity.com/public/modules/database/classes/Kohana/Database/MySQL.php:359
+2013-11-18 01:06:23 --- DEBUG: #0 /home/polysciadmin/politicalsimplicity.com/public/modules/database/classes/Kohana/Database/MySQL.php(359): Kohana_Database_MySQL->query(1, 'SHOW FULL COLUM...', false)
+#1 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(1668): Kohana_Database_MySQL->list_columns('Edits')
+#2 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(444): Kohana_ORM->list_columns()
+#3 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(389): Kohana_ORM->reload_columns()
+#4 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(254): Kohana_ORM->_initialize()
+#5 /home/polysciadmin/politicalsimplicity.com/public/modules/orm/classes/Kohana/ORM.php(46): Kohana_ORM->__construct(NULL)
+#6 /home/polysciadmin/politicalsimplicity.com/public/application/classes/Controller/Web/Management.php(41): Kohana_ORM::factory('Edits')
+#7 /home/polysciadmin/politicalsimplicity.com/public/system/classes/Kohana/Controller.php(84): Controller_Web_Management->action_index()
+#8 [internal function]: Kohana_Controller->execute()
+#9 /home/polysciadmin/politicalsimplicity.com/public/system/classes/Kohana/Request/Client/Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Management))
+#10 /home/polysciadmin/politicalsimplicity.com/public/system/classes/Kohana/Request/Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#11 /home/polysciadmin/politicalsimplicity.com/public/system/classes/Kohana/Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#12 /home/polysciadmin/politicalsimplicity.com/public/index.php(118): Kohana_Request->execute()
+#13 {main} in /home/polysciadmin/politicalsimplicity.com/public/modules/database/classes/Kohana/Database/MySQL.php:359

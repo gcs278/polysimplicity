@@ -270,7 +270,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
         public function action_modify() {
             $user = Auth::instance()->get_user();
             // Check if user is logged in
-            if (!Auth::instance()->logged_in("admin")) {
+            if (!$user) {
                     $this->redirect(Route::get('home')->uri(
                 array(
                     'controller' => 'management',
