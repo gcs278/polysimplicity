@@ -223,7 +223,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                                 ));
                                 
                                 // Grant user login role
-                                $user->add('roles', ORM::factory('Role', array('name' => 'admin')));
+                                $user->add('roles', ORM::factory('Role', array('name' => 'login')));
                                 
                                 // Reset values so form is not sticky
                                 $_POST = array();
