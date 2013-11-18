@@ -40,6 +40,7 @@
     </script>
 
 <body>
+<?php include_once("analyticstracking.php") ?>
 	<div class="container">
 		<div class="row text-center">
 				<?php echo HTML::image('media/images/logo_ps.png',array())?>
