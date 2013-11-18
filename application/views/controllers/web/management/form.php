@@ -556,10 +556,7 @@
 		
 		$.browserchrome = /chrom(e|ium)/.test(navigator.userAgent.toLowerCase()); 
 
-		if($.browserchrome){
-			alert("Hello I'm Chrome");
-		} else {
-			alert("I'm not Chrome :(");
+		if(!$.browserchrome) {
 			$('#birth_date').datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy", defaultDate: "-15y" });
 			$('#term_start').datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy" });
 			$('#term_end').datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy" });

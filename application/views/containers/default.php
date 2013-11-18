@@ -49,7 +49,7 @@
 		<div class="col-sm-3 col-sm-offset-2" style="margin-top: 6px;">
 			<a href="<?php echo URL::site('')?>">Home</a>
 		</div>
-		<div class="col-sm-3" style="margin-top: 6px;">
+		<div class="col-sm-2" style="margin-top: 6px;">
 			<a href="#">About Us</a>
 		</div>
 		<div class="col-sm-4" style="margin-bottom: 10px;">

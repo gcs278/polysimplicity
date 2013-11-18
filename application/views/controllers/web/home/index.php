@@ -1,11 +1,18 @@
-
-<div class="container" id="map" style="height: 700px">
+<div class="col-sm-2 col-sm-offset-5">
+	<select class="form-control">
+	  <option>Map</option>
+	  <option>Position</option>
+	</select>
 </div>
-<div class="container">
+<div class="container col-sm-12" id="map" style="height: 700px">
+</div>
+<div class="container" id="below_map">
 	<h1 id="selected_state" style="text-align: center"></h1>
 	<div class="thin-line col-sm-10 col-sm-offset-1"></div><br>
 	<ul id="candidate_list" class="list-unstyled"></ul>
 </div>
+
+<div class="modal"></div>
 
 <script>
 	$('#map').vectorMap({
@@ -25,6 +32,7 @@
 		onRegionClick: function(event, abbrev, state) {
 			console.log("Clicked " + state);
 			$('#selected_state').text(state);
+			$('#candidate_list').html("<li>Loading...</li>");
 			getCandidates(abbrev);
 			$('html, body').animate({
 				scrollTop: $('#candidate_list').offset().top
@@ -45,5 +53,19 @@
 			}
 		}, 'json');
 	}
+	
+	$('select').change(function() {
+		if ($( "select option:selected" ).text() === "Position") {
+			$('#map').animate({
+				"left": "-=2000px"
+			}, 1500 );
+			$('#below_map').hide("slow");
+		} else if ($("select option:selected").text() === "Map") {
+			$('#map').animate({
+				"left": "+=2000px"
+			}, 1500 );
+			$('#below_map').show("slow")
+		}
+	});
 </script>
 
