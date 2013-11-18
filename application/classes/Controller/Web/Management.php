@@ -200,6 +200,13 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
 
         public function action_create() 
         {
+                    $this->redirect(Route::get('home')->uri(
+                array(
+                    'controller' => 'management',
+                    'action'     => 'login',                            
+                       )
+                ));   
+                return;
                 $this->view = View::factory('controllers/web/management/create')
                         ->bind('errors', $errors)
                         ->bind('message', $message);
@@ -216,7 +223,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
                                 ));
                                 
                                 // Grant user login role
-                                $user->add('roles', ORM::factory('Role', array('name' => 'login')));
+                                $user->add('roles', ORM::factory('Role', array('name' => 'admin')));
                                 
                                 // Reset values so form is not sticky
                                 $_POST = array();
@@ -263,7 +270,7 @@ class Controller_Web_Management extends Controller_Web_Containers_Default {
         public function action_modify() {
             $user = Auth::instance()->get_user();
             // Check if user is logged in
-            if (!$user) {
+            if (!Auth::instance()->logged_in("admin")) {
                     $this->redirect(Route::get('home')->uri(
                 array(
                     'controller' => 'management',
