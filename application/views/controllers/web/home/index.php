@@ -1,5 +1,15 @@
+<!--Grant 11/18/13, we can fix-->
+<div class="lead span9" style="margin: 0 auto !important; float: none !important;">
+<p>Hi, we are a startup website that takes a political candidate's information and condenses it all on to one page in an easy, understandable way.  Our hope is that you will read our site and base informed decisions off of the knowledge you obtain from us.  Our goal is to make voting easy for people like you and I without imposing bias into that information other sources may unavoidably do.</p>
+<p> Please leave us a comment or feedback at our email feedback@politicalsimplicity.com.  We would really appreciate any comments or suggests you have for us.  If you have a candidate you would like to learn about please let us know and we will move them to the front of the list of candidates to be posted first.</p>
+</div>
 
-<div class="container" id="map" style="height: 700px">
+
+<div class="lead span9" style="margin: 0 auto !important; float: none !important; font-size: 31px !important;">
+<p><strong>We are currently under construction, but please visit back shortly to see if your local candidate has been posted yet.</strong></p>
+</div>
+
+<div class="container" id="map" style="height: 900px">
 </div>
 <div class="container">
 	<h1 id="selected_state" style="text-align: center"></h1>

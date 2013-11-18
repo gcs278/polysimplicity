@@ -1,0 +1,29 @@
+
+*** These modified files were found in JOE when it aborted on Sun Nov 17 20:45:41 2013
+*** JOE was aborted because the terminal closed
+
+*** File '(Unnamed)'
+.git/COMMIT_EDITMSG
+
+*** File '.git/COMMIT_EDITMSG'
+Revert "Safe-site locked creation"
+Reverting
+This reverts commit 649e8990f9ec6fb2c15c21c7f7b8a65ccc9a4fda.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# Committer: Admin <polysciadmin@william-livingston.dreamhost.com>
+#
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   application/classes/Controller/Web/Management.php
+#
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#	modified:   application/logs/2013/11/17.php
+#
