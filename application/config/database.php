@@ -8,7 +8,7 @@ return array
   'type'       => 'MySQL',
   'connection' => array(
  
-   'hostname'   => 'localhost',
+   'hostname'   => 'candidates.politicalsimplicity.com',
    'database'   => 'politicalsimplicity_candidates',
 /* 
 //Server Credentials
@@ -18,7 +18,7 @@ return array
 */
 
 //Localhost Credentials 
-   'username'   => 'root',
+   'username'   => 'gcs278',
    'password'   => '',
    'persistent' => FALSE,
 

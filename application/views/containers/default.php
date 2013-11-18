@@ -42,7 +42,8 @@
 <body>
 	<div class="container">
 		<div class="row text-center">
-				<?php echo HTML::image('media/images/logo_ps.png',array())?>
+				<?php echo url::site(); ?>
+				<?php echo HTML::image(URL::site() . 'politicalsimplicity.com//media/images/logo_ps.png',array())?>
 		</div>
 		<div class="thin-line col-sm-10 col-sm-offset-1">
 		</div>
