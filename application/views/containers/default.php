@@ -10,16 +10,18 @@
         <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
         
         <style>
-			.thin-line { border-top: 1px solid #000;
-							margin-bottom: 10px; }
-			a { color: #000000; }
-			a:hover { color: #aaaaaa;
-					text-decoration: none; }
-			ul { text-align: center; }
-			li { margin-left: 100px;
-					margin-right: 100px;
-					margin-bottom: 10px; }
-		</style>
+						.thin-line { border-top: 1px solid #000;
+										margin-bottom: 10px; }
+						a { color: #000000; }
+						a:hover { color: #aaaaaa;
+								text-decoration: none; }
+						ul { text-align: center; }
+						li { margin-left: 100px;
+								margin-right: 100px;
+								margin-bottom: 10px; }
+						#about_us { display: none;
+								text-align: center; }
+				</style>
         
         <!--Kohana CSS Includes-->
         <?php
@@ -44,13 +46,12 @@
 		<div class="row text-center">
 				<?php echo HTML::image('media/images/logo_ps.png',array())?>
 		</div>
-		<div class="thin-line col-sm-10 col-sm-offset-1">
-		</div>
-		<div class="col-sm-3 col-sm-offset-2" style="margin-top: 6px;">
+		<div class="thin-line col-sm-10 col-sm-offset-1"></div>
+		<div class="col-sm-3 col-sm-offset-2 lead" style="margin-top: 6px;">
 			<a href="<?php echo URL::site('')?>">Home</a>
 		</div>
-		<div class="col-sm-2" style="margin-top: 6px;">
-			<a href="#">About Us</a>
+		<div class="col-sm-2 lead" style="margin-top: 6px;">
+			<a href="" id="about_link">About Us</a>
 		</div>
 		<div class="col-sm-4" style="margin-bottom: 10px;">
 			<form method="get" action="" _lpchecked="1">
@@ -64,8 +65,7 @@
 				</div>
 			</form>
 		</div>
-		<div class="thin-line col-sm-10 col-sm-offset-1">
-		</div>
+		<div class="thin-line col-sm-10 col-sm-offset-1"></div>
     </div>
     <!--Header NAV START -->
     <!-- <nav class="navbar navbar-inverse" role="navigation">
@@ -94,12 +94,17 @@
     <!--Header END -->
     
     <script>
-	$(function() {
-		$( "#search" ).autocomplete({
-			source: "<?php echo URL::site('')?>"
-		});
-	});
-	</script>
+			$(function() {
+				$( "#search" ).autocomplete({
+					source: "<?php echo URL::site('')?>"
+				});
+			});
+			
+			$("#about_link").click(function() {
+				$("#about_us").slideToggle(1000);
+				return false;
+			});
+		</script>
     
 <?php
 	if (isset($_GET['query'])) {
@@ -118,16 +123,25 @@
 	}
 ?>
 
+<div class="col-sm-8 col-sm-offset-2 lead" id="about_us">
+	<p>Hi, we are a startup website that takes a political candidate's information and condenses it all on to one page in an easy, understandable way. Our hope is that you will read our site and base informed decisions off of the knowledge you obtain from us. Our goal is to make voting easy for people like you and I without imposing bias into that information other sources may unavoidably do.
+		Please leave us a comment or feedback at our email feedback@politicalsimplicity.com. We would really appreciate any comments or suggests you have for us. If you have a candidate you would like to learn about please let us know and we will move them to the front of the list of candidates to be posted first.</p>
+</div>
+
 <!--Display Page-->
 <?php echo $content ?>
 
+<div class="thin-line col-sm-10 col-sm-offset-1">
+	<p class="lead" style="text-align: center;"> Political Simplicity, 2013
+		<a href="<?php echo URL::site('management/')?>">
+			<?php echo HTML::image('media/images/plus-xxl.png',array("width"=>25,"height"=>25))?>
+			<span class="glyphicon glyphicon-cog"></span>
+		</a>
+	</p>
+</div>
+
 <!--Footer START-->
-<footer class="navbar-fixed-bottom" style="position:relative"><p>Political Simplicity, 2013
-            <a href="<?php echo URL::site('management/')?>">
-                <?php echo HTML::image('media/images/plus-xxl.png',array("width"=>25,"height"=>25))?>
-            </a>
-        </p>
-</footer>
+
 <!--Footer END-->
 
 </body>

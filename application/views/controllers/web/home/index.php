@@ -12,7 +12,52 @@
 	<ul id="candidate_list" class="list-unstyled"></ul>
 </div>
 
-<div class="modal"></div>
+<div class="container col-sm-12" id="positions" style="right: -4000px; margin-top: -650px;">
+	<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          President
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+				Replace with relevant data and picture :)
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          Senate
+        </a>
+      </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+				Replace with relevant data and picture :)
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          House of Representatives
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+				Replace with relevant data and picture :)
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 
 <script>
 	$('#map').vectorMap({
@@ -57,14 +102,20 @@
 	$('select').change(function() {
 		if ($( "select option:selected" ).text() === "Position") {
 			$('#map').animate({
-				"left": "-=2000px"
+				"left": "-=4000px"
 			}, 1500 );
 			$('#below_map').hide("slow");
+			$('#positions').animate({
+				"right": "+=4000px"
+			}, 1500 );
 		} else if ($("select option:selected").text() === "Map") {
 			$('#map').animate({
-				"left": "+=2000px"
+				"left": "+=4000px"
 			}, 1500 );
-			$('#below_map').show("slow")
+			$('#below_map').show("slow");
+			$('#positions').animate({
+				"right": "-=4000px"
+			}, 1500 );
 		}
 	});
 </script>
