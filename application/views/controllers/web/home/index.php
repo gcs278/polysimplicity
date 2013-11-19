@@ -1,3 +1,5 @@
+<div id="konami" style="display: none; text-align: center;"><?php echo HTML::image('media/images/konami-logo.gif',array("width"=>100,"height"=>100))?></div>
+
 <div class="container">
 	<div class="col-sm-2 col-sm-offset-5">
 		<select class="form-control">
@@ -62,6 +64,49 @@
 </div>
 
 <script>
+	$.fn.konami = function( options ) {
+					var opts, masterKey, controllerCode, code;
+					opts = $.extend({}, $.fn.konami.defaults, options);
+
+					return this.each(function() {
+
+									controllerCode = [];
+
+									$( window ).keyup(function( evt ) {
+
+													code = evt.keyCode || evt.which;
+
+													if ( opts.code.length > controllerCode.push( code ) ) {
+																	return;
+													} // end if
+
+													if ( opts.code.length < controllerCode.length ) {
+																	controllerCode.shift();
+													} // end if
+
+													if ( opts.code.toString() !== controllerCode.toString() ) {
+																	return;
+													} // end for
+
+													opts.cheat();
+
+									}); // end keyup
+
+					}); // end each
+
+	}; // end opts
+
+	$.fn.konami.defaults = {
+					code : [38,38,40,40,37,39,37,39,66,65],
+					cheat: null
+	};
+
+	$( window ).konami({  
+			cheat: function() {
+					$("#konami").css("display", "inherit");
+			}
+	});
+
 	$('#map').vectorMap({
 		map: 'usa_en',
 		backgroundColor: '#ffffff',
