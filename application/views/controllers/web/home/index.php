@@ -1,23 +1,115 @@
-<!--Grant 11/18/13, we can fix-->
-<div class="lead span9" style="margin: 0 auto !important; float: none !important;">
-<p>Hi, we are a startup website that takes a political candidate's information and condenses it all on to one page in an easy, understandable way.  Our hope is that you will read our site and base informed decisions off of the knowledge you obtain from us.  Our goal is to make voting easy for people like you and I without imposing bias into that information other sources may unavoidably do.</p>
-<p> Please leave us a comment or feedback at our email <a href="mailto:feedback@politicalsimplicity.com">feedback@politicalsimplicity.com</a>.  We would really appreciate any comments or suggests you have for us.  If you have a candidate you would like to learn about please let us know and we will move them to the front of the list of candidates to be posted first.</p>
-</div>
+<div id="konami" style="display: none; text-align: center;"><?php echo HTML::image('media/images/konami-logo.gif',array("width"=>100,"height"=>100))?></div>
 
-
-<div class="lead span9" style="margin: 0 auto !important; float: none !important; font-size: 31px !important;">
-<p><strong>We are currently under construction, but please visit back shortly to see if your local candidate has been posted yet.</strong></p>
-</div>
 
 <div class="container" id="map" style="height: 900px">
 </div>
 <div class="container">
-	<h1 id="selected_state" style="text-align: center"></h1>
-	<div class="thin-line col-sm-10 col-sm-offset-1"></div><br>
-	<ul id="candidate_list" class="list-unstyled"></ul>
+	<div class="col-sm-2 col-sm-offset-5">
+		<select class="form-control">
+			<option>Map</option>
+			<option>Position</option>
+		</select>
+	</div>
+	<div class="col-sm-12" id="map" style="height: 700px">
+	</div>
+	<div id="below_map" style="padding-bottom: 100px;">
+		<h1 id="selected_state" style="text-align: center"></h1>
+		<div class="thin-line col-sm-10 col-sm-offset-1"></div><br>
+		<ul id="candidate_list" class="list-unstyled"></ul>
+	</div>
+
+	<div class="col-sm-12" id="positions" style="right: -4000px; margin-top: -650px; display: none;">
+		<div class="panel-group" id="accordion">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+						President
+					</a>
+				</h4>
+			</div>
+			<div id="collapseOne" class="panel-collapse collapse in">
+				<div class="panel-body">
+					Replace with relevant data and picture :)
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+						Senate
+					</a>
+				</h4>
+			</div>
+			<div id="collapseTwo" class="panel-collapse collapse">
+				<div class="panel-body">
+					Replace with relevant data and picture :)
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h4 class="panel-title">
+					<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+						House of Representatives
+					</a>
+				</h4>
+			</div>
+			<div id="collapseThree" class="panel-collapse collapse">
+				<div class="panel-body">
+					Replace with relevant data and picture :)
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
 </div>
 
 <script>
+	$.fn.konami = function( options ) {
+					var opts, masterKey, controllerCode, code;
+					opts = $.extend({}, $.fn.konami.defaults, options);
+
+					return this.each(function() {
+
+									controllerCode = [];
+
+									$( window ).keyup(function( evt ) {
+
+													code = evt.keyCode || evt.which;
+
+													if ( opts.code.length > controllerCode.push( code ) ) {
+																	return;
+													} // end if
+
+													if ( opts.code.length < controllerCode.length ) {
+																	controllerCode.shift();
+													} // end if
+
+													if ( opts.code.toString() !== controllerCode.toString() ) {
+																	return;
+													} // end for
+
+													opts.cheat();
+
+									}); // end keyup
+
+					}); // end each
+
+	}; // end opts
+
+	$.fn.konami.defaults = {
+					code : [38,38,40,40,37,39,37,39,66,65],
+					cheat: null
+	};
+
+	$( window ).konami({  
+			cheat: function() {
+					$("#konami").css("display", "inherit");
+			}
+	});
+
 	$('#map').vectorMap({
 		map: 'usa_en',
 		backgroundColor: '#ffffff',
@@ -35,6 +127,7 @@
 		onRegionClick: function(event, abbrev, state) {
 			console.log("Clicked " + state);
 			$('#selected_state').text(state);
+			$('#candidate_list').html("<li>Loading...</li>");
 			getCandidates(abbrev);
 			$('html, body').animate({
 				scrollTop: $('#candidate_list').offset().top
@@ -55,5 +148,28 @@
 			}
 		}, 'json');
 	}
+	
+	$('select').change(function() {
+		if ($( "select option:selected" ).text() === "Position") {
+			$('#map').animate({
+				"left": "-=4000px"
+			}, 1500 );
+			$('#below_map').hide("slow");
+			$('#positions').animate({
+				"right": "+=4000px"
+			}, 1500);
+			$('#positions').css('display', 'inherit');
+		} else if ($("select option:selected").text() === "Map") {
+			$('#map').animate({
+				"left": "+=4000px"
+			}, 1500 );
+			$('#below_map').show("slow");
+			$('#positions').animate({
+				"right": "-=4000px"
+			}, 1500, function() {
+				$('#positions').css('display', 'none');
+			});
+		}
+	});
 </script>
 

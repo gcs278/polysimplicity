@@ -90,8 +90,15 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 			$this->template->title = 'Home';
 			$view=view::factory('controllers/web/home/candidate');
 			$this->view = $view;
+			$candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',4)->find(0);
+            $this->view->candidate_name = $candidates->first_name ." ". $candidates->middle_name . " " . $candidates->last_name;
+            $this->view->image = base64_encode($candidates->image);
+            $this->view->gender = $candidates->Personal->gender;
+            $this->view->birth_date = $candidates->Personal->birth_date;
+            $this->view->birth_state = $candidates->Personal->birth_state;
+            $this->view->party = $candidates->Personal->party;
+
 			$this->view->head_shot = "";
-			$this->view->candidate_name = "Terry McAullife";
 		    $this->view->candidate_gender = "Male";
 			$this->view->candidate_birthDate = "10/10/1970";
 			$this->view->candidate_birthState = "VA";

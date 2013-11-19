@@ -2,7 +2,7 @@
 
 defined('SYSPATH') or die('No direct script access.');
 
-class Controller_Web_Management extends Controller_Web_Containers_Default {
+class Controller_Web_Management extends Controller_Admin_Containers_Default {
 
         // Index page for User
         // Will be Management menu
