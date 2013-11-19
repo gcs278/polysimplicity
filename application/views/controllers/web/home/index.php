@@ -1,8 +1,5 @@
 <div id="konami" style="display: none; text-align: center;"><?php echo HTML::image('media/images/konami-logo.gif',array("width"=>100,"height"=>100))?></div>
 
-
-<div class="container" id="map" style="height: 900px">
-</div>
 <div class="container">
 	<div class="col-sm-2 col-sm-offset-5">
 		<select class="form-control">
