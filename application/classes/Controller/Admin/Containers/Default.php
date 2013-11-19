@@ -20,7 +20,7 @@ class Controller_Admin_Containers_Default extends Controller_Template {
 
         if ($this->auto_render) {
             //Sets the "Default" title set on the container
-            $this->template->title = 'A su servicio';
+            $this->template->title = 'Management Console';
             $this->template->content = '';
 
             $this->template->styles = array();
@@ -35,19 +35,26 @@ class Controller_Admin_Containers_Default extends Controller_Template {
     /**
      * @see system/classes/kohana/controller/Kohana_Controller_Template::after()
      */
-    public function after() {
+     public function after() {
         if ($this->auto_render) {
             $action = $this->request->action();
             $controller = $this->request->controller();
 
             //Build the styles array
-            $css_file = 'media/css/controllers/' . $controller . '/' . $action . '.css';
+            $css_file = 'media/css/controllers/web/' . $controller . '/' . $action . '.css';
+            
             $styles = array(
-                'media/css/blueprint/screen.css' => 'screen, projection',
-                'media/css/blueprint/src/print.css' => 'print',
-                'media/css/blueprint/src/ie.css' => 'screen, projection',
-                'media/css/jqueryui/jquery-ui-1.9.1.custom.min.css'=>'screen',
-                'media/css/admin.css' => 'screen'
+                //'media/css/camera/camera.css'=>'screen',
+                //'media/css/ticketer/ticketer-style.css'=>'screen',
+                //'media/css/blueprint/screen.css' => 'screen, projection',
+                //'media/css/blueprint/src/print.css' => 'print',
+                //'media/css/blueprint/src/ie.css' => 'screen, projection',
+                //'media/css/jqueryui/jquery-ui-1.9.1.custom.min.css'=>'screen',
+                 'media/css/style.css' => 'screen',
+                // GRANT ADDED, I believe there is a better way to do this
+                //'media/css/controllers/web/Home/form.css'=>'screen',
+                //'media/css/controllers/web/Home/structure.css'=>'screen',
+                //'media/css/controllers/web/Home/theme.css'=>'screen',
             );
 
             //VALIDATING FILE
@@ -56,11 +63,12 @@ class Controller_Admin_Containers_Default extends Controller_Template {
             }
 
             //Build the scripts array
-            $js_file = 'media/js/controllers/admin/' . $controller . '/' . $action . '.js';
+            $js_file = 'media/js/controllers/web/' . $controller . '/' . $action . '.js';
             $scripts = array('media/js/jquery/jquery-1.8.2.min.js',
                 'media/js/jquery/jquery-validation.js',
-                'media/js/jqueryui/jquery-ui-1.9.1.custom.min.js'
-                
+                'media/js/jqueryui/jquery-ui-1.9.1.custom.min.js',
+                'media/js/ticketer/jquery.ticker.js',
+                'media/js/camera/camera.js',
             );
 
             //VALIDATING FILE
@@ -73,16 +81,8 @@ class Controller_Admin_Containers_Default extends Controller_Template {
             $this->template->styles = array_merge($styles, $this->template->styles);
             $this->template->scripts = array_merge($scripts, $this->template->scripts);
 
-            //Get Menu
-            //Uncomment once we have all the menu logic created
-            $menu = FALSE; //$this->_get_menu( Model_Globalfunctions::get_menu( Session::instance()->get('discotecas_serial_prf', FALSE) ) );
-            if ($menu) {
-                $this->template->menu = $menu;
-            } else {
-                $this->template->menu = false;
-            }
-
-
+           
+            
 
             //If $this->view is set display it on the
             //containers $content
@@ -92,5 +92,4 @@ class Controller_Admin_Containers_Default extends Controller_Template {
         //Required because we are extending Controller_Template
         parent::after();
     }
-
 }
