@@ -1,37 +1,24 @@
-	<div id="includedContent"></div>
-         <div id="container">
-            <h1><?php echo $candidate_name; ?></h1>
-        
-        <div class="candidate-wrapper">
-            <div class="candidate-image">
-                <img src='<?php echo $head_shot; ?>'/>
-            </div>
-            <div class="candidate-info <?php echo $candidate_party; ?>">
-                <div class ="demographics">
-                    <h3>Demographics:</h3>
-                    <p>
-                        &nbsp&nbsp;Name:<br><br>
-                        &nbsp&nbsp;Gender:<br><br>
-                        &nbsp&nbsp;Date of Birth:<br><br>
-                        &nbsp&nbsp;State:<br><br>
-                        &nbsp&nbsp;Position Running For:<br><br>
-                        &nbsp&nbsp;Runs as:<br><br>
-                        &nbsp&nbsp;Previous Experience:<br>
-                    </p>
-                </div>
-                <div class="background">
-                    <p>
-                        &nbsp&nbsp;<?php echo $candidate_name; ?><br><br>
-                        &nbsp&nbsp;<?php echo $candidate_gender; ?><br><br>
-                        &nbsp&nbsp;<?php echo $candidate_birthDate; ?><br><br>
-                        &nbsp&nbsp;<?php echo $candidate_birthState; ?><br><br>
-                        &nbsp&nbsp;<?php echo $candidate_position; ?><br><br>
-                        &nbsp&nbsp;<?php echo $candidate_party; ?><br><br>
-                        &nbsp&nbsp;<?php echo $candidate_experience; ?><br><br>
-                        </p>
-                </div>
-            </div>
+<div class="container">
+    <h1 class="text-center"><?php echo $candidate_name; ?></h1>
+    <div class="row-fluid">
+        <div class="span4">
+            <img src="data:image/jpg;base64, <?php echo $image ?>" class="img-rounded" width="300" height="275"\>
+        </div> 
+        <div class="span8 well">
+        <h3>Demographics:</h3> 
+            <table class="table table-striped">
+                <tbody>
+                    <tr><td><strong>Gender:</strong> <?php echo $gender?></td></tr>
+                    <tr><td><strong>Political Party:</strong> <?php echo $party?></td></tr>
+                    <tr><td><strong>Birth State:</strong> <?php echo $birth_state?></td></tr>
+                    <tr><td><strong>Birth Date: </strong><?php echo $birth_date?></td></tr>
+                </tbody>
+            </table>
+            
         </div>
+    </div>
+
+        <div class="candidate-wrapper">
         <div class="views-wrapper <?php echo $candidate_party; ?>">
             <div class='view'>
                 Taxation
