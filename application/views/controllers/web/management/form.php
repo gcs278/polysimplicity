@@ -1,17 +1,4 @@
-<div class="container-fluid ">
-	<div class ="row-fluid">
-		<div class="span2 offset1">
-			<h3>Candidate Management</h3>
 
-			<ul class="nav nav-pills nav-stacked">
-  				<li><?php echo Html::anchor('management/index', 'View Candidates') ?></li>
-  				<li class="active"><?php echo Html::anchor('management/form', 'Create a new Candidate') ?></li>
-  				<li><?php echo Html::anchor('management/form', 'Modify Candidate') ?></li>
-  				<li><?php echo Html::anchor('management/form', 'Preview Candidate') ?></li>
-  				<li><?php echo Html::anchor('management/logout', 'Log Out') ?></li>
-			</ul>
-
-		</div>
 		<div class="span8">
 		<form class="form-horizontal" role="form" method="post" enctype="multipart/form-data">
 			<h1>Candidate Info</h1>
@@ -35,12 +22,20 @@
 				</div>
 			</div>
 			<div class="form-group">
+
 				<label for="candidate_pic" class="col-sm-2 control-label">Picture of Cadidate</label>
-				<div class="col-sm-10">
+				<div class="col-sm-5">
 					<input type="file" name="candidate_pic" id="candidate_pic" multiple accept="image/*">
-					<p class="help-block">Save an image that will fit the size nicely, 
+					<p class="help-block">Save an image that will fit the size nicely,<br> 
 						make sure there is authorization to use it.</p>
 				</div>
+				<div class="col-sm-5">
+					<?php if(isset($image)) {
+						echo "<img src=\"data:image/jpg;base64," . $image . "\" class=\"img-rounded\" width=\"150\" height=\"150\"\>";
+					}
+					?>
+				</div>
+
 			</div>
 			<div class="form-group">
 				<label for="gender_radio" class="col-sm-2 control-label">Gender</label>

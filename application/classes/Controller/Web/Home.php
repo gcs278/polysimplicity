@@ -61,6 +61,10 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 	}
 
 	public function action_candidate() {
+		$id = $this->request->param('id');
+		if (!isset($id)){
+			$id = 4;
+		}
 		// Grant's exmaple code
 		$model = ORM::factory('Candidates');
 		//$model->find(0);
@@ -90,7 +94,7 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 			$this->template->title = 'Home';
 			$view=view::factory('controllers/web/home/candidate');
 			$this->view = $view;
-			$candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',4)->find(0);
+			$candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',$id)->find(0);
             $this->view->candidate_name = $candidates->first_name ." ". $candidates->middle_name . " " . $candidates->last_name;
             $this->view->image = base64_encode($candidates->image);
             $this->view->gender = $candidates->Personal->gender;

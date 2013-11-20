@@ -14,6 +14,7 @@
             foreach ($styles as $file => $type)
                 echo HTML::style($file, array('media' => $type)), PHP_EOL
         ?>
+        <link type="text/css" href="/polysimplicity/media/css/controllers/web/Management/style.css" rel="stylesheet" media="screen">
         <!--Kohana Script Includes-->
         <?php
             foreach ($scripts as $file)
@@ -52,6 +53,22 @@
                     </ul>
                 </div>
     </nav>
+    <?php if(!isset($sideSelect)) {
+        $sideSelect = null;
+    } ?>
+    <div class="container-fluid ">
+    <div class ="row-fluid">
+        <div class="span2 offset1">
+            <h3>Candidate Management</h3>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li class="<?php if($sideSelect == "index"){echo "active";}?>"><?php echo Html::anchor('management/index', 'View Candidates') ?></li>
+                <li class="<?php if($sideSelect == "form"){echo "active";}?>"><?php echo Html::anchor('management/form', 'Create a new Candidate') ?></li>
+                <li class="<?php if($sideSelect == "modify"){echo "active";}?>"><?php echo Html::anchor('management/index', 'Modify Candidate') ?></li>
+                <li><?php echo Html::anchor('management/logout', 'Log Out') ?></li>
+            </ul>
+
+        </div>
     <!--Header END -->
     
     <script>
