@@ -44,7 +44,9 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         $user = ORM::factory('Users')->where('id','=',$edits->users_id)->find(0);
                         $table .= $user->username;
                         $table .= "</td><td>";
-                        $table .= HTML::anchor('candidate/'.$candidate->id, "Profile");
+                        $table .= HTML::anchor('candidate/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-eye-open")) . "&nbsp&nbsp&nbsp";
+                        $table .= HTML::anchor('management/modify/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-wrench")). "&nbsp&nbsp&nbsp";
+                        $table .= HTML::anchor('management/delete/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-remove"));
                         $table .= "</td></tr>";
                 }
                 
@@ -355,5 +357,26 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 
 
         }
+		public function action_delete() {
+			$user = Auth::instance()->get_user();
+            // Check if user is logged in
+            if (!$user) {
+                    $this->redirect(Route::get('home')->uri(
+                array(
+                    'controller' => 'management',
+                    'action'     => 'login',                            
+                       )
+                ));   
+                return;
+            }
+            $id = $this->request->param('id');
+            $candidates = ORM::factory('Candidates')->with('Personal')->with('Positions')->where('candidates.id','=',$id)->find(0);
+            if ( $candidates->loaded()) {
+            	$candidates->Personal->delete();
+            	$candidates->delete();
+            } else {
+
+        	}
+		}
 
 }

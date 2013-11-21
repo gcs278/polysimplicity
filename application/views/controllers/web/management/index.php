@@ -1,6 +1,6 @@
 		<div class="span8 offset1">
 			<div class="span11">
-			<h1 >Welcome <?php echo $user ?>!</h1>
+			<h1 >Welcome <?php if (isset($user))echo $user ?>!</h1>
 			<br>
 			<h3>Candidates currently in database:</h3>
     		<table class="table table-striped">
@@ -23,4 +23,7 @@
    		</div>
    	</div>
 </div>
-
+<?php if(isset($script)) {
+	echo $script;
+}
+?>

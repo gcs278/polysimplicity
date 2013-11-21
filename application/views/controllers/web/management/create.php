@@ -6,7 +6,7 @@
 
 
 
-<div class="container">
+<div class="span8">
 	<form class="form-horizontal" role="form" method="post">
 		<h2 class="offset2">Create New User:</h2>
 		<div class="form-group">
@@ -50,5 +50,4 @@
 			</div>
 		</div>
 	</form>
-<p class="text-center">Or <?= HTML::anchor('management/login', 'login'); ?> if you have an account already.</p>
 </div>

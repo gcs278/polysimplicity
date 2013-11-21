@@ -28,6 +28,16 @@
         var document_root = '<?php echo Url::site(); ?>';
     </script>
 
+    <?php
+        // Change login/logout button
+        $authButtonString = "Log In";
+        $authButtonAction = "login";
+        $user = Auth::instance()->get_user();
+        if (isset($user)) {
+            $authButtonAction = "logout";
+            $authButtonString = "Log Out";
+        }
+    ?>
 <body>
     <!--Header NAV START -->
     <nav class="navbar navbar-inverse" role="navigation">
@@ -37,13 +47,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <?php echo Html::anchor('', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
+                    <?php echo Html::anchor('/management/index', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
                 </div>
                 
                 <div class="collapse navbar-collapse topNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href="<?php echo URL::site('')?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li class="<?php //if($active === 'about') echo 'active'; ?>"><a href="#"><span class="glyphicon glyphicon-question-sign"></span> About Us</a></li>
+                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href=""><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li class="<?php //if($active === 'about') echo 'active'; ?>"><a href="<?php echo URL::base()."management/".$authButtonAction?>"><span class="glyphicon glyphicon-log-out"></span> <?php echo $authButtonString?></a></li>
                         <li>
                             <form id="tfnewsearch" method="get" action="" _lpchecked="1">
                                 <input type="text" id="search" name="query" size="21" maxlength="120" placeholder="Search our website">
@@ -65,7 +75,6 @@
                 <li class="<?php if($sideSelect == "index"){echo "active";}?>"><?php echo Html::anchor('management/index', 'View Candidates') ?></li>
                 <li class="<?php if($sideSelect == "form"){echo "active";}?>"><?php echo Html::anchor('management/form', 'Create a new Candidate') ?></li>
                 <li class="<?php if($sideSelect == "modify"){echo "active";}?>"><?php echo Html::anchor('management/index', 'Modify Candidate') ?></li>
-                <li><?php echo Html::anchor('management/logout', 'Log Out') ?></li>
             </ul>
 
         </div>
