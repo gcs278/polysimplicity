@@ -60,8 +60,7 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 
         // Form for inserting a candidate
         public function action_form() {
-                // Load the user information
-                $user = Auth::instance()->get_user();
+        	$user = Auth::instance()->get_user();
 
                 // Check if user is logged in
                 if (!$user)
@@ -99,6 +98,17 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         $personal = ORM::factory('Personal');
                         // Get the form data
                         $personal->values($_POST);
+
+                        $views = ORM::factory('Views');
+                        $view_type = ORM::factory('viewsType')->find_all();
+
+                        foreach($_POST as $value) {
+                        	foreach($view_type as $type) {
+                        		if ( $type->name == $value) {
+                        			echo Here;
+                        		}
+                        	}
+                        }
 
                         // Validate input for personal and candidate
                         try {
@@ -357,6 +367,8 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 
 
         }
+
+        // Deletes all trace of a candidate
 		public function action_delete() {
 			$user = Auth::instance()->get_user();
             // Check if user is logged in
@@ -375,19 +387,19 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 	            if ( $candidates->loaded()) {
 
 	            	// Delete every position
-	            	$positions = ORM::factory('Positions')->where('candidates_id','=',$id);
+	            	$positions = ORM::factory('Positions')->where('candidates_id','=',$id)->find_all();
 	            	foreach($positions as $position) {
 	            		$position->delete();
 	            	}
 
 	            	// Delete every edit record
-	            	$edits = ORM::factory('Edits')->where('candidates_id','=',$id);
+	            	$edits = ORM::factory('Edits')->where('candidates_id','=',$id)->find_all();
 	            	foreach($edits as $edit) {
 	            		$edit->delete();
 	            	}
 
 	            	// Delete every view
-	            	$views = ORM::factory('Views')->where('candidates_id','=',$id);
+	            	$views = ORM::factory('Views')->where('candidates_id','=',$id)->find_all();
 	            	foreach($views as $view) {
 	            		$view->delete();
 	            	}
