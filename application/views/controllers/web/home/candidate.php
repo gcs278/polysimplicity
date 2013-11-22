@@ -1,25 +1,22 @@
 <div class="container">
     <h1 class="text-center"><?php echo $candidate_name; ?></h1>
     <div class="row-fluid">
-        <div class="span4">
-            <img src="data:image/jpg;base64, <?php echo $image ?>" class="img-rounded" width="300" height="275"\>
+        <div class="col-sm-4">
+            <img src="data:image/jpg;base64, <?php echo $image ?>" class="img-rounded img-responsive" \>
         </div> 
-        <div class="span8 well">
-        <h3>Demographics:</h3> 
-            <table class="table table-striped">
-                <tbody>
-                    <tr><td><strong>Gender:</strong> <?php echo $gender?></td></tr>
-                    <tr><td><strong>Political Party:</strong> <?php echo $party?></td></tr>
-                    <tr><td><strong>Birth State:</strong> <?php echo $birth_state?></td></tr>
-                    <tr><td><strong>Birth Date: </strong><?php echo $birth_date?></td></tr>
-                </tbody>
-            </table>
-            
+        <div class="col-sm-8 well">
+					<h3>Demographics:</h3> 
+							<table class="table table-striped">
+									<tbody>
+											<tr><td><strong>Gender:</strong> <?php echo $gender?></td></tr>
+											<tr><td><strong>Political Party:</strong> <?php echo $party?></td></tr>
+											<tr><td><strong>Birth State:</strong> <?php echo $birth_state?></td></tr>
+											<tr><td><strong>Birth Date: </strong><?php echo $birth_date?></td></tr>
+									</tbody>
+							</table>
         </div>
     </div>
 
-        <div class="candidate-wrapper">
-        <div class="views-wrapper <?php echo $candidate_party; ?>">
             <div class='view'>
                 Taxation
                 <div class='view-nu'>
@@ -104,7 +101,6 @@
                     <?php echo $candidate_deathPenalty; ?>
                 </div>
             </div>
-        </div>
         <div class='extra'>
             <div class ="categories">
                     <h3>In Depth Information:</h3>
@@ -168,6 +164,5 @@
                         <?php echo $candidate_deathPenaltyDescrip; ?><br><br>  
                         </p>
                 </div>
-        </div>
-        </div>
+            </div>
 

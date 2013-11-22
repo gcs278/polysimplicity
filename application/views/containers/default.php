@@ -43,7 +43,7 @@
 
 <body>
 	<div class="container">
-		<div class="row text-center">
+		<div class="text-center" id="logo">
 				<?php echo HTML::image('media/images/logo_ps.png',array())?>
 		</div>
 		<div class="thin-line col-sm-10 col-sm-offset-1"></div>
@@ -103,6 +103,12 @@
 			$("#about_link").click(function() {
 				$("#about_us").slideToggle(1000);
 				return false;
+			});
+			
+			$(document).ready(function() {
+				if (window.location.href.indexOf("candidate") > -1) {
+					$("#logo").hide("slow");
+				}
 			});
 		</script>
     
