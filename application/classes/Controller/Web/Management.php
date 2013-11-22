@@ -3,7 +3,7 @@
 defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Web_Management extends Controller_Admin_Containers_Default {
-
+	
         // Index page for User
         // Will be Management menu
         public function action_index() {
@@ -116,7 +116,7 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                                 $edits = ORM::factory('Edits');
                                 $edits->candidates_id = $candidate->id; // Candidate's id
                                 $edits->users_id = AUTH::instance()->get_user(); // User's id
-
+ 
                                 $edits->save();
                         } catch(ORM_Validation_Exception $e) {
                                 $view=view::factory('controllers/web/management/form');
@@ -370,13 +370,45 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                 return;
             }
             $id = $this->request->param('id');
-            $candidates = ORM::factory('Candidates')->with('Personal')->with('Positions')->where('candidates.id','=',$id)->find(0);
-            if ( $candidates->loaded()) {
-            	$candidates->Personal->delete();
-            	$candidates->delete();
-            } else {
+            if ($this->request->method() == HTTP_Request::POST) {
+	            $candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',$id)->find(0);
+	            if ( $candidates->loaded()) {
 
-        	}
+	            	// Delete every position
+	            	$positions = ORM::factory('Positions')->where('candidates_id','=',$id);
+	            	foreach($positions as $position) {
+	            		$position->delete();
+	            	}
+
+	            	// Delete every edit record
+	            	$edits = ORM::factory('Edits')->where('candidates_id','=',$id);
+	            	foreach($edits as $edit) {
+	            		$edit->delete();
+	            	}
+
+	            	// Delete every view
+	            	$views = ORM::factory('Views')->where('candidates_id','=',$id);
+	            	foreach($views as $view) {
+	            		$view->delete();
+	            	}
+
+	            	// Delete personal information
+	            	if ( $candidates->Personal->loaded() )
+		           		$candidates->Personal->delete();
+
+		           	// Delete the candidate
+	            	$candidates->delete();
+
+	            } else {
+
+	        	}
+	        } else {
+	        	$view=view::factory('controllers/web/management/delete');
+                $this->view = $view;
+                $this->view->candidate = ORM::factory('Candidates')->where('candidates.id','=',$id)->find(0)->first_name;
+	        }
 		}
+        private function generate_views() {
 
+        }
 }

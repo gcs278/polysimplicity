@@ -66,7 +66,7 @@
     <?php if(!isset($sideSelect)) {
         $sideSelect = null;
     } ?>
-    <div class="container-fluid ">
+    <div class="container-fluid full">
     <div class ="row-fluid">
         <div class="span2 offset1">
             <h3>Candidate Management</h3>

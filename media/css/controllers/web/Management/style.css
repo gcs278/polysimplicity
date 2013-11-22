@@ -4,7 +4,7 @@ html, body, div, header, footer, aside, nav, article, section        {
 }
 
 .full {
-    min-height: 100%;
+    min-height: 90%;
 }
 
 #logo {
