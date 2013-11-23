@@ -153,7 +153,12 @@ Route::set('home', '(<controller>(/<action>(/<id>(/<id2>))))')
 		'action'     => 'index',
 	));
 	
-
+Route::set('api', 'api(/<action>)')
+	->defaults(array(
+		'directory' => 'web',
+		'controller' => 'rest',
+		'action'		=> 'candidates',
+));
 
 Route::set('admin', '<directory>(/<controller>(/<action>(/<params>)))',
 array(
