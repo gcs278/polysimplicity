@@ -1,4 +1,5 @@
 <div class="container">
+		<div id="loading" style="text-align: center;"><?php echo HTML::image('media/images/ajax-loader.gif',array('width'=>20,'height'=>20))?></div>
     <h1 class="text-center"><?php echo $candidate_name; ?></h1>
     <div class="row-fluid">
         <div class="col-sm-4">
@@ -165,4 +166,10 @@
                         </p>
                 </div>
             </div>
+            
+            <script>
+        			$(window).ready(function() {
+        				$("#loading").remove();
+        			});
+            </script>	
 
