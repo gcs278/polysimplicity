@@ -11,6 +11,7 @@ Class Model_Candidates extends ORM
         	);
         protected $_has_many = array(
         		'Edits' => array('model' => 'Edits','foreign_key' => 'candidates_id'),
+        		'Views' => array('model' => "Views','foreign_key' => 'candidates_id")
         	);
         public function rules()
         {

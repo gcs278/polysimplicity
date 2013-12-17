@@ -82,14 +82,6 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 			
 			
 		} else {
-			//foreach ( $model as $person) {
-				//if getting Jon
-			//	$person->last_name = "Reassign";	
-			//}
-			//$model->first_name = "BOB";
-			//$model->middle_name = "Middle";
-			//$model->last_name = "Spence";
-			//$model->save();
 			
 			$this->template->title = 'Home';
 			$view=view::factory('controllers/web/home/candidate');
@@ -97,44 +89,99 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 			$candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',$id)->find(0);
             $this->view->candidate_name = $candidates->first_name ." ". $candidates->middle_name . " " . $candidates->last_name;
             $this->view->image = base64_encode($candidates->image);
-            $this->view->gender = $candidates->Personal->gender;
-            $this->view->birth_date = $candidates->Personal->birth_date;
-            $this->view->birth_state = $candidates->Personal->birth_state;
+            $this->view->gender = ucwords($candidates->Personal->gender);
+            $this->view->birth_date = date('F j, Y', strtotime($candidates->Personal->birth_date));
+            $this->view->birth_state = $this->convert_state($candidates->Personal->birth_state);
             $this->view->party = $candidates->Personal->party;
 
-			$this->view->head_shot = "";
-		    $this->view->candidate_gender = "Male";
-			$this->view->candidate_birthDate = "10/10/1970";
-			$this->view->candidate_birthState = "VA";
-			$this->view->candidate_position = "Boss";
-			$this->view->candidate_party = "Democrat";
-			$this->view->candidate_experience = "baby, human, god";
-			$this->view->candidate_taxation = "for";
-			$this->view->candidate_abortion = "against";
-			$this->view->candidate_military = "mili";
-			$this->view->candidate_guns = "guns";
-			$this->view->candidate_marijuana = "mari";
-			$this->view->candidate_sameSexMarriage= "samesexm";
-			$this->view->candidate_immigration = "imm";
-			$this->view->candidate_education = "edu";
-			$this->view->candidate_environment = "env";
-			$this->view->candidate_healthCare = "hc";
-			$this->view->candidate_socialSecurity = "ss";
-			$this->view->candidate_deathPenalty = "dp";
-			$this->view->candidate_taxationDescrip = "11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111";
-			$this->view->candidate_abortionDescrip = "2222222222222222223";
-			$this->view->candidate_militaryDescrip = "33333333333";
-			$this->view->candidate_gunsDescrip = "4444444444444";
-			$this->view->candidate_marijuanaDescrip = "55555555555";
-			$this->view->candidate_sameSexMarriageDescrip = "6666666666";
-			$this->view->candidate_immigrationDescrip = "777777777";
-			$this->view->candidate_educationDescrip = "888888888888";
-			$this->view->candidate_environmentDescrip = "9999999999999";
-			$this->view->candidate_healthCareDescrip = "10";
-			$this->view->candidate_socialSecurityDescrip = "11";
-			$this->view->candidate_deathPenaltyDescrip = "12";
+            $candidate_views = ORM::factory('Views')->where('candidates_id','=',$id)->find_all();
+
+            $this->view->views_display = "";
+            // echo Debug::vars($candidate_views);
+            foreach($candidate_views as $candidate_view) {
+
+            	$type_id = $candidate_view->viewsType_id;
+            	$view_type = ORM::factory('viewsType')->where('id','=',$type_id)->find(0);
+
+            	$view_type->name = ucwords(str_replace("_"," ", $view_type->name));
+            	$this->view->views_display = $this->view->views_display . "<div class='col-sm-2 view-block'>
+                <h4>" . $view_type->name ."</h4>
+                	<div class='thin-line-light'></div>
+                <h1>".$candidate_view->simple."</h1>
+            	</div>";
+            }
 		}
 	}
 
+	function convert_state($name, $to='name') {
+	$states = array(
+	array('name'=>'Alabama', 'abbrev'=>'AL'),
+	array('name'=>'Alaska', 'abbrev'=>'AK'),
+	array('name'=>'Arizona', 'abbrev'=>'AZ'),
+	array('name'=>'Arkansas', 'abbrev'=>'AR'),
+	array('name'=>'California', 'abbrev'=>'CA'),
+	array('name'=>'Colorado', 'abbrev'=>'CO'),
+	array('name'=>'Connecticut', 'abbrev'=>'CT'),
+	array('name'=>'Delaware', 'abbrev'=>'DE'),
+	array('name'=>'Florida', 'abbrev'=>'FL'),
+	array('name'=>'Georgia', 'abbrev'=>'GA'),
+	array('name'=>'Hawaii', 'abbrev'=>'HI'),
+	array('name'=>'Idaho', 'abbrev'=>'ID'),
+	array('name'=>'Illinois', 'abbrev'=>'IL'),
+	array('name'=>'Indiana', 'abbrev'=>'IN'),
+	array('name'=>'Iowa', 'abbrev'=>'IA'),
+	array('name'=>'Kansas', 'abbrev'=>'KS'),
+	array('name'=>'Kentucky', 'abbrev'=>'KY'),
+	array('name'=>'Louisiana', 'abbrev'=>'LA'),
+	array('name'=>'Maine', 'abbrev'=>'ME'),
+	array('name'=>'Maryland', 'abbrev'=>'MD'),
+	array('name'=>'Massachusetts', 'abbrev'=>'MA'),
+	array('name'=>'Michigan', 'abbrev'=>'MI'),
+	array('name'=>'Minnesota', 'abbrev'=>'MN'),
+	array('name'=>'Mississippi', 'abbrev'=>'MS'),
+	array('name'=>'Missouri', 'abbrev'=>'MO'),
+	array('name'=>'Montana', 'abbrev'=>'MT'),
+	array('name'=>'Nebraska', 'abbrev'=>'NE'),
+	array('name'=>'Nevada', 'abbrev'=>'NV'),
+	array('name'=>'New Hampshire', 'abbrev'=>'NH'),
+	array('name'=>'New Jersey', 'abbrev'=>'NJ'),
+	array('name'=>'New Mexico', 'abbrev'=>'NM'),
+	array('name'=>'New York', 'abbrev'=>'NY'),
+	array('name'=>'North Carolina', 'abbrev'=>'NC'),
+	array('name'=>'North Dakota', 'abbrev'=>'ND'),
+	array('name'=>'Ohio', 'abbrev'=>'OH'),
+	array('name'=>'Oklahoma', 'abbrev'=>'OK'),
+	array('name'=>'Oregon', 'abbrev'=>'OR'),
+	array('name'=>'Pennsylvania', 'abbrev'=>'PA'),
+	array('name'=>'Rhode Island', 'abbrev'=>'RI'),
+	array('name'=>'South Carolina', 'abbrev'=>'SC'),
+	array('name'=>'South Dakota', 'abbrev'=>'SD'),
+	array('name'=>'Tennessee', 'abbrev'=>'TN'),
+	array('name'=>'Texas', 'abbrev'=>'TX'),
+	array('name'=>'Utah', 'abbrev'=>'UT'),
+	array('name'=>'Vermont', 'abbrev'=>'VT'),
+	array('name'=>'Virginia', 'abbrev'=>'VA'),
+	array('name'=>'Washington', 'abbrev'=>'WA'),
+	array('name'=>'West Virginia', 'abbrev'=>'WV'),
+	array('name'=>'Wisconsin', 'abbrev'=>'WI'),
+	array('name'=>'Wyoming', 'abbrev'=>'WY')
+	);
+
+	$return = false;
+	foreach ($states as $state) {
+		if ($to == 'name') {
+			if (strtolower($state['abbrev']) == strtolower($name)){
+				$return = $state['name'];
+				break;
+			}
+		} else if ($to == 'abbrev') {
+			if (strtolower($state['name']) == strtolower($name)){
+				$return = strtoupper($state['abbrev']);
+				break;
+			}
+		}
+	}
+	return $return;
+}
 }
 

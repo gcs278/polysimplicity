@@ -4,10 +4,9 @@ Class Model_Views extends ORM
 {
         protected $_table_name = 'views';
         protected $_belongs_to = array('candidates' => array() );
-
+        // protected $_belongs_to = array('viewsType' => array() );
         // Views_type_id tells what view is being described here
-        protected $_has_one = array('Views_Type' => array('model' => 'Views_Type', 'foreign_key' => 'views_type_id'));
-        
+
         public function rules()
         {
 	        return array(
