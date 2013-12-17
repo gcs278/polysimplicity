@@ -8,7 +8,10 @@
         <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" type="text/css" >
         <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
-        
+
+				<!--Custom Fonts-->
+				<link href='http://fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
+				        
         <style>
 						.thin-line { border-top: 1px solid #000;
 										margin-bottom: 10px; }
@@ -21,6 +24,9 @@
 								margin-bottom: 10px; }
 						#about_us { display: none;
 								text-align: center; }
+						#logo h1 { font-family: 'Tangerine', cursive;
+								font-size: 600%;
+								margin-bottom: 50px; }
 				</style>
         
         <!--Kohana CSS Includes-->
@@ -33,6 +39,7 @@
             foreach ($scripts as $file)
                 echo HTML::script($file), PHP_EOL
         ?>
+        
         <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
     </head>
@@ -44,8 +51,9 @@
 <body>
 <?php include_once("analyticstracking.php") ?>
 	<div class="container">
-		<div class="row text-center">
-				<?php echo HTML::image('media/images/logo_ps.png',array())?>
+		<div class="text-center" id="logo">
+			<h1>Political Simplicity</h1>
+				<!--<?php echo HTML::image('media/images/logo_ps.png',array())?>-->
 		</div>
 		<div class="thin-line col-sm-10 col-sm-offset-1"></div>
 		<div class="col-sm-3 col-sm-offset-2 lead" style="margin-top: 6px;">
@@ -61,7 +69,7 @@
 				<div class="input-group col-sm-10">
 				  <input type="text" id="search" name="query" class="form-control">
 				  <span class="input-group-btn">
-					<button class="btn btn-default" type="button">Go!</button>
+					<button class="btn btn-default" type="submit">Go!</button>
 				  </span>
 				</div>
 			</form>
@@ -97,13 +105,19 @@
     <script>
 			$(function() {
 				$( "#search" ).autocomplete({
-					source: "<?php echo URL::site('')?>"
+					source: "<?php echo URL::base()?>api/candidates/"
 				});
 			});
 			
 			$("#about_link").click(function() {
 				$("#about_us").slideToggle(1000);
 				return false;
+			});
+			
+			$(document).ready(function() {
+				if (window.location.href.indexOf("candidate") > -1) {
+					$("#logo").hide("slow");
+				}
 			});
 		</script>
     

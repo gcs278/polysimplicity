@@ -3,7 +3,7 @@
 defined('SYSPATH') or die('No direct script access.');
 
 class Controller_Web_Management extends Controller_Admin_Containers_Default {
-
+	
         // Index page for User
         // Will be Management menu
         public function action_index() {
@@ -43,6 +43,10 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         $table .= "</td><td>";
                         $user = ORM::factory('Users')->where('id','=',$edits->users_id)->find(0);
                         $table .= $user->username;
+                        $table .= "</td><td>";
+                        $table .= HTML::anchor('candidate/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-eye-open")) . "&nbsp&nbsp&nbsp";
+                        $table .= HTML::anchor('management/modify/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-wrench")). "&nbsp&nbsp&nbsp";
+                        $table .= HTML::anchor('management/delete/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-remove"));
                         $table .= "</td></tr>";
                 }
                 
@@ -51,12 +55,12 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                 $this->view = $view;
                 $this->view->user = $username; // User ID
                 $this->view->table = $table;
+                $this->template->sideSelect = "index";
         }
 
         // Form for inserting a candidate
         public function action_form() {
-                // Load the user information
-                $user = Auth::instance()->get_user();
+        	$user = Auth::instance()->get_user();
 
                 // Check if user is logged in
                 if (!$user)
@@ -95,6 +99,17 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         // Get the form data
                         $personal->values($_POST);
 
+                        $views = ORM::factory('Views');
+                        $view_type = ORM::factory('viewsType')->find_all();
+
+                        foreach($_POST as $value) {
+                        	foreach($view_type as $type) {
+                        		if ( $type->name == $value) {
+                        			echo Here;
+                        		}
+                        	}
+                        }
+
                         // Validate input for personal and candidate
                         try {
                                 $candidate->check();
@@ -111,7 +126,7 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                                 $edits = ORM::factory('Edits');
                                 $edits->candidates_id = $candidate->id; // Candidate's id
                                 $edits->users_id = AUTH::instance()->get_user(); // User's id
-
+ 
                                 $edits->save();
                         } catch(ORM_Validation_Exception $e) {
                                 $view=view::factory('controllers/web/management/form');
@@ -162,6 +177,7 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                 	$this->template->title = 'Home';
                 	$view=view::factory('controllers/web/management/form');
                 	$this->view = $view;
+                    $this->template->sideSelect = "form";
                 }
         }
 
@@ -284,12 +300,58 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 
              // Check if it a POST
             if ($this->request->method() == HTTP_Request::POST) {
-                            
+                $candidate = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',$id)->find(0);
 
+                // Get values matching form, names
+                $candidate->values($_POST);
+
+                // Get the picture if there is one
+                $picture = $_FILES["candidate_pic"]["tmp_name"];
+                if($picture != '' ){
+                        // Serialize bytes into variable
+                        $image = file_get_contents($picture);
+                        $image_size = getimagesize($picture);
+
+                        // Make sure it is an actual picture
+                        if($image_size)
+                                $candidate->image = $image;
+                }
+
+                // Get the form data
+                $candidate->Personal->values($_POST);
+
+                // Validate input for personal and candidate
+                try {
+                        // Save databases
+                        $candidate->update();
+                        $candidate->Personal->update();
+
+                        // Update the edits table
+                        $edits = ORM::factory('Edits');
+                        $edits->candidates_id = $candidate->id; // Candidate's id
+                        $edits->users_id = AUTH::instance()->get_user(); // User's id
+
+                        $edits->save();
+                } catch(ORM_Validation_Exception $e) {
+                        $view=view::factory('controllers/web/management/modify');
+                        $this->view = $view;
+                        $errorMessage = "<script> alert('Server Side Validation Error:";
+                        $errorMessage .= $e->getMessage();
+                        $errorMessage .= "'); </script>";
+                        $this->view->script = $errorMessage;
+                        return;
+                }            
+                $this->redirect(Route::get('candidates')->uri(
+                array(
+                    'id' => $id,                      
+                       )
+                ));   
+                return;
             }else {
                 $this->template->title = 'Home';
                 $view=view::factory('controllers/web/management/form');
                 $this->view = $view;
+                $this->template->sideSelect = "modify";
 
                 $candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',$id)->find(0);
                 $this->view->first_name = $candidates->first_name;
@@ -299,6 +361,7 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                 $this->view->birth_date = $candidates->Personal->birth_date;
                 $this->view->birth_state = $candidates->Personal->birth_state;
                 $this->view->party = $candidates->Personal->party;
+                $this->view->image = base64_encode($candidates->image);
 
                 $positions = ORM::factory('Positions')->where('candidates_id','=',$id)->find_all();
                 foreach($positions as $position) {
@@ -312,4 +375,59 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 
         }
 
+        // Deletes all trace of a candidate
+		public function action_delete() {
+			$user = Auth::instance()->get_user();
+            // Check if user is logged in
+            if (!$user) {
+                    $this->redirect(Route::get('home')->uri(
+                array(
+                    'controller' => 'management',
+                    'action'     => 'login',                            
+                       )
+                ));   
+                return;
+            }
+            $id = $this->request->param('id');
+            if ($this->request->method() == HTTP_Request::POST) {
+	            $candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',$id)->find(0);
+	            if ( $candidates->loaded()) {
+
+	            	// Delete every position
+	            	$positions = ORM::factory('Positions')->where('candidates_id','=',$id)->find_all();
+	            	foreach($positions as $position) {
+	            		$position->delete();
+	            	}
+
+	            	// Delete every edit record
+	            	$edits = ORM::factory('Edits')->where('candidates_id','=',$id)->find_all();
+	            	foreach($edits as $edit) {
+	            		$edit->delete();
+	            	}
+
+	            	// Delete every view
+	            	$views = ORM::factory('Views')->where('candidates_id','=',$id)->find_all();
+	            	foreach($views as $view) {
+	            		$view->delete();
+	            	}
+
+	            	// Delete personal information
+	            	if ( $candidates->Personal->loaded() )
+		           		$candidates->Personal->delete();
+
+		           	// Delete the candidate
+	            	$candidates->delete();
+
+	            } else {
+
+	        	}
+	        } else {
+	        	$view=view::factory('controllers/web/management/delete');
+                $this->view = $view;
+                $this->view->candidate = ORM::factory('Candidates')->where('candidates.id','=',$id)->find(0)->first_name;
+	        }
+		}
+        private function generate_views() {
+
+        }
 }

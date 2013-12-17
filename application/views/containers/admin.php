@@ -14,6 +14,7 @@
             foreach ($styles as $file => $type)
                 echo HTML::style($file, array('media' => $type)), PHP_EOL
         ?>
+        <link type="text/css" href="/polysimplicity/media/css/controllers/web/Management/style.css" rel="stylesheet" media="screen">
         <!--Kohana Script Includes-->
         <?php
             foreach ($scripts as $file)
@@ -27,6 +28,16 @@
         var document_root = '<?php echo Url::site(); ?>';
     </script>
 
+    <?php
+        // Change login/logout button
+        $authButtonString = "Log In";
+        $authButtonAction = "login";
+        $user = Auth::instance()->get_user();
+        if (isset($user)) {
+            $authButtonAction = "logout";
+            $authButtonString = "Log Out";
+        }
+    ?>
 <body>
     <!--Header NAV START -->
     <nav class="navbar navbar-inverse" role="navigation">
@@ -36,13 +47,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <?php echo Html::anchor('', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
+                    <?php echo Html::anchor('/management/index', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
                 </div>
                 
                 <div class="collapse navbar-collapse topNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href="<?php echo URL::site('')?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li class="<?php //if($active === 'about') echo 'active'; ?>"><a href="#"><span class="glyphicon glyphicon-question-sign"></span> About Us</a></li>
+                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href=""><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li class="<?php //if($active === 'about') echo 'active'; ?>"><a href="<?php echo URL::base()."management/".$authButtonAction?>"><span class="glyphicon glyphicon-log-out"></span> <?php echo $authButtonString?></a></li>
                         <li>
                             <form id="tfnewsearch" method="get" action="" _lpchecked="1">
                                 <input type="text" id="search" name="query" size="21" maxlength="120" placeholder="Search our website">
@@ -52,6 +63,21 @@
                     </ul>
                 </div>
     </nav>
+    <?php if(!isset($sideSelect)) {
+        $sideSelect = null;
+    } ?>
+    <div class="container-fluid full">
+    <div class ="row-fluid">
+        <div class="span2 offset1">
+            <h3>Candidate Management</h3>
+
+            <ul class="nav nav-pills nav-stacked">
+                <li class="<?php if($sideSelect == "index"){echo "active";}?>"><?php echo Html::anchor('management/index', 'View Candidates') ?></li>
+                <li class="<?php if($sideSelect == "form"){echo "active";}?>"><?php echo Html::anchor('management/form', 'Create a new Candidate') ?></li>
+                <li class="<?php if($sideSelect == "modify"){echo "active";}?>"><?php echo Html::anchor('management/index', 'Modify Candidate') ?></li>
+            </ul>
+
+        </div>
     <!--Header END -->
     
     <script>

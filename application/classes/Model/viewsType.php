@@ -1,10 +1,13 @@
 <?php defined('SYSPATH') OR die('No Direct Script Access');
 
-Class Model_Views_Type extends ORM
+Class Model_viewsType  extends ORM
 {
-        protected $_table_name = 'views_type';
-        protected $_belongs_to = array('views' => array() );
+        protected $_table_name = 'view_types';
+        protected $_belongs_to = array('Views' => array() );
+
+        // protected $_has_many = array('Views' => array('model' => 'Views', 'foreign_key' => 'views_type_id'));
         
+
         public function rules()
         {
 	        return array(

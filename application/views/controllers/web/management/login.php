@@ -4,7 +4,7 @@
 	</h3>
 <? endif; ?>
 
-<div class="container">
+<div class="span8">
 	<form class="form-horizontal" role="form" method="post">
 		<h2 class="offset2">Developer Login:</h2>
 		<div class="form-group">

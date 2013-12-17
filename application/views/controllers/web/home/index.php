@@ -12,6 +12,7 @@
 	<div id="below_map" style="padding-bottom: 100px;">
 		<h1 id="selected_state" style="text-align: center"></h1>
 		<div class="thin-line col-sm-10 col-sm-offset-1"></div><br>
+		<div id="loading" style="display: none; text-align: center;"><?php echo HTML::image('media/images/ajax-loader.gif',array('width'=>20,'height'=>20))?></div>
 		<ul id="candidate_list" class="list-unstyled"></ul>
 	</div>
 
@@ -124,7 +125,7 @@
 		onRegionClick: function(event, abbrev, state) {
 			console.log("Clicked " + state);
 			$('#selected_state').text(state);
-			$('#candidate_list').html("<li>Loading...</li>");
+			$('#loading').css("display", "inherit");
 			getCandidates(abbrev);
 			$('html, body').animate({
 				scrollTop: $('#candidate_list').offset().top
@@ -132,7 +133,7 @@
 		}
 	});
 	
-	function getCandidates(abbrev) {
+	function getCandidates(abbrev) { // Change to return candidate object!!!!!!!!!!!!!
 		$.get('?state=' + abbrev.toUpperCase(), function(data) {
 			var list = $('#candidate_list');
 			list.children().remove();
@@ -143,6 +144,7 @@
 				var html = "<li>" + data[i] + "</li>";
 				list.append(html);
 			}
+			$('#loading').css("display", "none");
 		}, 'json');
 	}
 	
