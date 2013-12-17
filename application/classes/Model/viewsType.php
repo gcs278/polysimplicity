@@ -2,7 +2,7 @@
 
 Class Model_viewsType  extends ORM
 {
-        protected $_table_name = 'viewsType';
+        protected $_table_name = 'view_types';
         protected $_belongs_to = array('Views' => array() );
 
         // protected $_has_many = array('Views' => array('model' => 'Views', 'foreign_key' => 'views_type_id'));
