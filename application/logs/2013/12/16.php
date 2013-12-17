@@ -549,3 +549,28 @@
 2013-12-16 23:34:53 --- CRITICAL: ErrorException [ 1 ]: Call to undefined function convert_state() ~ APPPATH\classes\Controller\Web\Home.php [ 94 ] in file:line
 2013-12-16 23:34:53 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
 #1 {main} in file:line
+2013-12-16 23:48:40 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '=' ~ APPPATH\classes\Controller\Web\Home.php [ 90 ] in file:line
+2013-12-16 23:48:40 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-16 23:48:48 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: candidate ~ APPPATH\classes\Controller\Web\Home.php [ 89 ] in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php:89
+2013-12-16 23:48:48 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php(89): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\pol...', 89, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_candidate()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php:89
+2013-12-16 23:49:18 --- CRITICAL: Kohana_Exception [ 0 ]: The count property does not exist in the Model_Candidates class ~ MODPATH\orm\classes\Kohana\ORM.php [ 687 ] in C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php:603
+2013-12-16 23:49:18 --- DEBUG: #0 C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php(603): Kohana_ORM->get('count')
+#1 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php(89): Kohana_ORM->__get('count')
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_candidate()
+#3 [internal function]: Kohana_Controller->execute()
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#7 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#8 {main} in C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php:603
+2013-12-16 23:49:32 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\classes\Controller\Web\Home.php [ 89 ] in file:line
+2013-12-16 23:49:32 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
