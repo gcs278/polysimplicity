@@ -138,6 +138,8 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                                 return;
                         }
 
+
+
                         // Determine how many positions there are
                         $i = 1;
                         $title = "title1";
@@ -166,22 +168,101 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                                 }
 	                	}
 
+	                	// Insert views into database
+	                	$view_types = ORM::factory('viewsType')->find_all();
+
+	                	foreach ($view_types as $view_type ) {
+	                		$views = ORM::factory('Views');
+	                		if ( isset($_POST[$view_type->name]) ) {
+	                			$views->simple = $_POST[$view_type->name];
+	                			$views->candidates_id = $candidate->id;
+	                			$views->viewsType_id = $view_type->id;
+
+	                			if ( isset($_POST[$view_type->name . "_detail"] ) ) 
+	                				$views->detail = $_POST[$view_type->name . "_detail"];
+
+	                			$views->save();
+	                		}
+
+	                	}
+
 	                	// If we made it here, SUCCESS!
 		                $this->template->title = 'Home';
 		                $view=view::factory('controllers/web/management/form');
 		                $this->view = $view;
+		                $this->view->views_tabbed_display = $this->create_tabbed_views();
 		                $errorMessage = "<script> alert('Success! Candidate is now in the database'); </script>";
 		                $this->view->script = $errorMessage;
-                } else {
+		            } else {
                 	// Else just display the form page
-                	$this->template->title = 'Home';
-                	$view=view::factory('controllers/web/management/form');
-                	$this->view = $view;
-                    $this->template->sideSelect = "form";
-                }
+	            	$this->template->title = 'Home';
+	            	$view=view::factory('controllers/web/management/form');
+	            	$this->view = $view;
+	            	$this->template->sideSelect = "form";
+
+	            	$this->view->views_tabbed_display = $this->create_tabbed_views();
+		            }
         }
 
+        private function create_tabbed_views() {
+        	$views = array(1 => array('Increase','Neutral','Decrease'),
+	            		2 => array('Pro-Life','Pro-Choice'),
+	            		3 => array('Expand','Neutral','Reduce'),
+	            		4 => array('Deregulate','Neutral','Regulate'),
+	            		5 => array('Legalize','Criminalize'),
+	            		6 => array('For','Neutral','Against'),
+	            		7 => array('Expand','Neutral','Restrict'),
+	            		8 => array('Expand','Neutral','Reduce'),
+	            		10 => array('Privatize','Neutral','Regulate'),
+	            		9 => array('Regulate','Neutral','Deregulate'),
+	            		11 => array('Increase','Neutral','Decrease'),
+	            		12 => array('Increase','Neutral','Decrease'),);
 
+	            	$view_types = ORM::factory('viewsType')->find_all();
+
+	            	$display = "<ul class='nav nav-tabs' id='myTab'>";
+	            	foreach ($view_types as $view){
+	            		if ( $view->id == 1 ) {
+	            			$display .= "<li class='active'><a href='#" . $view->name . "' data-toggle='tab' >" . $view->name . "</a></li>";
+	            		} else {
+	            			$display .= "<li><a href='#" . $view->name . "' data-toggle='tab'>" . $view->name . "</a></li>";
+	            		}
+	            	}
+	            	$display .= "</ul>
+	            	<div class='tab-content well'>";
+
+	            		foreach ($view_types as $view) {
+	            			if ( $view->id == 1 ) {
+	            				$display .=  "<div class='tab-pane active' ";
+	            			} else {
+	            				$display .=  "<div class='tab-pane' ";
+	            			}
+
+	            			$display .=  "id='" . $view->name . "'>
+	            			<h4>".$view->name." View:</h4>
+	            			<div class='form-group offset1'>";
+
+	            				foreach( $views[$view->id] as $choice) {
+	            					$display .=  "<div class='radio col-sm-10 lead'>
+	            					<label>
+	            						<input type='radio' name='".$view->name."' value='".$choice."'>
+	            						".$choice."
+	            					</label>
+	            				</div>";
+	            			}
+
+	            			$display .=  "</div>
+	            			<h4>".$view->name." View Details:</h4>
+	            			<div class='form-group offset1'>
+	            				<div class='col-sm-10'>
+	            					<textarea type='text' rows='5' name='".$view->name."_detail' class='form-control' id='detailed_views'></textarea>
+	            				</div>
+	            			</div>
+	            		</div>";
+	            	}
+	            	$display .= "</div>";
+	            	return $display;
+        }
 
         public function action_login() {
                 $view= View::factory('controllers/web/management/login')
@@ -362,6 +443,16 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                 		$position->title . "','" . $position->status . "','" . 
                 		$position->term_start . "','" . $position->term_end . "');</script>";
                 }
+
+	            $views = ORM::factory('Views')->where('candidates_id','=',$id)->find_all();
+	            
+	            $view_in_database = array();
+	            foreach($views as $view) {
+	            	$view_type = ORM::factory('viewsType')->where('id','=',$view->viewsType_id);
+	            	// array_push($view_in_database, $view->id => )
+	            }
+
+	            $this->view->views_tabbed_display = $this->create_tabbed_views();
                 
             }
 

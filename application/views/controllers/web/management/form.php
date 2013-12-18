@@ -168,64 +168,8 @@
 			<div id="more_positions"></div>
 
 			<h3>Views:</h3>
-			<?php $views = array('Taxation' => array('Increase','Neutral','Decrease'),
-				'Abortion' => array('Pro-Life','Pro-Choice'),
-				'Military' => array('Expand','Neutral','Reduce'),
-				'Guns' => array('Deregulate','Neutral','Regulate'),
-				'Marijuana' => array('Legalize','Criminalize'),
-				'Marriage' => array('For','Neutral','Against'),
-				'Immigrants' => array('Expand','Neutral','Restrict'),
-				'Education' => array('Expand','Neutral','Reduce'),
-				'Health' => array('Privatize','Neutral','Regulate'),
-				'Enivormental' => array('Regulate','Neutral','Deregulate'),
-				'Social_Security' => array('Increase','Neutral','Decrease'),
-				'Death_Penalty' => array('Increase','Neutral','Decrease'),);
-				?>
-			<ul class="nav nav-tabs" id="myTab">
-				<?php 
-					foreach ($views as $view => $choices){
-						if ( $view == "Taxation" ) {
-							echo "<li class='active'><a href='#" . $view . "' data-toggle='tab' >" . $view . "</a></li>";
-						} else {
-							echo "<li><a href='#" . $view . "' data-toggle='tab'>" . $view . "</a></li>";
-						}
-					}
-				?>
-			</ul>
-
-			<div class="tab-content well">
-				<?php 
-					foreach ($views as $view => $choices) {
-						if ( $view == "Taxation" ) {
-							echo "<div class='tab-pane active' ";
-						} else {
-							echo "<div class='tab-pane' ";
-						}
-
-						echo "id='" . $view . "'>
-							<h4>".$view." View:</h4>
-							<div class='form-group offset1'>";
-
-						foreach( $choices as $choice) {
-							echo "<div class='radio col-sm-10 lead'>
-							<label>
-								<input type='radio' name='".$view."' value='".$choice."'>
-								".$choice."
-							</label>
-						</div>";
-						}
-
-						echo "</div>
-								<h4>".$view." View Details:</h4>
-								<div class='form-group offset1'>
-									<div class='col-sm-10'>
-										<textarea type='text' rows='5' name='".$view."_detail' class='form-control' id='detailed_views'></textarea>
-									</div>
-								</div>
-						</div>";
-					}
-				?>
-			</div>
+			<?php echo $views_tabbed_display; ?>
+			
 			<button type="submit" id="submit" class="btn btn-default">Submit</button>
 		</form>
 	</div>
