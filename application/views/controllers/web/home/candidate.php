@@ -30,6 +30,47 @@
 <script>
  $(window).ready(function() {
     $("#loading").remove();
+
+    $(".detail-view").hide();
+
+    //arrange the background image starting position for all the rows.
+    //This will allow the background image cut illusion when showing the folder content panel
+    // $(".row").each(function() {
+    //     $(this).css({
+    //         backgroundImage: "url('http://farm6.static.flickr.com/5085/5335262784_8b5d87db95_d.jpg')",
+    //         backgroundPosition: "0px -" + $(this).index() * $(this).outerHeight() + "px"
+    //     });
+    // });
+
+    //when a folder is clicked,
+    //position the content folder after the clicked row
+    //and toggle all folder / app icon that is not the one clicked.
+    //and toggle the folder content panel
+
+
+    $(".view-block").click(function() {
+        $(".detail-view").not(this).hide();
+        var folderContent = $("#"+$(this).attr('id')+".detail-view");
+        folderContent.remove();
+
+        var folderContentShown = folderContent.css("display") != "none";
+
+        var clickedFolder = $(this);
+        clickedFolder.after(folderContent);
+
+        // $("body").find(".folder, .app").not(clickedFolder).each(function() {
+        //     if (!folderContentShown) $(this).animate({
+        //         opacity: 0.20
+        //     }, "fast");
+        //     else $(this).animate({
+        //         opacity: 1.00
+        //     }, "fast");
+        // });
+
+        //clickedFolder.animate({opacity: folderContentShown ? 1.00 : 0.70}, "fast");
+        folderContent.slideToggle("fast");
+        event.preventDefault();
+    });
 });
 </script>	
 

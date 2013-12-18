@@ -60,3 +60,12 @@
 #11 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
 #12 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
 #13 {main} in C:\wamp\www\polysimplicity\modules\database\classes\Kohana\Database\MySQL.php:359
+2013-12-17 19:27:14 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '.' ~ APPPATH\classes\Controller\Web\Home.php [ 104 ] in file:line
+2013-12-17 19:27:14 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-17 19:27:21 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '.' ~ APPPATH\classes\Controller\Web\Home.php [ 104 ] in file:line
+2013-12-17 19:27:21 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2013-12-17 19:27:42 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '}' ~ APPPATH\classes\Controller\Web\Home.php [ 111 ] in file:line
+2013-12-17 19:27:42 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line

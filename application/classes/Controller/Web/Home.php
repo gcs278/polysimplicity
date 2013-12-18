@@ -97,19 +97,23 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
         	// Get view type
         	$type_id = $candidate_view->viewsType_id;
         	$view_type = ORM::factory('viewsType')->where('id','=',$type_id)->find(0);
-        	$view_type->name = ucwords(str_replace("_"," ", $view_type->name));
+        	$view_name = ucwords(str_replace("_"," ", $view_type->name));
 
         	// Format block
-        	$this->view->views_display = $this->view->views_display . "<div class='col-sm-2 view-block'>
-            <h4>" . $view_type->name ."</h4>
+        	$this->view->views_display = $this->view->views_display . "<div class='col-sm-2 view-block' id='"
+        	. $view_type->name . "'>
+            <h4>" . $view_name ."</h4>
             	<div class='thin-line-light'></div>
-            <h1>".$candidate_view->simple."</h1>
-        	</div>";
-
-            // No views set
-            if ( $this->view->views_display == "") {
-            	$this->view->views_display = "<h3>Hmmm...No information here</h3>";
-            }
+            <h2>".$candidate_view->simple."</h2>
+        	</div>
+        	<div class = 'detail-view row-fluid' id='".$view_type->name."'>" 
+        	. $candidate_view->detail . 
+        	// "<img src='". url::site('/media/images/View_Icons/taxation.png') . "'>"."
+        	"</div>";
+		}
+		// No views set
+		if ( $this->view->views_display == "") {
+			$this->view->views_display = "<h3>Hmmm...No information here</h3>";
 		}
 	}
 
