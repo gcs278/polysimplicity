@@ -10,7 +10,7 @@
         <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
 
 				<!--Custom Fonts-->
-				<link href='http://fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
+				<link href='//fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
 				        
         <style>
 						.thin-line { border-top: 1px solid #000;
@@ -75,31 +75,6 @@
 		</div>
 		<div class="thin-line col-sm-10 col-sm-offset-1"></div>
     </div>
-    <!--Header NAV START -->
-    <!-- <nav class="navbar navbar-inverse" role="navigation">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".topNavbar">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <?php echo Html::anchor('', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
-                </div>
-                
-                <div class="collapse navbar-collapse topNavbar">
-                    <ul class="nav navbar-nav">
-                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href="<?php echo URL::site('')?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-                        <li class="<?php //if($active === 'about') echo 'active'; ?>"><a href="#"><span class="glyphicon glyphicon-question-sign"></span> About Us</a></li>
-                        <li>
-                            <form id="tfnewsearch" method="get" action="" _lpchecked="1">
-                                <input type="text" id="search" name="query" size="21" maxlength="120" placeholder="Search our website">
-                                <button type="submit"><span class="glyphicon glyphicon-search"></span></input>
-                            </form>
-                        </li>
-                    </ul>
-                </div>
-    </nav> -->
-    <!--Header END -->
     
     <script>
 			$(function() {
@@ -139,7 +114,7 @@
 
 <div class="col-sm-8 col-sm-offset-2 lead" id="about_us">
 	<p>Hi, we are a startup website that takes a political candidate's information and condenses it all on to one page in an easy, understandable way. Our hope is that you will read our site and base informed decisions off of the knowledge you obtain from us. Our goal is to make voting easy for people like you and I without imposing bias into that information other sources may unavoidably do.
-		Please leave us a comment or feedback at our email feedback@politicalsimplicity.com. We would really appreciate any comments or suggests you have for us. If you have a candidate you would like to learn about please let us know and we will move them to the front of the list of candidates to be posted first.</p>
+		Please leave us a comment or feedback at our email <a href="mailto:feedback@politicalsimplicity.com">feedback@politicalsimplicity.com</a>. We would really appreciate any comments or suggests you have for us. If you have a candidate you would like to learn about please let us know and we will move them to the front of the list of candidates to be posted first.</p>
 </div>
 
 <!--Display Page-->
