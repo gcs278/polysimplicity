@@ -10,12 +10,18 @@
 	<div class="col-sm-12" id="map" style="height: 700px">
 	</div>
 	
-	<div class="spinner" style="display: none"> <!--<?php echo HTML::image('media/images/ajax-loader.gif',array('width'=>20,'height'=>20))?> -->
-		<div class="double-bounce1"></div>
-		<div class="double-bounce2"></div>
+	<div class="loading" id="dim" style="display: none"></div>
+	<div class="loading" id="content" style="display: none">
+		<span class="close">&times;</span>
+		<h4 id="selected_state"></h4>
+		<hr>
+		<div class="spinner"> <!--<?php echo HTML::image('media/images/ajax-loader.gif',array('width'=>20,'height'=>20))?> -->
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
+		<ul id="candidate_list" class="list-unstyled"></ul>
 	</div>
-	
-	<!-- Modal -->
+	<!-- Modal
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
@@ -28,7 +34,7 @@
 				</div>
 			</div><!-- /.modal-content -->
 		</div><!-- /.modal-dialog -->
-	</div><!-- /.modal -->
+	</div> /.modal -->
 
 	<div class="col-sm-12" id="positions" style="right: -4000px; margin-top: -650px; display: none;">
 		<div class="panel-group" id="accordion">
@@ -140,12 +146,15 @@
 			$('#candidate_list').children().remove();
 			console.log("Clicked " + state);
 			$('#selected_state').text(state);
-			$('.spinner').css("display", "inherit");
+			$('.loading').css('display', 'inherit');
+			$('.loading').animate({
+				opacity: 1
+			});
 			getCandidates(abbrev);
 		}
 	});
 	
-	function getCandidates(abbrev) { // Change to return candidate object!!!!!!!!!!!!!
+	function getCandidates(abbrev) {
 		$.get('?state=' + abbrev.toUpperCase(), function(data) {
 			var list = $('#candidate_list');
 			list.children().remove();
@@ -153,10 +162,13 @@
 			for (var i=0; i<data.length; i++) {
 				console.log
 				console.log(data[i]);
-				var html = "<li>" + data[i] + "</li>";
+				if (data[i].id >= 0)
+					var html = "<a href='candidate/" + data[i].id + "'><img id='small-profile' src='data:image/jpg;base64, "
+						+ data[i].image + "' class='img-rounded img-responsive' \><br><li>" + data[i].name + "</a></li>";
+				else
+					var html = "<li>" + data[i].name + "</li>";
 				list.append(html);
 			}
-			$('#myModal').modal('show');
 			$('.spinner').css("display", "none");
 		}, 'json');
 	}
@@ -185,7 +197,21 @@
 	});
 	
 	$('body').on("click", "#dim", function() {
-		$('#myModal').modal('hide');
+		$('.loading').animate({
+			opacity: 0
+		}, function() {
+			$('.loading').css("display", "none");
+			$('.spinner').css("display", "inherit");
+		});
+	});
+	
+	$('.loading').on('click', '.close', function() {
+		$('.loading').animate({
+			opacity: 0
+		}, function() {
+			$('.loading').css("display", "none");
+			$('.spinner').css("display", "inherit");
+		});
 	});
 </script>
 

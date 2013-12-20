@@ -10,7 +10,7 @@
         <link href="//code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" rel="stylesheet">
 
 				<!--Custom Fonts-->
-				<link href='//fonts.googleapis.com/css?family=Tangerine:400,700' rel='stylesheet' type='text/css'>
+				<link href='//fonts.googleapis.com/css?family=Qwigley' rel='stylesheet' type='text/css'>
 				        
         <style>
 						.thin-line { border-top: 1px solid #000;
@@ -24,8 +24,8 @@
 								margin-bottom: 10px; }
 						#about_us { display: none;
 								text-align: center; }
-						#logo h1 { font-family: 'Tangerine', cursive;
-								font-size: 600%;
+						#logo h1 { font-family: 'Qwigley', cursive;
+								font-size: 900%;
 								margin-bottom: 50px; }
 				</style>
         
