@@ -194,75 +194,94 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 		                $errorMessage = "<script> alert('Success! Candidate is now in the database'); </script>";
 		                $this->view->script = $errorMessage;
 		            } else {
-                	// Else just display the form page
-	            	$this->template->title = 'Home';
-	            	$view=view::factory('controllers/web/management/form');
-	            	$this->view = $view;
-	            	$this->template->sideSelect = "form";
+	                	// Else just display the form page
+		            	$this->template->title = 'Home';
+		            	$view=view::factory('controllers/web/management/form');
+		            	$this->view = $view;
+		            	$this->template->sideSelect = "form";
 
-	            	$this->view->views_tabbed_display = $this->create_tabbed_views();
+		            	$this->view->views_tabbed_display = $this->create_tabbed_views();
 		            }
         }
 
-        private function create_tabbed_views() {
+        private function create_tabbed_views($values = NULL) {
         	$views = array(1 => array('Increase','Neutral','Decrease'),
-	            		2 => array('Pro-Life','Pro-Choice'),
-	            		3 => array('Expand','Neutral','Reduce'),
-	            		4 => array('Deregulate','Neutral','Regulate'),
-	            		5 => array('Legalize','Criminalize'),
-	            		6 => array('For','Neutral','Against'),
-	            		7 => array('Expand','Neutral','Restrict'),
-	            		8 => array('Expand','Neutral','Reduce'),
-	            		10 => array('Privatize','Neutral','Regulate'),
-	            		9 => array('Regulate','Neutral','Deregulate'),
-	            		11 => array('Increase','Neutral','Decrease'),
-	            		12 => array('Increase','Neutral','Decrease'),);
+        		2 => array('Pro-Life','Pro-Choice'),
+        		3 => array('Expand','Neutral','Reduce'),
+        		4 => array('Deregulate','Neutral','Regulate'),
+        		5 => array('Legalize','Criminalize'),
+        		6 => array('For','Neutral','Against'),
+        		7 => array('Expand','Neutral','Restrict'),
+        		8 => array('Expand','Neutral','Reduce'),
+        		10 => array('Privatize','Neutral','Regulate'),
+        		9 => array('Regulate','Neutral','Deregulate'),
+        		11 => array('Increase','Neutral','Decrease'),
+        		12 => array('Increase','Neutral','Decrease'),);
 
-	            	$view_types = ORM::factory('viewsType')->find_all();
+        	$view_types = ORM::factory('viewsType')->find_all();
 
-	            	$display = "<ul class='nav nav-tabs' id='myTab'>";
-	            	foreach ($view_types as $view){
-	            		if ( $view->id == 1 ) {
-	            			$display .= "<li class='active'><a href='#" . $view->name . "' data-toggle='tab' >" . $view->name . "</a></li>";
-	            		} else {
-	            			$display .= "<li><a href='#" . $view->name . "' data-toggle='tab'>" . $view->name . "</a></li>";
-	            		}
-	            	}
-	            	$display .= "</ul>
-	            	<div class='tab-content well'>";
+        	$display = "<ul class='nav nav-tabs' id='myTab'>";
+        	foreach ($view_types as $view){
+                $clean_name = str_replace("_"," ",ucwords($view->name));
+        		if ( $view->id == 1 ) {
+        			$display .= "<li class='active'><a href='#" . $view->name . "' data-toggle='tab' >" . $clean_name . "</a></li>";
+        		} else {
+        			$display .= "<li><a href='#" . $view->name . "' data-toggle='tab'>" . $clean_name . "</a></li>";
+        		}
+        	}
+        	$display .= "</ul>
+        	<div class='tab-content well'>";
 
-	            		foreach ($view_types as $view) {
-	            			if ( $view->id == 1 ) {
-	            				$display .=  "<div class='tab-pane active' ";
-	            			} else {
-	            				$display .=  "<div class='tab-pane' ";
-	            			}
+        		foreach ($view_types as $view) {
+        			if ( $view->id == 1 ) {
+        				$display .=  "<div class='tab-pane active' ";
+        			} else {
+        				$display .=  "<div class='tab-pane' ";
+        			}
 
-	            			$display .=  "id='" . $view->name . "'>
-	            			<h4>".$view->name." View:</h4>
-	            			<div class='form-group offset1'>";
+        			$database_view = NULL;
+        			if ( isset($values) ) {
+        				foreach( $values as $view_ ) {
+        					if ( $view_->id == $view->id )
+        						$database_view = $view_;
+        				}
+        			}
 
-	            				foreach( $views[$view->id] as $choice) {
-	            					$display .=  "<div class='radio col-sm-10 lead'>
-	            					<label>
-	            						<input type='radio' name='".$view->name."' value='".$choice."'>
-	            						".$choice."
-	            					</label>
-	            				</div>";
-	            			}
+        			$clean_name = str_replace("_"," ",ucwords($view->name));
 
-	            			$display .=  "</div>
-	            			<h4>".$view->name." View Details:</h4>
-	            			<div class='form-group offset1'>
-	            				<div class='col-sm-10'>
-	            					<textarea type='text' rows='5' name='".$view->name."_detail' class='form-control' id='detailed_views'></textarea>
-	            				</div>
-	            			</div>
-	            		</div>";
-	            	}
-	            	$display .= "</div>";
-	            	return $display;
-        }
+        			$display .=  "id='" . $view->name . "'>
+        			<h4>".$clean_name." View:</h4>
+        			<div class='form-group offset1'>";
+
+        				foreach( $views[$view->id] as $choice) {
+        					$display .=  "<div class='radio col-sm-10 lead'>
+        					<label>
+        						<input type='radio' name='".$view->name."' value='".$choice."'";
+        						if ( isset($database_view) ) {
+        							if ( $database_view->simple == $choice )
+        								$display .= " checked ";
+        						}
+        						$display .= ">".$choice."
+        					</label>
+        				</div>";
+        			}
+
+        			$display .=  "</div>
+        			<h4>".$clean_name." View Details:</h4>
+        			<div class='form-group offset1'>
+        				<div class='col-sm-10'>
+        					<textarea type='text' rows='5' name='".$view->name."_detail' class='form-control' id='detailed_views'>";
+        						if ( isset($database_view) ) 
+        							$display .= $database_view->detail;
+
+        						$display .= "</textarea>
+        					</div>
+        				</div>
+        			</div>";
+        		}
+        		$display .= "</div>";
+        		return $display;
+        	}
 
         public function action_login() {
                 $view= View::factory('controllers/web/management/login')
@@ -414,12 +433,52 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         $errorMessage .= "'); </script>";
                         $this->view->script = $errorMessage;
                         return;
-                }            
+                }
+
+                // Insert views into database
+                $view_types = ORM::factory('viewsType')->find_all();
+
+                foreach ($view_types as $view_type ) {
+
+                    if ( isset($_POST[$view_type->name]) ) {
+                        // Get the current view
+                        $view = ORM::factory('Views')->where('candidates_id','=',$candidate->id)->where('viewsType_id','=',$view_type->id)->find();
+
+                        // Update current view
+                        if( $view->loaded() ) {
+                            $view->simple = $_POST[$view_type->name];
+                            $view->candidates_id = $candidate->id;
+                            $view->viewsType_id = $view_type->id;
+
+                            if ( isset($_POST[$view_type->name . "_detail"] ) ) 
+                                $view->detail = $_POST[$view_type->name . "_detail"];
+
+                            $view->update();
+                        }
+                        // Create a new view
+                        else {
+                            $views = ORM::factory('Views');
+
+                            $views->simple = $_POST[$view_type->name];
+                            $views->candidates_id = $candidate->id;
+                            $views->viewsType_id = $view_type->id;
+
+                            if ( isset($_POST[$view_type->name . "_detail"] ) ) 
+                                $views->detail = $_POST[$view_type->name . "_detail"];
+
+                            $views->save();
+                        }
+                    }
+                }
+
+
                 $this->redirect(Route::get('candidates')->uri(
                 array(
                     'id' => $id,                      
                        )
-                ));   
+                )); 
+                echo Debug::vars("Candidate has successfully been modified!");
+
                 return;
             }else {
                 $this->template->title = 'Home';
@@ -448,16 +507,16 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 	            
 	            $view_in_database = array();
 	            foreach($views as $view) {
-	            	$view_type = ORM::factory('viewsType')->where('id','=',$view->viewsType_id);
-	            	// array_push($view_in_database, $view->id => )
+	            	array_push($view_in_database, $view );
 	            }
 
-	            $this->view->views_tabbed_display = $this->create_tabbed_views();
+	            $this->view->views_tabbed_display = $this->create_tabbed_views($view_in_database);
                 
             }
 
 
         }
+
 
         // Deletes all trace of a candidate
 		public function action_delete() {
