@@ -2,7 +2,6 @@ img {
 	width: auto;
 }
 #profile-pic {
-	width: 300px;
 	height: 300px;
 }
 
@@ -45,3 +44,6 @@ img {
 	width: 150px;
 	float: left;
 }
+
+// animate.min.css
+

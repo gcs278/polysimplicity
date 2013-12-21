@@ -9,12 +9,32 @@
 	</div>
 	<div class="col-sm-12" id="map" style="height: 700px">
 	</div>
-	<div id="below_map" style="padding-bottom: 100px;">
-		<h1 id="selected_state" style="text-align: center"></h1>
-		<div class="thin-line col-sm-10 col-sm-offset-1"></div><br>
-		<div id="loading" style="display: none; text-align: center;"><?php echo HTML::image('media/images/ajax-loader.gif',array('width'=>20,'height'=>20))?></div>
+	
+	<div class="loading" id="dim" style="display: none"></div>
+	<div class="loading" id="content" style="display: none">
+		<span class="close">&times;</span>
+		<h4 id="selected_state"></h4>
+		<hr>
+		<div class="spinner"> <!--<?php echo HTML::image('media/images/ajax-loader.gif',array('width'=>20,'height'=>20))?> -->
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
 		<ul id="candidate_list" class="list-unstyled"></ul>
 	</div>
+	<!-- Modal
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title" id="selected_state">Modal title</h4>
+				</div>
+				<div class="modal-body">
+					<ul id="candidate_list" class="list-unstyled"></ul>
+				</div>
+			</div><!-- /.modal-content -->
+		</div><!-- /.modal-dialog -->
+	</div> /.modal -->
 
 	<div class="col-sm-12" id="positions" style="right: -4000px; margin-top: -650px; display: none;">
 		<div class="panel-group" id="accordion">
@@ -123,17 +143,18 @@
 		selectedRegion: null,
 		showTooltip: true,
 		onRegionClick: function(event, abbrev, state) {
+			$('#candidate_list').children().remove();
 			console.log("Clicked " + state);
 			$('#selected_state').text(state);
-			$('#loading').css("display", "inherit");
+			$('.loading').css('display', 'inherit');
+			$('.loading').animate({
+				opacity: 1
+			});
 			getCandidates(abbrev);
-			$('html, body').animate({
-				scrollTop: $('#candidate_list').offset().top
-			}, 2000);
 		}
 	});
 	
-	function getCandidates(abbrev) { // Change to return candidate object!!!!!!!!!!!!!
+	function getCandidates(abbrev) {
 		$.get('?state=' + abbrev.toUpperCase(), function(data) {
 			var list = $('#candidate_list');
 			list.children().remove();
@@ -141,10 +162,14 @@
 			for (var i=0; i<data.length; i++) {
 				console.log
 				console.log(data[i]);
-				var html = "<li>" + data[i] + "</li>";
+				if (data[i].id >= 0)
+					var html = "<a href='candidate/" + data[i].id + "'><img id='small-profile' src='data:image/jpg;base64, "
+						+ data[i].image + "' class='img-rounded img-responsive' \><br><li>" + data[i].name + "</a></li>";
+				else
+					var html = "<li>" + data[i].name + "</li>";
 				list.append(html);
 			}
-			$('#loading').css("display", "none");
+			$('.spinner').css("display", "none");
 		}, 'json');
 	}
 	
@@ -169,6 +194,24 @@
 				$('#positions').css('display', 'none');
 			});
 		}
+	});
+	
+	$('body').on("click", "#dim", function() {
+		$('.loading').animate({
+			opacity: 0
+		}, function() {
+			$('.loading').css("display", "none");
+			$('.spinner').css("display", "inherit");
+		});
+	});
+	
+	$('.loading').on('click', '.close', function() {
+		$('.loading').animate({
+			opacity: 0
+		}, function() {
+			$('.loading').css("display", "none");
+			$('.spinner').css("display", "inherit");
+		});
 	});
 </script>
 
