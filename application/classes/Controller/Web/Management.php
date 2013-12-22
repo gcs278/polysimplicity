@@ -242,11 +242,11 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
         			$database_view = NULL;
         			if ( isset($values) ) {
         				foreach( $values as $view_ ) {
-        					if ( $view_->id == $view->id )
+        					if ( $view_->viewsType_id == $view->id )
         						$database_view = $view_;
         				}
         			}
-
+                   
         			$clean_name = str_replace("_"," ",ucwords($view->name));
 
         			$display .=  "id='" . $view->name . "'>
@@ -505,12 +505,8 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 
 	            $views = ORM::factory('Views')->where('candidates_id','=',$id)->find_all();
 	            
-	            $view_in_database = array();
-	            foreach($views as $view) {
-	            	array_push($view_in_database, $view );
-	            }
-
-	            $this->view->views_tabbed_display = $this->create_tabbed_views($view_in_database);
+            
+	            $this->view->views_tabbed_display = $this->create_tabbed_views($views);
                 
             }
 

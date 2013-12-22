@@ -125,10 +125,10 @@
 					<select class="form-control" name="party" id="party">
 					  <option value="<?php if(isset($party)){ echo $party;}?>"><?php if(isset($party)){ echo $party;}?></option>
 					  <option value="">Select a Party...</option>
-					  <option value="Rep">Republican</option>
-					  <option value="Dem">Democrat</option>
-					  <option value="Ind">Independent</option>
-					  <option value="Lib">Libertarian</option>
+					  <option value="Republican">Republican</option>
+					  <option value="Democrat">Democrat</option>
+					  <option value="Independent">Independent</option>
+					  <option value="Libertarian">Libertarian</option>
 					</select>
 				</div>
 			</div>
