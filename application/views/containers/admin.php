@@ -14,8 +14,7 @@
             foreach ($styles as $file => $type)
                 echo HTML::style($file, array('media' => $type)), PHP_EOL
         ?>
-        
-	<!--Kohana Script Includes-->
+        <!--Kohana Script Includes-->
         <?php
             foreach ($scripts as $file)
                 echo HTML::script($file), PHP_EOL

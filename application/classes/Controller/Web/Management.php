@@ -124,6 +124,9 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                                 $errorMessage .= $e->getMessage();
                                 $errorMessage .= "'); </script>";
                                 $this->view->script = $errorMessage;
+                                $this->template->sideSelect = "form";
+
+                                $this->view->views_tabbed_display = $this->create_tabbed_views();
                                 return;
                         }
 
@@ -144,12 +147,14 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                                 $term_start = "term_start" . strval($x);
                                 $term_end = "term_end" . strval($x);
                                 $title = "title" . strval($x);
+                                $state = "state" . strval($x);
 
                                 // Verify everything is set for each position
                                 if (isset($_POST[$status]) && isset($_POST[$term_start]) && isset($_POST[$term_end])) {
                                         $positions = ORM::factory('Positions');
                                         $positions->title = $_POST[$title];
                                         $positions->status = $_POST[$status];
+                                        $positions->state = $_POST[$state];
                                         $positions->term_start = $_POST[$term_start];
                                         $positions->term_end = $_POST[$term_end];
                                         $positions->candidates_id = $candidate->id;
@@ -194,18 +199,18 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
         }
 
         private function create_tabbed_views($values = NULL) {
-        	$views = array(1 => array('Increase','Neutral','Decrease'),
-        		2 => array('Pro-Life','Pro-Choice'),
-        		3 => array('Expand','Neutral','Reduce'),
-        		4 => array('Deregulate','Neutral','Regulate'),
-        		5 => array('Legalize','Criminalize'),
-        		6 => array('For','Neutral','Against'),
-        		7 => array('Expand','Neutral','Restrict'),
-        		8 => array('Expand','Neutral','Reduce'),
-        		10 => array('Privatize','Neutral','Regulate'),
-        		9 => array('Regulate','Neutral','Deregulate'),
-        		11 => array('Increase','Neutral','Decrease'),
-        		12 => array('Increase','Neutral','Decrease'),);
+        	$views = array(1 => array('Increase','Neutral','Decrease','Unknown'),
+        		2 => array('Pro-Life','Pro-Choice','Unknown'),
+        		3 => array('Expand','Neutral','Reduce','Unknown'),
+        		4 => array('Deregulate','Neutral','Regulate','Unknown'),
+        		5 => array('Legalize','Criminalize','Unknown'),
+        		6 => array('For','Neutral','Against','Unknown'),
+        		7 => array('Expand','Neutral','Restrict','Unknown'),
+        		8 => array('Expand','Neutral','Reduce','Unknown'),
+        		10 => array('Privatize','Neutral','Regulate','Unknown'),
+        		9 => array('Regulate','Neutral','Deregulate','Unknown'),
+        		11 => array('Increase','Neutral','Decrease','Unknown'),
+        		12 => array('Increase','Neutral','Decrease','Unknown'),);
 
         	$view_types = ORM::factory('viewsType')->find_all();
 

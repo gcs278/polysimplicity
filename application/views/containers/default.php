@@ -123,9 +123,8 @@
 
 <!--Footer START-->
 <nav class="navbar navbar-default navbar-fixed-bottom" role="navigation">
-	<p class="lead" style="text-align: center;"> Political Simplicity, 2013
+	<p class="lead" style="text-align: center; margin: auto;"> Political Simplicity, 2013
 		<a href="<?php echo URL::site('management/')?>">
-			<!--<?php echo HTML::image('media/images/plus-xxl.png',array("width"=>25,"height"=>25))?>-->
 			<span class="glyphicon glyphicon-cog"></span>
 		</a>
 	</p>

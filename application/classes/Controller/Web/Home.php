@@ -24,7 +24,8 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 			} else {
 				$state = $_GET['state'];
 				$candidates = ORM::factory('Candidates')->with('Personal')->where('birth_state', '=', $state)->find_all()->as_array();
-	//			sleep(2);
+				
+				//sleep(2);
 				$results = array();
 				foreach ($candidates as $candidate) {
 					array_push($results, array('name' =>  $candidate->first_name . ' ' . $candidate->middle_name . ' ' . $candidate->last_name,
