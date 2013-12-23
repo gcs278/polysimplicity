@@ -41,7 +41,7 @@ class Controller_Admin_Containers_Default extends Controller_Template {
             $controller = $this->request->controller();
 
             //Build the styles array
-            $css_file = 'media/css/controllers/web/' . $controller . '/' . $action . '.css';
+            $css_file = '/media/css/controllers/web/' . $controller . '/' . $action . '.css';
             
             $styles = array(
                 //'media/css/camera/camera.css'=>'screen',
@@ -50,7 +50,8 @@ class Controller_Admin_Containers_Default extends Controller_Template {
                 //'media/css/blueprint/src/print.css' => 'print',
                 //'media/css/blueprint/src/ie.css' => 'screen, projection',
                 //'media/css/jqueryui/jquery-ui-1.9.1.custom.min.css'=>'screen',
-                 'media/css/style.css' => 'screen',
+                 '/media/css/style.css' => 'screen',
+		 '/media/css/controllers/web/Management/style.css' => 'screen',
                 // GRANT ADDED, I believe there is a better way to do this
                 //'media/css/controllers/web/Home/form.css'=>'screen',
                 //'media/css/controllers/web/Home/structure.css'=>'screen',

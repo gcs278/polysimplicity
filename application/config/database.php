@@ -20,7 +20,7 @@ return array
 //Localhost Credentials 
 
    'username'   => 'gcs278',
-   'password'   => '',
+   'password'   => 'PoliticalSimplicity',
    'persistent' => FALSE,
 
   ),

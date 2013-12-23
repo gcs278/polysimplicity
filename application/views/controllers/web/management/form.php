@@ -134,7 +134,7 @@
 			</div>
 			<h3>Positions:</h3>
 			<h4>Working on this, not fully functional yet</h4>
-<!-- 			<div class="well" id="original">
+ 			<div class="well" id="original">
 				<div class="form-group">
 					<label for="title" class="col-sm-2 control-label">Title</label>
 					<div class="col-sm-10">
@@ -226,7 +226,7 @@
 				</div>
 				<button type="button" class="btn btn-default add_position">Add Another</button>
 			</div>
-			<div id="more_positions"></div> -->
+			<div id="more_positions"></div>
 
 			<h3>Views:</h3>
 			<?php echo $views_tabbed_display; ?>
