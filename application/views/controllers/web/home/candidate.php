@@ -9,10 +9,18 @@
        <h2>Demographics:</h2> 
        <table class="table table-striped">
            <tbody>
-             <tr><td><h3><strong>Gender:</strong></h3> <?php echo $gender?></td></tr>
+            <?php
+              if ( isset($position_running) ) {
+                echo "<tr><td><h3><strong>Running For:</strong></h3> " . $position_running . "</td></tr>";
+              }
+              if ( isset($position_running) ) {
+                echo "<tr><td><h3><strong>Current Position:</strong></h3> " . $position_current . "</td></tr>";
+              }
+            ?>
+             
              <tr><td><h3><strong>Political Party:</strong></h3> <?php echo $party?></td></tr>
              <tr><td><h3><strong>Birth State:</strong></h3> <?php echo $birth_state?></td></tr>
-             <tr><td><h3><strong>Birth Date: </strong></h3> <?php echo $birth_date?></td></tr>
+             <tr><td><h3><strong>Birth Date:</strong></h3> <?php echo $birth_date?></td></tr>
          </tbody>
      </table>
  </div>
@@ -25,7 +33,15 @@
         </div>
     </div>
 </div>
-</div>
+
+<!-- <div class="row-fluid" style="margin-bottom: 200px;">
+    <div class="well text-center">
+      <h2 style="margin-bottom:20px;">Positions</h2>
+      <div class="position-block">
+        test
+      </div>
+    </div>
+</div> -->
 
 <script>
  $(window).ready(function() {

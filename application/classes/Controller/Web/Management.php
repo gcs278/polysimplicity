@@ -99,17 +99,6 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         // Get the form data
                         $personal->values($_POST);
 
-                        $views = ORM::factory('Views');
-                        $view_type = ORM::factory('viewsType')->find_all();
-
-                        foreach($_POST as $value) {
-                        	foreach($view_type as $type) {
-                        		if ( $type->name == $value) {
-                        			echo Here;
-                        		}
-                        	}
-                        }
-
                         // Validate input for personal and candidate
                         try {
                                 $candidate->check();
@@ -435,6 +424,46 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         return;
                 }
 
+                // Determine how many positions there are
+                $i = 1;
+                $title = "title1";
+                while(isset($_POST[$title])) {
+                    $title = "title" . strval($i);
+                    $i++;
+                }
+
+                        // Get the value from each one and store it in database
+                for ($x=1; $x<$i; $x++) {
+                    // Post names
+                    $status = "status" . strval($x);
+                    $term_start = "term_start" . strval($x);
+                    $term_end = "term_end" . strval($x);
+                    $title = "title" . strval($x);
+
+                    // Verify everything is set for each position
+                    if (isset($_POST[$status]) && isset($_POST[$term_start]) && isset($_POST[$term_end])) {
+                        // $position = ORM::factory('Positions')->where('candidates_id','=',$candidate->id)->where('title');
+                        // // Update position
+                        // if ( $position->loaded() ) {
+                        //     $position->title = $_POST[$title];
+                        //     $position->status = $_POST[$status];
+                        //     $position->term_start = $_POST[$term_start];
+                        //     $position->term_end = $_POST[$term_end];
+                        //     $position->update();
+                        // }
+                        // // Create new position
+                        // else {
+                            $positions = ORM::factory('Positions');
+                            $positions->title = $_POST[$title];
+                            $positions->status = $_POST[$status];
+                            $positions->term_start = $_POST[$term_start];
+                            $positions->term_end = $_POST[$term_end];
+                            $positions->candidates_id = $candidate->id;
+                            $positions->save(); // New table
+                        }
+                    //}
+                }
+
                 // Insert views into database
                 $view_types = ORM::factory('viewsType')->find_all();
 
@@ -499,7 +528,7 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                 $positions = ORM::factory('Positions')->where('candidates_id','=',$id)->find_all();
                 foreach($positions as $position) {
                 	$this->view->script = "<script>type=\"text/javascript\">add_position('" . 
-                		$position->title . "','" . $position->status . "','" . 
+                		$position->id . "','" . $position->title . "','" . $position->status . "','" . 
                 		$position->term_start . "','" . $position->term_end . "');</script>";
                 }
 

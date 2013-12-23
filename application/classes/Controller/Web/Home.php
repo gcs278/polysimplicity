@@ -120,6 +120,16 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		if ( $this->view->views_display == "") {
 			$this->view->views_display = "<h3>Hmmm...No information here</h3>";
 		}
+
+		$running_for = ORM::factory('Positions')->where('candidates_id','=',$id)->where('status','=','Running')->find(0);
+		if ( $running_for->loaded() )  {
+			$this->view->position_running = $running_for->title;
+		}
+
+		$current = ORM::factory('Positions')->where('candidates_id','=',$id)->where('status','=','Current')->find(0);
+		if ( $running_for->loaded() )  {
+			$this->view->position_current = $running_for->title;
+		}
 	}
 
 	// Function that converts state abbreviations to full state names

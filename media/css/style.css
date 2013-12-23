@@ -45,5 +45,12 @@ img {
 	float: left;
 }
 
+.position-block {
+	background-color: white;
+	width: 90%;
+	height: 200px;
+	margin: 0 auto;
+}
+
 // animate.min.css
 
