@@ -127,8 +127,8 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		}
 
 		$current = ORM::factory('Positions')->where('candidates_id','=',$id)->where('status','=','Current')->find(0);
-		if ( $running_for->loaded() )  {
-			$this->view->position_current = $running_for->title;
+		if ( $current->loaded() )  {
+			$this->view->position_current = $current->title;
 		}
 	}
 

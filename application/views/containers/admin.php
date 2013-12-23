@@ -14,7 +14,7 @@
             foreach ($styles as $file => $type)
                 echo HTML::style($file, array('media' => $type)), PHP_EOL
         ?>
-        <link type="text/css" href="/polysimplicity/media/css/controllers/web/Management/style.css" rel="stylesheet" media="screen">
+
         <!--Kohana Script Includes-->
         <?php
             foreach ($scripts as $file)
