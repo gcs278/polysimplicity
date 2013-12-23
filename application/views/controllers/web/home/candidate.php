@@ -1,5 +1,5 @@
 <div class="container">
-  <div id="loading" style="text-align: center;"><?php echo HTML::image('media/images/ajax-loader.gif',array('width'=>20,'height'=>20))?></div>
+  
   <h1 class="text-center"><?php echo $candidate_name; ?></h1>
   <div class="row-fluid">
     <div class="col-sm-4">
@@ -13,7 +13,7 @@
               if ( isset($position_running) ) {
                 echo "<tr><td><h3><strong>Running For:</strong></h3> " . $position_running . "</td></tr>";
               }
-              if ( isset($position_running) ) {
+              if ( isset($position_current) ) {
                 echo "<tr><td><h3><strong>Current Position:</strong></h3> " . $position_current . "</td></tr>";
               }
             ?>
@@ -25,6 +25,10 @@
      </table>
  </div>
 </div>
+    <div class="spinner" style="display: inherit;">
+      <div class="double-bounce1"></div>
+      <div class="double-bounce2"></div>
+    </div>
 <div class="row-fluid" style="margin-top: 40px; margin-bottom: 100px;">
     <div class="well text-center">
         <div class="row-fluid">
@@ -45,8 +49,8 @@
 
 <script>
  $(window).ready(function() {
-    $("#loading").remove();
-
+    //$(".spinner").remove();
+    $('.spinner').css("display", "none");
     $(".detail-view").hide();
 
     //arrange the background image starting position for all the rows.
