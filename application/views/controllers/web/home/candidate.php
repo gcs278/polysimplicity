@@ -9,10 +9,18 @@
        <h2>Demographics:</h2> 
        <table class="table table-striped">
            <tbody>
-             <tr><td><h3><strong>Gender:</strong></h3> <?php echo $gender?></td></tr>
+            <?php
+              if ( isset($position_running) ) {
+                echo "<tr><td><h3><strong>Running For:</strong></h3> " . $position_running . "</td></tr>";
+              }
+              if ( isset($position_running) ) {
+                echo "<tr><td><h3><strong>Current Position:</strong></h3> " . $position_current . "</td></tr>";
+              }
+            ?>
+             
              <tr><td><h3><strong>Political Party:</strong></h3> <?php echo $party?></td></tr>
              <tr><td><h3><strong>Birth State:</strong></h3> <?php echo $birth_state?></td></tr>
-             <tr><td><h3><strong>Birth Date: </strong></h3> <?php echo $birth_date?></td></tr>
+             <tr><td><h3><strong>Birth Date:</strong></h3> <?php echo $birth_date?></td></tr>
          </tbody>
      </table>
  </div>
@@ -25,11 +33,60 @@
         </div>
     </div>
 </div>
-</div>
+
+<!-- <div class="row-fluid" style="margin-bottom: 200px;">
+    <div class="well text-center">
+      <h2 style="margin-bottom:20px;">Positions</h2>
+      <div class="position-block">
+        test
+      </div>
+    </div>
+</div> -->
 
 <script>
  $(window).ready(function() {
     $("#loading").remove();
+
+    $(".detail-view").hide();
+
+    //arrange the background image starting position for all the rows.
+    //This will allow the background image cut illusion when showing the folder content panel
+    // $(".row").each(function() {
+    //     $(this).css({
+    //         backgroundImage: "url('http://farm6.static.flickr.com/5085/5335262784_8b5d87db95_d.jpg')",
+    //         backgroundPosition: "0px -" + $(this).index() * $(this).outerHeight() + "px"
+    //     });
+    // });
+
+    //when a folder is clicked,
+    //position the content folder after the clicked row
+    //and toggle all folder / app icon that is not the one clicked.
+    //and toggle the folder content panel
+
+
+    $(".view-block").click(function() {
+        $(".detail-view").not(this).hide();
+        var folderContent = $("#"+$(this).attr('id')+".detail-view");
+        folderContent.remove();
+
+        var folderContentShown = folderContent.css("display") != "none";
+
+        var clickedFolder = $(this);
+        clickedFolder.after(folderContent);
+
+        // $("body").find(".folder, .app").not(clickedFolder).each(function() {
+        //     if (!folderContentShown) $(this).animate({
+        //         opacity: 0.20
+        //     }, "fast");
+        //     else $(this).animate({
+        //         opacity: 1.00
+        //     }, "fast");
+        // });
+
+        //clickedFolder.animate({opacity: folderContentShown ? 1.00 : 0.70}, "fast");
+        folderContent.slideToggle("fast");
+        event.preventDefault();
+    });
 });
 </script>	
 

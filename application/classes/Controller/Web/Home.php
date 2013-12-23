@@ -10,27 +10,32 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		//$model->find(0);
 		Debug::vars($this->request->method());
 		if ($this->request->is_ajax()) {
-            $this->auto_render = FALSE;
-            
-            if (isset($_GET['term'])) {
-            	$query = $_GET['term'];
-            	
-            	$array = array();
-            	$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$query%")->find_all();
-            	foreach ($candidates as $candidate) {
-            		$array = $candidate->first_name . ' ' . $candidate->middle_name . ' ' . $candidate->last_name;
-            	}
-            	echo json_encode(array($array));
-            } else {
+			$this->auto_render = FALSE;
+			
+			if (isset($_GET['term'])) {
+				$query = $_GET['term'];
+				
 				$array = array();
-				$state = $_GET['state'];
-				$candidates = ORM::factory('Candidates')->with('Personal')->where('birth_state', '=', $state)->find_all();
+				$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$query%")->find_all();
 				foreach ($candidates as $candidate) {
-					$array[] = $candidate->first_name . " " . $candidate->middle_name . " " . $candidate->last_name;
+					$array = $candidate->first_name . ' ' . $candidate->middle_name . ' ' . $candidate->last_name;
 				}
-				echo json_encode($array);
-            }
-        } else if ($this->request->method() == HTTP_Request::POST) {
+				echo json_encode(array($array));
+			} else {
+				$state = $_GET['state'];
+				$candidates = ORM::factory('Candidates')->with('Personal')->where('birth_state', '=', $state)->find_all()->as_array();
+				sleep(2);
+				$results = array();
+				foreach ($candidates as $candidate) {
+					array_push($results, array('name' =>  $candidate->first_name . ' ' . $candidate->middle_name . ' ' . $candidate->last_name,
+						'id' => $candidate->id, 'image' => base64_encode($candidate->image)));
+				}
+				if (empty($results)) {
+					array_push($results, array('name' => 'No Candidates found', 'id' => -1));
+				}
+				echo json_encode($results);
+			}
+    } else if ($this->request->method() == HTTP_Request::POST) {
 			
 			$view=view::factory('controllers/web/home/submit');	
 			$this->view = $view;
@@ -97,19 +102,33 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
         	// Get view type
         	$type_id = $candidate_view->viewsType_id;
         	$view_type = ORM::factory('viewsType')->where('id','=',$type_id)->find(0);
-        	$view_type->name = ucwords(str_replace("_"," ", $view_type->name));
+        	$view_name = ucwords(str_replace("_"," ", $view_type->name));
 
         	// Format block
-        	$this->view->views_display = $this->view->views_display . "<div class='col-sm-2 view-block'>
-            <h4>" . $view_type->name ."</h4>
+        	$this->view->views_display = $this->view->views_display . "<div class='col-sm-2 view-block' id='"
+        	. $view_type->name . "'>
+            <h4>" . $view_name ."</h4>
             	<div class='thin-line-light'></div>
-            <h1>".$candidate_view->simple."</h1>
-        	</div>";
+            <h2>".$candidate_view->simple."</h2>
+        	</div>
+        	<div class = 'detail-view row-fluid' id='".$view_type->name."'>" 
+        	. $candidate_view->detail . 
+        	// "<img src='". url::site('/media/images/View_Icons/taxation.png') . "'>"."
+        	"</div>";
+		}
+		// No views set
+		if ( $this->view->views_display == "") {
+			$this->view->views_display = "<h3>Hmmm...No information here</h3>";
+		}
 
-            // No views set
-            if ( $this->view->views_display == "") {
-            	$this->view->views_display = "<h3>Hmmm...No information here</h3>";
-            }
+		$running_for = ORM::factory('Positions')->where('candidates_id','=',$id)->where('status','=','Running')->find(0);
+		if ( $running_for->loaded() )  {
+			$this->view->position_running = $running_for->title;
+		}
+
+		$current = ORM::factory('Positions')->where('candidates_id','=',$id)->where('status','=','Current')->find(0);
+		if ( $running_for->loaded() )  {
+			$this->view->position_current = $running_for->title;
 		}
 	}
 
