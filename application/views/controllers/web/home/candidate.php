@@ -13,7 +13,7 @@
               if ( isset($position_running) ) {
                 echo "<tr><td><h3><strong>Running For:</strong></h3> " . $position_running . "</td></tr>";
               }
-              if ( isset($position_running) ) {
+              if ( isset($position_current) ) {
                 echo "<tr><td><h3><strong>Current Position:</strong></h3> " . $position_current . "</td></tr>";
               }
             ?>
