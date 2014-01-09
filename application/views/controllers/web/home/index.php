@@ -7,79 +7,46 @@
 			<option>Position</option>
 		</select>
 	</div>
-	<div class="col-sm-12" id="map" style="height: 700px">
-	</div>
+	<div class="col-sm-12" id="map" style="height: 700px"></div>
 	
 	<div class="loading" id="dim" style="display: none"></div>
 	<div class="loading" id="content" style="display: none">
 		<span class="close">&times;</span>
 		<h4 id="selected_state"></h4>
 		<hr>
-		<div class="spinner"> <!--<?php echo HTML::image('media/images/ajax-loader.gif',array('width'=>20,'height'=>20))?> -->
+		<div class="spinner">
 			<div class="double-bounce1"></div>
 			<div class="double-bounce2"></div>
 		</div>
 		<ul id="candidate_list" class="list-unstyled"></ul>
 	</div>
-	<!-- Modal
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title" id="selected_state">Modal title</h4>
-				</div>
-				<div class="modal-body">
-					<ul id="candidate_list" class="list-unstyled"></ul>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal-dialog -->
-	</div> /.modal -->
 
-	<div class="col-sm-12" id="positions" style="right: -4000px; margin-top: -650px; display: none;">
-		<div class="panel-group" id="accordion">
+	<div class="col-sm-4 col-sm-offset-4" id="positions" style="right: -4000px; margin-top: -650px; display: none;">
+	<div class="panel-group" id="accordion">
+	<?php 
+	$positions = ORM::factory('Positions')->where('status', '=', 'Current')->find_all();
+	foreach ($positions as $position) : ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-						President
+					<a data-toggle="collapse" data-parent="#accordion" href="#<?php echo $position->title; ?>">
+						<?php echo $position->title; ?>
 					</a>
 				</h4>
 			</div>
-			<div id="collapseOne" class="panel-collapse collapse in">
+			<div id="<?php echo $position->title; ?>" class="panel-collapse collapse">
 				<div class="panel-body">
-					Replace with relevant data and picture :)
+					<?php 
+						$candidates = ORM::factory('Candidates')->with('Positions')->where('title', '=', $position->title)->where('status', '=', 'Current')->find_all();
+						foreach ($candidates as $candidate) {
+							echo "<a href='candidate/" . $candidate->id . "'>" . $candidate->first_name . " " 
+								. $candidate->middle_name . " " . $candidate->last_name . "</a><br>";
+						}
+					?>
 				</div>
 			</div>
 		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-						Senate
-					</a>
-				</h4>
-			</div>
-			<div id="collapseTwo" class="panel-collapse collapse">
-				<div class="panel-body">
-					Replace with relevant data and picture :)
-				</div>
-			</div>
-		</div>
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<h4 class="panel-title">
-					<a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-						House of Representatives
-					</a>
-				</h4>
-			</div>
-			<div id="collapseThree" class="panel-collapse collapse">
-				<div class="panel-body">
-					Replace with relevant data and picture :)
-				</div>
-			</div>
-		</div>
+	<?php endforeach; ?>
 	</div>
 	</div>
 </div>
@@ -178,7 +145,6 @@
 			$('#map').animate({
 				"left": "-=4000px"
 			}, 1500 );
-			$('#below_map').hide("slow");
 			$('#positions').animate({
 				"right": "+=4000px"
 			}, 1500);
@@ -187,7 +153,6 @@
 			$('#map').animate({
 				"left": "+=4000px"
 			}, 1500 );
-			$('#below_map').show("slow");
 			$('#positions').animate({
 				"right": "-=4000px"
 			}, 1500, function() {

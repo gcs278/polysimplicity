@@ -32,6 +32,7 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 				}
 				if (empty($results)) {
 					array_push($results, array('name' => 'No Candidates found', 'id' => -1));
+					sleep(1);
 				}
 				echo json_encode($results);
 			}

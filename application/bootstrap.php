@@ -153,7 +153,7 @@ Route::set('home', '(<controller>(/<action>(/<id>(/<id2>))))')
 		'action'     => 'index',
 	));
 	
-Route::set('api', 'api(/<action>)')
+Route::set('api', 'api')
 	->defaults(array(
 		'directory' => 'web',
 		'controller' => 'rest',
