@@ -24,7 +24,7 @@
 	<div class="col-sm-4 col-sm-offset-4" id="positions" style="right: -4000px; margin-top: -650px; display: none;">
 	<div class="panel-group" id="accordion">
 	<?php 
-	$positions = ORM::factory('Positions')->where('status', '=', 'Current')->find_all();
+	$positions = ORM::factory('Positions')->where('status', '=', 'Current')->group_by('title')->find_all();
 	foreach ($positions as $position) : ?>
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -52,6 +52,19 @@
 </div>
 
 <script>
+	$(document).ready(function() {
+		if (location.hash == '#position') {
+			$('select').val('Position');
+			$('#map').animate({
+				"left": "-=4000px"
+			}, 1500 );
+			$('#positions').animate({
+				"right": "+=4000px"
+			}, 1500);
+			$('#positions').css('display', 'inherit');
+		}
+	});
+	
 	$.fn.konami = function( options ) {
 					var opts, masterKey, controllerCode, code;
 					opts = $.extend({}, $.fn.konami.defaults, options);
@@ -122,7 +135,7 @@
 	});
 	
 	function getCandidates(abbrev) {
-		$.get('?state=' + abbrev.toUpperCase(), function(data) {
+		$.get('<?php echo URL::base()?>api/candidates/?state=' + abbrev.toUpperCase(), function(data) {
 			var list = $('#candidate_list');
 			list.children().remove();
 			console.log(data);
@@ -149,6 +162,7 @@
 				"right": "+=4000px"
 			}, 1500);
 			$('#positions').css('display', 'inherit');
+			window.location.hash = "position";
 		} else if ($("select option:selected").text() === "Map") {
 			$('#map').animate({
 				"left": "+=4000px"
@@ -158,6 +172,7 @@
 			}, 1500, function() {
 				$('#positions').css('display', 'none');
 			});
+			window.location.hash = "map";
 		}
 	});
 	

@@ -9,34 +9,7 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		$model = ORM::factory('Candidates');
 		//$model->find(0);
 		Debug::vars($this->request->method());
-		if ($this->request->is_ajax()) {
-			$this->auto_render = FALSE;
-			
-			if (isset($_GET['term'])) {
-				$query = $_GET['term'];
-				
-				$array = array();
-				$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$query%")->find_all();
-				foreach ($candidates as $candidate) {
-					$array = $candidate->first_name . ' ' . $candidate->middle_name . ' ' . $candidate->last_name;
-				}
-				echo json_encode(array($array));
-			} else {
-				$state = $_GET['state'];
-				$candidates = ORM::factory('Candidates')->with('Personal')->where('birth_state', '=', $state)->find_all()->as_array();
-				//sleep(2);
-				$results = array();
-				foreach ($candidates as $candidate) {
-					array_push($results, array('name' =>  $candidate->first_name . ' ' . $candidate->middle_name . ' ' . $candidate->last_name,
-						'id' => $candidate->id, 'image' => base64_encode($candidate->image)));
-				}
-				if (empty($results)) {
-					array_push($results, array('name' => 'No Candidates found', 'id' => -1));
-					sleep(1);
-				}
-				echo json_encode($results);
-			}
-    } else if ($this->request->method() == HTTP_Request::POST) {
+		if ($this->request->method() == HTTP_Request::POST) {
 			
 			$view=view::factory('controllers/web/home/submit');	
 			$this->view = $view;
