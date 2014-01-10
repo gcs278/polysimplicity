@@ -9,15 +9,18 @@ class Controller_API_API extends Controller_API_Containers_Default {
 		if ($this->request->is_ajax() ){
 			if (isset($_GET['term'])) {
 				$query = $_GET['term'];
-				
-				$array = array();
-				$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$query%")
-					->or_where('middle_name','like',"$query%")
-					->or_where('last_name','like',"$query%")->find_all();
-				foreach ($candidates as $candidate) {
-					array_push($array, $candidate->first_name . ' ' . $candidate->middle_name . ' ' . $candidate->last_name);
+				if ($query === 'crap') {
+					echo json_encode(array("What?"));
+				} else {
+					$array = array();
+					$candidates = ORM::factory('Candidates')->where('first_name', 'like', "$query%")
+						->or_where('middle_name','like',"$query%")
+						->or_where('last_name','like',"$query%")->find_all();
+					foreach ($candidates as $candidate) {
+						array_push($array, $candidate->first_name . ' ' . $candidate->middle_name . ' ' . $candidate->last_name);
+					}
+					echo json_encode($array);
 				}
-				echo json_encode($array);
 			} else if (isset($_GET['state'])) {
 				$state = $_GET['state'];
 				

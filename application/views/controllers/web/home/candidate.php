@@ -89,7 +89,6 @@
 
         //clickedFolder.animate({opacity: folderContentShown ? 1.00 : 0.70}, "fast");
         folderContent.slideToggle("fast");
-        event.preventDefault();
     });
 });
 </script>	

@@ -47,12 +47,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <?php echo Html::anchor('/home', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
+                    <?php echo Html::anchor('/', 'Political Simplicity',array('class'=>'navbar-brand','id'=>'logo') ) ?>
                 </div>
                 
                 <div class="collapse navbar-collapse topNavbar">
                     <ul class="nav navbar-nav">
-                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href=""><span class="glyphicon glyphicon-home"></span> Home</a></li>
+                        <li class="<?php //if($active === 'home') echo 'active'; ?>"><a href="<?php echo URL::base(); ?>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
                         <li class="<?php //if($active === 'about') echo 'active'; ?>"><a href="<?php echo URL::base()."management/".$authButtonAction?>"><span class="glyphicon glyphicon-log-out"></span> <?php echo $authButtonString?></a></li>
                         <li>
                             <form id="tfnewsearch" method="get" action="" _lpchecked="1">

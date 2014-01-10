@@ -56,7 +56,7 @@
 		</div>
 		<div class="thin-line col-sm-10 col-sm-offset-1"></div>
 		<div class="col-sm-3 col-sm-offset-2 lead" style="margin-top: 6px;">
-			<a href="<?php echo URL::site('/home')?>">Home</a>
+			<a href="<?php echo URL::site('/')?>">Home</a>
 		</div>
 		<div class="col-sm-2 lead" style="margin-top: 6px;">
 			<a href="" id="about_link">About Us</a>

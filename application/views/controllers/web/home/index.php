@@ -53,7 +53,7 @@
 
 <script>
 	$(document).ready(function() {
-		if (location.hash == '#position') {
+		if (location.hash === '#position') {
 			$('select').val('Position');
 			$('#map').animate({
 				"left": "-=4000px"
