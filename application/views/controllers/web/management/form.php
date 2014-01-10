@@ -12,7 +12,7 @@
 			<div class="form-group">
 				<label for="middle_name" class="col-sm-2 control-label">Middle Name</label>
 				<div class="col-sm-10">
-					<input type="text" name="middle_name" value="<?php if(isset($middle_name)){ echo $middle_name;}?>" class="form-control" id="middle_name" placeholder="Middle Name (Optional)">
+					<input type="text" name="middle_name" value="<?php if(isset($middle_name)){ echo $middle_name;}?>" class="form-control" id="middle_name" placeholder="Middle Name (REQUIRED)">
 				</div>
 			</div>
 			<div class="form-group">

@@ -23,10 +23,6 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                                 'name' => $user->first_name . ' ' . $user->last_name,
                                 'id' => $user->username));
                         }
-        
-                        // if (empty($array)) {
-                        //     array_push($array, array('time' => 'No Edits found', 'id' => -1));
-                        // }
 
                         echo json_encode($array);
                     }

@@ -139,12 +139,19 @@ Kohana::modules(array(
  * defaults for the URI.
  */
  
-Route::set('candidates','candidate(/<id>)')
+Route::set('candidates','candidate(/<id>)', array('id' => '.*'))
 	->defaults(array(
 		'directory' => 'web',
 		'controller' => 'home',
 		'action'     => 'candidate',
 	));
+
+Route::set('api', 'api(/<action>)')
+	->defaults(array(
+		'directory' => 'API',
+		'controller' => 'API',
+		'action'	=> 'candidates',
+));
 
 Route::set('home', '(<controller>(/<action>(/<id>(/<id2>))))')
 	->defaults(array(
@@ -153,12 +160,7 @@ Route::set('home', '(<controller>(/<action>(/<id>(/<id2>))))')
 		'action'     => 'index',
 	));
 	
-Route::set('api', 'api')
-	->defaults(array(
-		'directory' => 'web',
-		'controller' => 'rest',
-		'action'		=> 'candidates',
-));
+
 
 Route::set('admin', '<directory>(/<controller>(/<action>(/<params>)))',
 array(

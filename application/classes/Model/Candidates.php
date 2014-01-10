@@ -22,6 +22,7 @@ Class Model_Candidates extends ORM
 	                                             array('max_length', array(':value', 128)),
 	                                     ),
 	                       'middle_name' => array(
+	                       						  array('not_empty'),
 	                                              array('min_length', array(':value',1)),
 	                                              array('max_length',array(':value',128)),
 	                                      ),

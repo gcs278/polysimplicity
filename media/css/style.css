@@ -94,5 +94,9 @@ img {
 }
 
 
+.ui-autocomplete-loading{
+    background:url('../images/ajax-loader.gif') no-repeat center;
+}
+
 // animate.min.css
 

@@ -274,3 +274,122 @@
 #14 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
 #15 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
 #16 {main} in C:\wamp\www\polysimplicity\modules\database\classes\Kohana\Database\MySQL.php:171
+2014-01-09 21:51:03 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\classes\Controller\Web\Rest.php [ 9 ] in file:line
+2014-01-09 21:51:03 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2014-01-09 21:51:05 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\classes\Controller\Web\Rest.php [ 9 ] in file:line
+2014-01-09 21:51:05 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2014-01-09 21:51:21 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\classes\Controller\Web\Rest.php [ 9 ] in file:line
+2014-01-09 21:51:21 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2014-01-09 21:51:25 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\classes\Controller\Web\Rest.php [ 9 ] in file:line
+2014-01-09 21:51:25 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2014-01-09 21:51:26 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected '{' ~ APPPATH\classes\Controller\Web\Rest.php [ 9 ] in file:line
+2014-01-09 21:51:26 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2014-01-09 22:05:12 --- CRITICAL: ReflectionException [ 0 ]: Class Controller_API_API does not have a constructor, so you cannot pass any constructor arguments ~ SYSPATH\classes\Kohana\Request\Client\Internal.php [ 94 ] in C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php:94
+2014-01-09 22:05:12 --- DEBUG: #0 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(94): ReflectionClass->newInstance(Object(Request), Object(Response))
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#3 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#4 {main} in C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php:94
+2014-01-09 22:06:44 --- CRITICAL: View_Exception [ 0 ]: The requested view template could not be found ~ SYSPATH\classes\Kohana\View.php [ 257 ] in C:\wamp\www\polysimplicity\system\classes\Kohana\View.php:137
+2014-01-09 22:06:44 --- DEBUG: #0 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(137): Kohana_View->set_filename('template')
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(30): Kohana_View->__construct('template', NULL)
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller\Template.php(33): Kohana_View::factory('template')
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(69): Kohana_Controller_Template->before()
+#4 [internal function]: Kohana_Controller->execute()
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_API_API))
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#8 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#9 {main} in C:\wamp\www\polysimplicity\system\classes\Kohana\View.php:137
+2014-01-09 22:08:32 --- CRITICAL: ErrorException [ 1 ]: Class 'Controller_API_Containers_API_Default' not found ~ APPPATH\classes\Controller\API\API.php [ 5 ] in file:line
+2014-01-09 22:08:32 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2014-01-09 22:08:32 --- CRITICAL: ErrorException [ 1 ]: Class 'Controller_API_Containers_API_Default' not found ~ APPPATH\classes\Controller\API\API.php [ 5 ] in file:line
+2014-01-09 22:08:32 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2014-01-09 22:09:01 --- CRITICAL: ErrorException [ 1 ]: Class 'Controller_API_Containers_Default' not found ~ APPPATH\classes\Controller\API\API.php [ 5 ] in file:line
+2014-01-09 22:09:01 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2014-01-09 22:09:38 --- CRITICAL: View_Exception [ 0 ]: The requested view template could not be found ~ SYSPATH\classes\Kohana\View.php [ 257 ] in C:\wamp\www\polysimplicity\system\classes\Kohana\View.php:137
+2014-01-09 22:09:38 --- DEBUG: #0 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(137): Kohana_View->set_filename('template')
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(30): Kohana_View->__construct('template', NULL)
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller\Template.php(33): Kohana_View::factory('template')
+#3 C:\wamp\www\polysimplicity\application\classes\Controller\API\Containers\Default.php(22): Kohana_Controller_Template->before()
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(69): Controller_API_Containers_Default->before()
+#5 [internal function]: Kohana_Controller->execute()
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_API_API))
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#8 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#9 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#10 {main} in C:\wamp\www\polysimplicity\system\classes\Kohana\View.php:137
+2014-01-09 22:10:36 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: title ~ APPPATH\views\containers\default.php [ 3 ] in C:\wamp\www\polysimplicity\application\views\containers\default.php:3
+2014-01-09 22:10:36 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\views\containers\default.php(3): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\pol...', 3, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(61): include('C:\wamp\www\pol...')
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\pol...', Array)
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#4 C:\wamp\www\polysimplicity\application\classes\Controller\API\Containers\Default.php(49): Kohana_Controller_Template->after()
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(87): Controller_API_Containers_Default->after()
+#6 [internal function]: Kohana_Controller->execute()
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_API_API))
+#8 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#10 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#11 {main} in C:\wamp\www\polysimplicity\application\views\containers\default.php:3
+2014-01-09 22:11:10 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: styles ~ APPPATH\classes\Controller\API\Containers\Default.php [ 43 ] in C:\wamp\www\polysimplicity\application\classes\Controller\API\Containers\Default.php:43
+2014-01-09 22:11:10 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\API\Containers\Default.php(43): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\pol...', 43, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(87): Controller_API_Containers_Default->after()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_API_API))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\API\Containers\Default.php:43
+2014-01-09 22:11:15 --- CRITICAL: ErrorException [ 8 ]: Undefined variable: title ~ APPPATH\views\containers\default.php [ 3 ] in C:\wamp\www\polysimplicity\application\views\containers\default.php:3
+2014-01-09 22:11:15 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\views\containers\default.php(3): Kohana_Core::error_handler(8, 'Undefined varia...', 'C:\wamp\www\pol...', 3, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(61): include('C:\wamp\www\pol...')
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\View.php(348): Kohana_View::capture('C:\wamp\www\pol...', Array)
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller\Template.php(44): Kohana_View->render()
+#4 C:\wamp\www\polysimplicity\application\classes\Controller\API\Containers\Default.php(51): Kohana_Controller_Template->after()
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(87): Controller_API_Containers_Default->after()
+#6 [internal function]: Kohana_Controller->execute()
+#7 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_API_API))
+#8 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#9 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#10 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#11 {main} in C:\wamp\www\polysimplicity\application\views\containers\default.php:3
+2014-01-09 22:28:38 --- CRITICAL: ErrorException [ 4 ]: syntax error, unexpected 'if' (T_IF) ~ APPPATH\classes\Controller\Web\Home.php [ 84 ] in file:line
+2014-01-09 22:28:38 --- DEBUG: #0 [internal function]: Kohana_Core::shutdown_handler()
+#1 {main} in file:line
+2014-01-09 22:30:56 --- CRITICAL: ErrorException [ 8 ]: Undefined offset: 1 ~ APPPATH\classes\Controller\Web\Home.php [ 78 ] in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php:78
+2014-01-09 22:30:56 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php(78): Kohana_Core::error_handler(8, 'Undefined offse...', 'C:\wamp\www\pol...', 78, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_candidate()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php:78
+2014-01-09 22:39:55 --- CRITICAL: ErrorException [ 8 ]: Undefined offset: 2 ~ APPPATH\classes\Controller\Web\Home.php [ 78 ] in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php:78
+2014-01-09 22:39:55 --- DEBUG: #0 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php(78): Kohana_Core::error_handler(8, 'Undefined offse...', 'C:\wamp\www\pol...', 78, Array)
+#1 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_candidate()
+#2 [internal function]: Kohana_Controller->execute()
+#3 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#6 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#7 {main} in C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php:78
+2014-01-09 23:01:11 --- CRITICAL: Kohana_Exception [ 0 ]: The candidates_id property does not exist in the Model_Candidates class ~ MODPATH\orm\classes\Kohana\ORM.php [ 687 ] in C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php:603
+2014-01-09 23:01:11 --- DEBUG: #0 C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php(603): Kohana_ORM->get('candidates_id')
+#1 C:\wamp\www\polysimplicity\application\classes\Controller\Web\Home.php(90): Kohana_ORM->__get('candidates_id')
+#2 C:\wamp\www\polysimplicity\system\classes\Kohana\Controller.php(84): Controller_Web_Home->action_candidate()
+#3 [internal function]: Kohana_Controller->execute()
+#4 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client\Internal.php(97): ReflectionMethod->invoke(Object(Controller_Web_Home))
+#5 C:\wamp\www\polysimplicity\system\classes\Kohana\Request\Client.php(114): Kohana_Request_Client_Internal->execute_request(Object(Request), Object(Response))
+#6 C:\wamp\www\polysimplicity\system\classes\Kohana\Request.php(986): Kohana_Request_Client->execute(Object(Request))
+#7 C:\wamp\www\polysimplicity\index.php(118): Kohana_Request->execute()
+#8 {main} in C:\wamp\www\polysimplicity\modules\orm\classes\Kohana\ORM.php:603

@@ -70,16 +70,24 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		}
 
 		$this->template->title = 'Home';
+		$candidates = ORM::factory('Candidates')->with('Personal');
+		if ( is_numeric($id) ) {
+			$candidates->where('candidates.id','=',$id)->find(0);
+		} else {
+			$name = explode('.',$id);
+			try {
+				$candidates->where('candidates.first_name','=',$name[0])->where('candidates.middle_name','=',$name[1])->where('candidates.last_name','=',$name[2])->find(0);
+			} catch (Exception $e) {
 
-		// Get the candidate from database with personal table
-		$candidates = ORM::factory('Candidates')->with('Personal')->where('candidates.id','=',$id)->find(0);
+			}
+		}
 		
 		// Check if the canidate was found, otherwise send to page not found
 		if ( !$candidates->loaded() ) {
 			$this->view = view::factory('controllers/web/home/page_not_found');
 			return;
 		}
-
+		$id = $candidates->id;
 		$view=view::factory('controllers/web/home/candidate');
 		$this->view = $view;
 

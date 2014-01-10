@@ -56,7 +56,7 @@
 		</div>
 		<div class="thin-line col-sm-10 col-sm-offset-1"></div>
 		<div class="col-sm-3 col-sm-offset-2 lead" style="margin-top: 6px;">
-			<a href="<?php echo URL::site('')?>">Home</a>
+			<a href="<?php echo URL::site('/home')?>">Home</a>
 		</div>
 		<div class="col-sm-2 lead" style="margin-top: 6px;">
 			<a href="" id="about_link">About Us</a>
@@ -79,7 +79,14 @@
     <script>
 			$(function() {
 				$( "#search" ).autocomplete({
-					source: "<?php echo URL::base()?>api/candidates/"
+                    search  : function(){$(this).addClass('working');},
+                    open    : function(){$(this).removeClass('working');},
+					source: "<?php echo URL::base()?>api/candidates/",
+                    select: function(event, ui) {
+                        name = ui.item.value.replace(' ','.');
+                        name = name.replace(' ','.');
+                        window.location.replace(<?php echo Url::site(); ?>+'candidate/'+name);
+                    }
 				});
 			});
 			

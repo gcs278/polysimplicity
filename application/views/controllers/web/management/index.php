@@ -72,7 +72,6 @@
 				var list = $('#edit_list');
 
 				for (var i=0; i<data.length; i++) {
-					console.log
 					console.log(data[i]);
 
 					$('#edits_table > tbody:last').append('<tr><td>'+data[i].date+
