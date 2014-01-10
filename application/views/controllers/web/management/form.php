@@ -133,17 +133,20 @@
 				</div>
 			</div>
 			<h3>Positions:</h3>
+			<button type="button" class="btn btn-default add_position">Add Another</button>
 			<div class="well" id="original">
+				<input type="hidden" name="id[]" id="id" value="-1">
+				<input type="hidden" name="deleted[]" id="deleted" value="0">
 				<div class="form-group">
 					<label for="title" class="col-sm-2 control-label">Title</label>
 					<div class="col-sm-10">
-						<input type="text" name="title1" class="form-control" id="title" placeholder="Title">
+						<input type="text" name="title[]" class="form-control" id="title" placeholder="Title">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="status" class="col-sm-2 control-label">Status</label>
 					<div class="col-sm-10">
-						<select class="form-control" name="status1" id="status">
+						<select class="form-control" name="status[]" id="status">
 							<option value"">Select a Status...</option>
 							<option value"Current">Current</option>
 							<option value"Previous">Previous</option>
@@ -154,8 +157,7 @@
 				<div class="form-group">
 				<label for="position_state"  class="col-sm-2 control-label">State</label>
 				<div class="col-sm-10">
-					<select class="form-control" name="position_state" id="position_state">
-						<option value="<?php if(isset($position_state)){ echo $position_state; }?>"><?php if(isset($position_state)){ echo $position_state; }?></option>
+					<select class="form-control" name="position_state[]" id="position_state">
 						<option value="">Select a State...</option>
 						<option value="AL">Alabama</option>
 						<option value="AK">Alaska</option>
@@ -211,20 +213,22 @@
 					</select>
 				</div>
 			</div>
+			<div class="row-fluid">
 				<div class="form-group">
 					<label for="term_start" class="col-sm-2 control-label">Term Start</label>
 					<div class="col-sm-10">
-						<input type="date" name="term_start1" class="form-control" id="term_start" placeholder="Date of Term Start">
+						<input type="date" name="term_start[]" class="form-control" id="term_start" placeholder="Date of Term Start">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="term_end" class="col-sm-2 control-label">Term End</label>
 					<div class="col-sm-10">
-						<input type="date" name="term_end1" class="form-control" id="term_end" placeholder="Date of Term End">
+						<input type="date" name="term_end[]" class="form-control" id="term_end" placeholder="Date of Term End">
 					</div>
 				</div>
-				<button type="button" class="btn btn-default add_position">Add Another</button>
 			</div>
+			</div>
+
 			<div id="more_positions"></div>
 
 			<h3>Views:</h3>
@@ -233,7 +237,8 @@
 			<button type="submit" id="submit" class="btn btn-default">Submit</button>
 		</form>
 	</div>
-	
+
+
 	<script src="//code.jquery.com/jquery-1.9.1.js"></script>
 	<script src="//code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 	<script>
@@ -249,122 +254,34 @@
 		
 		var count_positions = 1;
 		
-		var add_position = function(id, title, status, term_start, term_end) {
+		var add_position = function(id, title, status, state, term_start, term_end) {
 			++count_positions;
 
 			var position_div = "\
 			<div class='well'>";
-			if ( id != undefined )
-				position_div += "<h4 style='color: red;'>In database:</h4>";
+			
 
-			position_div += "<button type='button' class='close' aria-hidden'true'>&times;</button>\
-				<div class='form-group'>\
-					<label for='title" + id + "' class='col-sm-2 control-label'>Title</label>\
-					<div class='col-sm-10'><input type='text' name='title" + id + "' value = '" + title + "' class='form-control' placeholder='Title'>\
-					</div>\
-				</div>\
-				<div class='form-group'>\
-					<label for='status" + id + "' class='col-sm-2 control-label'>Status</label>\
-					<div class='col-sm-10'>\
-						<select class='form-control' name='status" + id + "'>\
-							<option value''>Select a Status...</option>\
-							<option value'Current'";
+			position_div = $('#original').clone().attr('id', 'position'+count_positions);
 
-							if ( status == "Current" )
-								position_div += " selected ";
 
-							position_div += ">Current</option>\
-							<option value'Previous'";
-
-							if ( status == "Previous" )
-								position_div += " selected ";
-
-							position_div += ">Previous</option>\
-							<option value'Running_For'";
-
-							if ( status == "Running_For" )
-								position_div += " selected ";
-
-							position_div += ">Running</option>\
-						</select>\
-					</div>\
-				</div>\
-				<div class='col-sm-10'>\
-					<select class='form-control' name='position_state' id='position_state'>\
-						<option value=''></option>\
-						<option value=''>Select a State...</option>\
-						<option value='AL'>Alabama</option>\
-						<option value='AK'>Alaska</option>\
-						<option value='AZ'>Arizona</option>\
-						<option value='AR'>Arkansas</option>\
-						<option value='CA'>California</option>\
-						<option value='CO'>Colorado</option>\
-						<option value='CT'>Connecticut</option>\
-						<option value='DE'>Delaware</option>\
-						<option value='DC'>District Of Columbia</option>\
-						<option value='FL'>Florida</option>\
-						<option value='GA'>Georgia</option>\
-						<option value='HI'>Hawaii</option>\
-						<option value='ID'>Idaho</option>\
-						<option value='IL'>Illinois</option>\
-						<option value='IN'>Indiana</option>\
-						<option value='IA'>Iowa</option>\
-						<option value='KS'>Kansas</option>\
-						<option value='KY'>Kentucky</option>\
-						<option value='LA'>Louisiana</option>\
-						<option value='ME'>Maine</option>\
-						<option value='MD'>Maryland</option>\
-						<option value='MA'>Massachusetts</option>\
-						<option value='MI'>Michigan</option>\
-						<option value='MN'>Minnesota</option>\
-						<option value='MS'>Mississippi</option>\
-						<option value='MO'>Missouri</option>\
-						<option value='MT'>Montana</option>\
-						<option value='NE'>Nebraska</option>\
-						<option value='NV'>Nevada</option>\
-						<option value='NH'>New Hampshire</option>\
-						<option value='NJ'>New Jersey</option>\
-						<option value='NM'>New Mexico</option>\
-						<option value='NY'>New York</option>\
-						<option value='NC'>North Carolina</option>\
-						<option value='ND'>North Dakota</option>\
-						<option value='OH'>Ohio</option>\
-						<option value='OK'>Oklahoma</option>\
-						<option value='OR'>Oregon</option>\
-						<option value='PA'>Pennsylvania</option>\
-						<option value='RI'>Rhode Island</option>\
-						<option value='SC'>South Carolina</option>\
-						<option value='SD'>South Dakota</option>\
-						<option value='TN'>Tennessee</option>\
-						<option value='TX'>Texas</option>\
-						<option value='UT'>Utah</option>\
-						<option value='VT'>Vermont</option>\
-						<option value='VA'>Virginia</option>\
-						<option value='WA'>Washington</option>\
-						<option value='WV'>West Virginia</option>\
-						<option value='WI'>Wisconsin</option>\
-						<option value='WY'>Wyoming</option>\
-					</select>\
-				</div>\
-				<div class='form-group'>\
-					<label for='term_start" + id + "' class='col-sm-2 control-label'>Term Start</label>\
-					<div class='col-sm-10'>\
-						<input type='date' name='term_start" + id + "' id='term_start" + id + "' value='" +term_start+"' class='form-control' placeholder='Date of Term Start'>\
-					</div>\
-				</div>\
-				<div class='form-group'>\
-					<label for='term_end" + id + "' class='col-sm-2 control-label'>Term End</label>\
-					<div class='col-sm-10'><input type='date' name='term_end" + id + "' id='term_end" + id + "' value='" + term_end + "' class='form-control' placeholder='Date of Term End'>\
-					</div>\
-				</div>\
-				<button type='button' class='btn btn-default add_position'>Add Another</button>\
-			</div>";
-
+			position_div.prepend("<button type='button' class='close' aria-hidden'true'>&times;</button>");
 			var copied = $('#more_positions').append(position_div);
 
-			$('#original button').remove();
-			$('.add_position:last').parent().prev().children('.add_position').remove();
-			
+			// $('#original button').remove();
+			// $('.add_position:last').parent().prev().children('.add_position').remove();
+
+			if ( id !== undefined  && title !== undefined) {
+				$("#original").hide();
+				position_div.prepend("<h4 style='color: red;'>In database:</h4>");
+				position_div.find('#id').val(id);
+				position_div.find('#title').val(title);
+				position_div.find('#status').val(status);
+				position_div.find('#position_state').val(state);
+				position_div.find('#term_start').val(term_start);
+				position_div.find('#term_end').val(term_end);
+			}
+
+			position_div.show();
 			$('input[type="text"]').focusout(function() {
 				if ($(this).val() == "") {
 					$(this).parent().removeClass('has-success');
@@ -375,7 +292,7 @@
 				}
 			});
 			
-			$('.add_position:last').click(add_position);
+			// $('.add_position:last').click(add_position);
 			$('#more_positions .well .close:last').click(delete_position);
 			$('#term_start' + count_positions).datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy" });
 			$('#term_end' + count_positions).datepicker({ changeYear: true, changeMonth: true, dateFormat: "mm-dd-yy" });
@@ -385,14 +302,18 @@
 		
 		var delete_position = function() {
 			$(this).parent().hide("fast");
-			$(this).parent().remove();
-			if ($('#more_positions').is(':empty')) {
-				$('#original').append("<button type='button' class='btn btn-default add_position'>Add Another</button>");
-				$('.add_position').click(add_position);
-				console.log("Added button");
+			if ( $(this).parent("#id") != -1 ) {
+				$(this).parent().find("#deleted").val(1);
 			} else {
-				$('.well:last').append("<button type='button' class='btn btn-default add_position'>Add Another</button>");
+				$(this).parent().remove();
 			}
+			// if ($('#more_positions').is(':empty')) {
+			// 	$('#original').append("<button type='button' class='btn btn-default add_position'>Add Another</button>");
+			// 	$('.add_position').click(add_position);
+			// 	console.log("Added button");
+			// } else {
+			// 	$('.well:last').append("<button type='button' class='btn btn-default add_position'>Add Another</button>");
+			// }
 			return false;
 		};
 		

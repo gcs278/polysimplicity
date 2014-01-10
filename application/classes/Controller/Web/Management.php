@@ -7,6 +7,32 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
         // Index page for User
         // Will be Management menu
         public function action_index() {
+
+                if ($this->request->is_ajax()) {
+                    
+                    $this->auto_render = FALSE;
+                    if (isset($_GET['candidate_id'])) {
+                        $candidate_id = $_GET['candidate_id'];
+                        $array = array();
+
+                        $edits = ORM::factory('Edits')->where('candidates_id', '=', $candidate_id)->order_by('timestamp','desc')->find_all();
+                        foreach ($edits as $edit) {
+                            $user = ORM::factory('Users')->where('id','=',$edit->users_id)->find(0);
+                             array_push($array, array('date' => date('F j, Y', strtotime($edit->timestamp)),
+                                'time' => date('H:i:s', strtotime($edit->timestamp)),
+                                'name' => $user->first_name . ' ' . $user->last_name,
+                                'id' => $user->username));
+                        }
+        
+                        // if (empty($array)) {
+                        //     array_push($array, array('time' => 'No Edits found', 'id' => -1));
+                        // }
+
+                        echo json_encode($array);
+                    }
+                    
+                    return;
+                }
                 // Load the user information
                 $user = Auth::instance()->get_user();
                 $username = ORM::factory('Users')->where('id','=',$user)->find(0)->username;
@@ -40,12 +66,13 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         $table .= "</td><td>";
                         $edits = ORM::factory('Edits')->where('candidates_id','=',$candidate->id)->order_by('timestamp','desc')->find(0);
                         $table .= $edits->timestamp;
+                        $table .= "&nbsp&nbsp&nbsp<a class='glyphicon glyphicon-time edit_history' value='".$candidate->id."'></a>";
                         $table .= "</td><td>";
                         $user = ORM::factory('Users')->where('id','=',$edits->users_id)->find(0);
                         $table .= $user->username;
                         $table .= "</td><td>";
                         $table .= HTML::anchor('candidate/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-eye-open")) . "&nbsp&nbsp&nbsp";
-                        $table .= HTML::anchor('management/modify/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-wrench")). "&nbsp&nbsp&nbsp";
+                        $table .= HTML::anchor('management/modify/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-cog")). "&nbsp&nbsp&nbsp";
                         $table .= HTML::anchor('management/delete/'.$candidate->id, "", array("class"=>"glyphicon glyphicon-remove"));
                         $table .= "</td></tr>";
                 }
@@ -130,37 +157,24 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                                 return;
                         }
 
+                        // Add new positions
+                        foreach ( $_POST['title'] as $index=>$title ) {
+                            $status = $_POST['status'][$index];
+                            $state = $_POST['position_state'][$index];
+                            $term_start = $_POST['term_start'][$index];
+                            $term_end = $_POST['term_end'][$index];
 
-
-                        // Determine how many positions there are
-                        $i = 1;
-                        $title = "title1";
-                        while(isset($_POST[$title])) {
-                                $title = "title" . strval($i);
-                                $i++;
+                            if ( isset($status, $state, $term_start, $term_end) ) {
+                                $positions = ORM::factory('Positions');
+                                $positions->title = $title;
+                                $positions->status = $status;
+                                $positions->state = $state;
+                                $positions->term_start = $term_start;
+                                $positions->term_end = $term_end;
+                                $positions->candidates_id = $candidate->id;
+                                $positions->save(); // New table
+                            }
                         }
-
-                        // Get the value from each one and store it in database
-                        for ($x=1; $x<$i; $x++) {
-                                // Post names
-                                $status = "status" . strval($x);
-                                $term_start = "term_start" . strval($x);
-                                $term_end = "term_end" . strval($x);
-                                $title = "title" . strval($x);
-                                $state = "state" . strval($x);
-
-                                // Verify everything is set for each position
-                                if (isset($_POST[$status]) && isset($_POST[$term_start]) && isset($_POST[$term_end])) {
-                                        $positions = ORM::factory('Positions');
-                                        $positions->title = $_POST[$title];
-                                        $positions->status = $_POST[$status];
-                                        $positions->state = $_POST[$state];
-                                        $positions->term_start = $_POST[$term_start];
-                                        $positions->term_end = $_POST[$term_end];
-                                        $positions->candidates_id = $candidate->id;
-                                        $positions->save(); // New table
-                                }
-	                	}
 
 	                	// Insert views into database
 	                	$view_types = ORM::factory('viewsType')->find_all();
@@ -291,7 +305,6 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         // If successful, redirect user
                         if ($user) 
                         {
-                                echo "success";
                                 $this->redirect(Route::get('home')->uri(
                         array(
                             'controller' => 'management',
@@ -321,7 +334,11 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                                 // Create the user using form values
                                 $user = ORM::factory('User')->create_user($this->request->post(), array(
                                         'username',
+                                        'first_name',
+                                        'last_name',
+                                        'cell_phone',
                                         'password',
+                                        'type',
                                         'email'                                
                                 ));
                                 
@@ -429,44 +446,42 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                         return;
                 }
 
-                // Determine how many positions there are
-                $i = 1;
-                $title = "title1";
-                while(isset($_POST[$title])) {
-                    $title = "title" . strval($i);
-                    $i++;
-                }
+                                        // Add new positions
+                foreach ( $_POST['title'] as $index=>$title ) {
+                    $status = $_POST['status'][$index];
+                    $state = $_POST['position_state'][$index];
+                    $term_start = $_POST['term_start'][$index];
+                    $term_end = $_POST['term_end'][$index];
+                    $position_id = $_POST['id'][$index];
+                    $deleted = $_POST['deleted'][$index];
 
-                        // Get the value from each one and store it in database
-                for ($x=1; $x<$i; $x++) {
-                    // Post names
-                    $status = "status" . strval($x);
-                    $term_start = "term_start" . strval($x);
-                    $term_end = "term_end" . strval($x);
-                    $title = "title" . strval($x);
+                    if ( $deleted == 1 ) {
+                        $position = ORM::factory('Positions')->where('id','=',$position_id)->find(0);
+                        $position->delete();
+                        break;
+                    }
 
-                    // Verify everything is set for each position
-                    if (isset($_POST[$status]) && isset($_POST[$term_start]) && isset($_POST[$term_end])) {
-                        // $position = ORM::factory('Positions')->where('candidates_id','=',$candidate->id)->where('title');
-                        // // Update position
-                        // if ( $position->loaded() ) {
-                        //     $position->title = $_POST[$title];
-                        //     $position->status = $_POST[$status];
-                        //     $position->term_start = $_POST[$term_start];
-                        //     $position->term_end = $_POST[$term_end];
-                        //     $position->update();
-                        // }
-                        // // Create new position
-                        // else {
+                    if ( isset($status, $state, $term_start, $term_end, $id) && !empty($status) &&
+                        !empty($state) && !empty($id) ) {
+                        if ( $position_id == -1 ) {
                             $positions = ORM::factory('Positions');
-                            $positions->title = $_POST[$title];
-                            $positions->status = $_POST[$status];
-                            $positions->term_start = $_POST[$term_start];
-                            $positions->term_end = $_POST[$term_end];
+                            $positions->title = $title;
+                            $positions->status = $status;
+                            $positions->state = $state;
+                            $positions->term_start = $term_start;
+                            $positions->term_end = $term_end;
                             $positions->candidates_id = $candidate->id;
-                            $positions->save(); // New table
+                            $positions->save(); // New row
+                        } else {
+                            $positions = ORM::factory('Positions')->where('id','=',$position_id)->find(0);
+                            $positions->title = $title;
+                            $positions->status = $status;
+                            $positions->state = $state;
+                            $positions->term_start = $term_start;
+                            $positions->term_end = $term_end;
+                            $positions->update(); // Update row
                         }
-                    //}
+                    }
                 }
 
                 // Insert views into database
@@ -530,13 +545,15 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
                 $this->view->party = $candidates->Personal->party;
                 $this->view->image = base64_encode($candidates->image);
 
+                $this->view->script = "<script>type=\"text/javascript\">";
                 $positions = ORM::factory('Positions')->where('candidates_id','=',$id)->find_all();
                 foreach($positions as $position) {
-                	$this->view->script = "<script>type=\"text/javascript\">add_position('" . 
+                	$this->view->script .= "add_position('" . 
                 		$position->id . "','" . $position->title . "','" . $position->status . "','" . 
-                		$position->term_start . "','" . $position->term_end . "');</script>";
+                        $position->state . "','" . $position->term_start . "','" . $position->term_end
+                        . "');";
                 }
-
+                $this->view->script .= "</script>";
 	            $views = ORM::factory('Views')->where('candidates_id','=',$id)->find_all();
 	            
             
@@ -553,7 +570,7 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 			$user = Auth::instance()->get_user();
             // Check if user is logged in
             if (!$user) {
-                    $this->redirect(Route::get('home')->uri(
+                $this->redirect(Route::get('home')->uri(
                 array(
                     'controller' => 'management',
                     'action'     => 'login',                            
@@ -590,7 +607,13 @@ class Controller_Web_Management extends Controller_Admin_Containers_Default {
 
 		           	// Delete the candidate
 	            	$candidates->delete();
-
+                    $this->redirect(Route::get('home')->uri(
+                        array(
+                            'controller' => 'management',
+                            'action'     => 'index',                            
+                            )
+                        ));   
+                    return;
 	            } else {
 
 	        	}
