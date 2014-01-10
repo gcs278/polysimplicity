@@ -117,6 +117,8 @@
 		Please leave us a comment or feedback at our email <a href="mailto:feedback@politicalsimplicity.com">feedback@politicalsimplicity.com</a>. We would really appreciate any comments or suggests you have for us. If you have a candidate you would like to learn about please let us know and we will move them to the front of the list of candidates to be posted first.</p>
 </div>
 
+<div class="clearfix">&nbsp;</div>
+
 <!--Display Page-->
 <?php echo $content ?>
 
