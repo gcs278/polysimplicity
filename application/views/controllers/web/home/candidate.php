@@ -1,6 +1,6 @@
 <div class="container">
   
-  <h1 class="text-center"><?php echo $candidate_name; ?></h1>
+  <h1 class="text-center" id="name"><?php echo $candidate_name; ?></h1>
   <div class="row-fluid">
     <div class="col-sm-4">
         <img id="profile-pic" src="data:image/jpg;base64, <?php echo $image ?>" class="img-rounded img-responsive" \>
@@ -25,10 +25,12 @@
      </table>
  </div>
 </div>
-    <div class="spinner" style="display: inherit;">
-      <div class="double-bounce1"></div>
-      <div class="double-bounce2"></div>
-    </div>
+
+<div class="spinner" style="display: inherit;">
+	<div class="double-bounce1"></div>
+	<div class="double-bounce2"></div>
+</div>
+
 <div class="row-fluid" style="margin-top: 40px; margin-bottom: 100px;">
     <div class="well text-center">
         <div class="row-fluid">
@@ -91,5 +93,21 @@
         folderContent.slideToggle("fast");
     });
 });
+
+	$('.list-group').on('click', 'a.list-group-item', function() {
+		console.log($(this).text().split(':')[0]);
+		console.log($('#name').text());
+		var myobj = { "name": $('#name').text(), "view": $(this).text().split(':')[0] };
+		$.ajax({
+			url: '<?php echo URL::base()?>api/views/',
+			type: 'GET',
+			contentType:'application/json',
+			data: myobj,
+			success: function(data) {
+				$('#detail_view').text(data);
+			}
+		});
+		return false;
+	});
 </script>	
 

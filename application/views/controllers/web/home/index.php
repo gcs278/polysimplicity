@@ -39,8 +39,9 @@
 					<?php 
 						$candidates = ORM::factory('Candidates')->with('Positions')->where('title', '=', $position->title)->where('status', '=', 'Current')->find_all();
 						foreach ($candidates as $candidate) {
-							echo "<a href='candidate/" . $candidate->id . "'>" . $candidate->first_name . " " 
-								. $candidate->middle_name . " " . $candidate->last_name . "</a><br>";
+							echo "<a href='candidate/" . $candidate->first_name . '.' . $candidate->middle_name . '.' . 
+								$candidate->last_name . "'>" . $candidate->first_name . " " . $candidate->middle_name . 
+								" " . $candidate->last_name . "</a><br>";
 						}
 					?>
 				</div>
@@ -142,9 +143,12 @@
 			for (var i=0; i<data.length; i++) {
 				console.log
 				console.log(data[i]);
-				if (data[i].id >= 0)
-					var html = "<a href='candidate/" + data[i].id + "'><img id='small-profile' src='data:image/jpg;base64, "
-						+ data[i].image + "' class='img-rounded img-responsive' \><br><li>" + data[i].name + "</a></li>";
+				if (data[i].id >= 0) {
+					var splitName = data[i].name.split(' ');
+					var html = "<a href='candidate/" + splitName[0] + '.' + splitName[1] + '.' + splitName[2] + 
+						"'><img id='small-profile' src='data:image/jpg;base64, " + data[i].image + 
+						"' class='img-rounded img-responsive' \><br><li>" + data[i].name + "</a></li>";
+				}
 				else
 					var html = "<li>" + data[i].name + "</li>";
 				list.append(html);

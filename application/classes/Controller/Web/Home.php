@@ -9,26 +9,11 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		$model = ORM::factory('Candidates');
 		//$model->find(0);
 		Debug::vars($this->request->method());
-		if ($this->request->method() == HTTP_Request::POST) {
-			
-			$view=view::factory('controllers/web/home/submit');	
-			$this->view = $view;
-			$name = $_POST['FirstName'];
-			
-			if ( !isset($name) )  {
-				$this->view->canName = "No input";
-			} else {
-				$this->view->canName = $name;
-			}
-			
-			
-		} else {
-			
-			$this->template->title = 'Home';
-			$view=view::factory('controllers/web/home/index');
-			$this->view = $view;
-			$this->view->last_name = $model->last_name;
-		}
+		
+		$this->template->title = 'Home';
+		$view=view::factory('controllers/web/home/index');
+		$this->view = $view;
+		$this->view->last_name = $model->last_name;
 	}
 
 	// Action to display an candidate
@@ -78,6 +63,8 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
         $this->view->views_display = "";
         // echo Debug::vars($candidate_views);
 
+				$this->view->views_display = $this->view->views_display . "<div class='col-sm-3 list-group' style='padding-right: 0px;'>";
+
         // For each of the views, create a box with title and simple opinion in it
         foreach($candidate_views as $candidate_view) {
 
@@ -87,17 +74,13 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
         	$view_name = ucwords(str_replace("_"," ", $view_type->name));
 
         	// Format block
-        	$this->view->views_display = $this->view->views_display . "<div class='col-sm-2 view-block' id='"
-        	. $view_type->name . "'>
-            <h4>" . $view_name ."</h4>
-            	<div class='thin-line-light'></div>
-            <h2>".$candidate_view->simple."</h2>
-        	</div>
-        	<div class = 'detail-view row-fluid' id='".$view_type->name."'>" 
-        	. $candidate_view->detail . 
-        	// "<img src='". url::site('/media/images/View_Icons/taxation.png') . "'>"."
-        	"</div>";
+        	$this->view->views_display = $this->view->views_display . "<a href='#' class='list-group-item'>"
+        		. "<strong>" . $view_name . ":</strong>" . "<br>" . $candidate_view->simple . "</a>";
 		}
+		
+		$this->view->views_display = $this->view->views_display . "</div><div class='col-sm-9 well' id='detail_view' style='height: 733px; background-color: white;'>"
+			. $candidate_views[0]->detail . "</div>";
+		
 		// No views set
 		if ( $this->view->views_display == "") {
 			$this->view->views_display = "<h3>Hmmm...No information here</h3>";

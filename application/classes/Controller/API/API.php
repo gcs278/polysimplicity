@@ -25,7 +25,7 @@ class Controller_API_API extends Controller_API_Containers_Default {
 				$state = $_GET['state'];
 				
 				$candidates = ORM::factory('Candidates')->with('Positions')->where('state', '=', $state)->find_all()->as_array();
-				//sleep(2);
+				sleep(2);
 				$results = array();
 				foreach ($candidates as $candidate) {
 					array_push($results, array('name' =>  $candidate->first_name . ' ' . $candidate->middle_name . ' ' . $candidate->last_name,
@@ -33,10 +33,25 @@ class Controller_API_API extends Controller_API_Containers_Default {
 				}
 				if (empty($results)) {
 					array_push($results, array('name' => 'No Candidates found', 'id' => -1));
-					sleep(1);
 				}
 				echo json_encode($results);
 			}
+		}
+	}
+	
+	public function action_views() {
+		if ($this->request->is_ajax()) {
+			$name = $_GET['name'];
+			$view = $_GET['view'];
+			$namearr = explode(" ", $name);
+			$candidate = ORM::factory('Candidates')->where('first_name', '=', $namearr[0])
+					->and_where('middle_name','=', $namearr[1])
+					->and_where('last_name','=', $namearr[2])->find();
+			$view_name = str_replace(" ", "_", strtolower($view));
+			$view_type = ORM::factory('viewsType')->where('name', '=', $view_name)->find();
+			$detail_view = ORM::factory('Views')->where('candidates_id','=',$candidate->id)
+				->and_where('viewsType_id', '=', $view_type->id)->find();
+			echo $detail_view->detail;
 		}
 	}
 }
