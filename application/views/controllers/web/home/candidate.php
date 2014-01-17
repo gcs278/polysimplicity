@@ -26,7 +26,7 @@
  </div>
 </div>
 
-<div class="spinner" style="display: inherit;">
+<div class="spinner" id="spinner1" style="display: inherit;">
 	<div class="double-bounce1"></div>
 	<div class="double-bounce2"></div>
 </div>
@@ -52,7 +52,7 @@
 <script>
  $(window).ready(function() {
     //$(".spinner").remove();
-    $('.spinner').css("display", "none");
+    $('#spinner1').css("display", "none");
     $(".detail-view").hide();
 
     //arrange the background image starting position for all the rows.
@@ -95,16 +95,19 @@
 });
 
 	$('.list-group').on('click', 'a.list-group-item', function() {
+		$('.list-group-item').removeClass('highlight');
+		$(this).addClass('highlight');
 		console.log($(this).text().split(':')[0]);
 		console.log($('#name').text());
 		var myobj = { "name": $('#name').text(), "view": $(this).text().split(':')[0] };
+		$('#detail_view').html("<div class='spinner' id='spinner2' style='position: inherit;'><div class='double-bounce1'></div><div class='double-bounce2'></div></div>");
 		$.ajax({
 			url: '<?php echo URL::base()?>api/views/',
 			type: 'GET',
 			contentType:'application/json',
 			data: myobj,
 			success: function(data) {
-				$('#detail_view').text(data);
+				$('#detail_view').html("<strong>Detail View:</strong><br/>" + data);
 			}
 		});
 		return false;

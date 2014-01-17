@@ -51,6 +51,7 @@ class Controller_API_API extends Controller_API_Containers_Default {
 			$view_type = ORM::factory('viewsType')->where('name', '=', $view_name)->find();
 			$detail_view = ORM::factory('Views')->where('candidates_id','=',$candidate->id)
 				->and_where('viewsType_id', '=', $view_type->id)->find();
+			sleep(1);
 			echo $detail_view->detail;
 		}
 	}

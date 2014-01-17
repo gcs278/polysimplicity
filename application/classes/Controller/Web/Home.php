@@ -50,23 +50,23 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
 		$this->view = $view;
 
 		// Get Demographics
-        $this->view->candidate_name = $candidates->first_name ." ". $candidates->middle_name . " " . $candidates->last_name;
-        $this->view->image = base64_encode($candidates->image);
-        $this->view->gender = ucwords($candidates->Personal->gender);
-        $this->view->birth_date = date('F j, Y', strtotime($candidates->Personal->birth_date));
-        $this->view->birth_state = $this->convert_state($candidates->Personal->birth_state);
-        $this->view->party = $candidates->Personal->party;
+		$this->view->candidate_name = $candidates->first_name ." ". $candidates->middle_name . " " . $candidates->last_name;
+		$this->view->image = base64_encode($candidates->image);
+		$this->view->gender = ucwords($candidates->Personal->gender);
+		$this->view->birth_date = date('F j, Y', strtotime($candidates->Personal->birth_date));
+		$this->view->birth_state = $this->convert_state($candidates->Personal->birth_state);
+		$this->view->party = $candidates->Personal->party;
 
-        // Get the candidates views
-        $candidate_views = ORM::factory('Views')->where('candidates_id','=',$id)->find_all();
+		// Get the candidates views
+		$candidate_views = ORM::factory('Views')->where('candidates_id','=',$id)->find_all();
 
-        $this->view->views_display = "";
-        // echo Debug::vars($candidate_views);
+		$this->view->views_display = "";
+		// echo Debug::vars($candidate_views);
 
-				$this->view->views_display = $this->view->views_display . "<div class='col-sm-3 list-group' style='padding-right: 0px;'>";
+		$this->view->views_display = $this->view->views_display . "<div class='col-sm-3 list-group' style='padding-right: 0px;'>";
 
-        // For each of the views, create a box with title and simple opinion in it
-        foreach($candidate_views as $candidate_view) {
+    // For each of the views, create a box with title and simple opinion in it
+    foreach($candidate_views as $candidate_view) {
 
         	// Get view type
         	$type_id = $candidate_view->viewsType_id;
@@ -78,12 +78,12 @@ class Controller_Web_Home extends Controller_Web_Containers_Default {
         		. "<strong>" . $view_name . ":</strong>" . "<br>" . $candidate_view->simple . "</a>";
 		}
 		
-		$this->view->views_display = $this->view->views_display . "</div><div class='col-sm-9 well' id='detail_view' style='height: 733px; background-color: white;'>"
-			. $candidate_views[0]->detail . "</div>";
-		
 		// No views set
-		if ( $this->view->views_display == "") {
+		if ( $this->view->views_display == "<div class='col-sm-3 list-group' style='padding-right: 0px;'>") {
 			$this->view->views_display = "<h3>Hmmm...No information here</h3>";
+		} else {
+			$this->view->views_display = $this->view->views_display . "</div><div class='col-sm-9 well' id='detail_view' style='height: 733px; background-color: white;'>"
+				. "<strong>Detail View:</strong><br/>" . $candidate_views[0]->detail . "</div>";
 		}
 
 		$running_for = ORM::factory('Positions')->where('candidates_id','=',$id)->where('status','=','Running')->find(0);

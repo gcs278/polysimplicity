@@ -125,7 +125,6 @@
 		showTooltip: true,
 		onRegionClick: function(event, abbrev, state) {
 			$('#candidate_list').children().remove();
-			console.log("Clicked " + state);
 			$('#selected_state').text(state);
 			$('.loading').css('display', 'inherit');
 			$('.loading').animate({
@@ -139,10 +138,7 @@
 		$.get('<?php echo URL::base()?>api/candidates/?state=' + abbrev.toUpperCase(), function(data) {
 			var list = $('#candidate_list');
 			list.children().remove();
-			console.log(data);
 			for (var i=0; i<data.length; i++) {
-				console.log
-				console.log(data[i]);
 				if (data[i].id >= 0) {
 					var splitName = data[i].name.split(' ');
 					var html = "<a href='candidate/" + splitName[0] + '.' + splitName[1] + '.' + splitName[2] + 
